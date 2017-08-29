@@ -2,10 +2,14 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
+import java.awt.event.ActionListener;
 
 public class Main {
     public static JFrame mainWindow;
     public static GridLayout mainWindowGridLayout;
+    static JTextField widthTextInput = new JTextField();
+    static JTextField heightTextInput = new JTextField();
     public static void main(String[] args) {
         // write your code here
         mainWindow = new JFrame();
@@ -22,10 +26,10 @@ public class Main {
         mainWindow.setLayout(mainWindowGridLayout);
 
         JLabel widthLabel = new JLabel("Grid width");
-        JTextField widthTextInput = new JTextField();
+
         widthTextInput.setText("500");
         JLabel heightLabel = new JLabel("Grid height");
-        JTextField heightTextInput = new JTextField();
+
         heightTextInput.setText("500");
 
         mainWindow.add(widthLabel);
@@ -33,10 +37,18 @@ public class Main {
         mainWindow.add(heightLabel);
         mainWindow.add(heightTextInput);
 
-        JButton startGameButton = new JButton("Start game!");
+        JButton startGameButton = new JButton("Start server!");
+
+        startGameButton.addActionListener(e -> {startServerHandler(e);});
+
         mainWindow.add(startGameButton);
 
 
         mainWindow.setVisible(true);
+    }
+
+    private static void startServerHandler(ActionEvent e){
+        System.out.println("Button clicked!");
+        System.out.println(String.format("Width: %s Height: %s", widthTextInput.getText(), heightTextInput.getText()));
     }
 }
