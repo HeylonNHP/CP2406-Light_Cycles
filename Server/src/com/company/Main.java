@@ -3,7 +3,6 @@ package com.company;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.event.ActionListener;
 
 public class Main {
     public static JFrame mainWindow;
@@ -17,8 +16,8 @@ public class Main {
         mainWindow.pack();
 
         Dimension windowSize = new Dimension();
-        windowSize.width = 300;
-        windowSize.height = 200;
+        windowSize.width = 350;
+        windowSize.height = 120;
 
         mainWindow.setSize(windowSize);
 
@@ -47,8 +46,16 @@ public class Main {
         mainWindow.setVisible(true);
     }
 
+    private static Dimension getGameGridDimensionsFromUI(){
+        Dimension chosenDimensions = new Dimension();
+        chosenDimensions.width = Integer.parseInt(widthTextInput.getText());
+        chosenDimensions.height = Integer.parseInt(heightTextInput.getText());
+        return chosenDimensions;
+    }
+
     private static void startServerHandler(ActionEvent e){
         System.out.println("Button clicked!");
         System.out.println(String.format("Width: %s Height: %s", widthTextInput.getText(), heightTextInput.getText()));
+        LightCyclesGame newGame = new LightCyclesGame(getGameGridDimensionsFromUI());
     }
 }
