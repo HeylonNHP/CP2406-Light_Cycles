@@ -16,6 +16,9 @@ public class Main {
         windowSize.height = 500;
 
         mainWindow.setSize(windowSize);
+
+        LightCyclesGame newGame = new LightCyclesGame();
+
         mainWindow.setVisible(true);
     }
 }

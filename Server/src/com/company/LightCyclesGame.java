@@ -14,6 +14,7 @@ public class LightCyclesGame {
     public LightCyclesGame(Dimension gridDimensions){
         gameGrid = new GameGrid(gridDimensions);
         playerList = new ArrayList<>();
+        broadcastGameState();
     }
 
     public void startGame(){
@@ -29,7 +30,7 @@ public class LightCyclesGame {
             DatagramPacket packetToTransmit = new DatagramPacket(message.getBytes(), message.length(),multicastGroup,multicastPort);
 
             multicastSocket.send(packetToTransmit);
-            
+
         }catch (Exception e){
 
         }
