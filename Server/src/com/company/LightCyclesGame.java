@@ -7,9 +7,12 @@ import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.util.ArrayList;
 
+enum CurrentGameState {IDLE, WAITING_FOR_USERS, PLAYING, GAME_OVER}
+
 public class LightCyclesGame {
     GameGrid gameGrid;
     ArrayList<Player> playerList;
+    CurrentGameState currentGameState = CurrentGameState.IDLE;
     String multicastAddress = "239.69.69.69";
     int multicastPort = 56969;
     public LightCyclesGame(Dimension gridDimensions){
@@ -21,6 +24,7 @@ public class LightCyclesGame {
     }
 
     public void startGame(){
+        currentGameState = CurrentGameState.PLAYING;
         broadcastGameState();
         Thread requestsThread = new Thread(() ->{
             startHandlingDirectRequests();
@@ -83,6 +87,21 @@ public class LightCyclesGame {
                     }else if(clientRequest.equals("GRID SIZE")){
                         Dimension gridDimensions = gameGrid.getGridSize();
                         response = String.format("%s %s", gridDimensions.width, gridDimensions.height);
+                    }else if(clientRequest.contains("GAME STATE")){
+                        switch (currentGameState){
+                            case IDLE:
+                                response = "IDLE";
+                                break;
+                            case PLAYING:
+                                response = "PLAYING";
+                                break;
+                            case GAME_OVER:
+                                response = "GAME OVER";
+                                break;
+                            case WAITING_FOR_USERS:
+                                response = "WAITING FOR USERS";
+                                break;
+                        }
                     }
 
                     if(!response.equals("")){

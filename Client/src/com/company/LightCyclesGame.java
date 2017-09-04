@@ -24,6 +24,8 @@ public class LightCyclesGame {
         getServerResponse("REMOVE USER Heylon");
 
         getServerResponse("GRID SIZE");
+
+        getServerResponse("GAME STATE");
     }
 
     public void receivedNewGameState(GameStateUpdated e){
