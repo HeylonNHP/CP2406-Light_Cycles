@@ -20,6 +20,8 @@ public class LightCyclesGame {
 
         //test
         getServerResponse("ADD USER Heylon");
+
+        getServerResponse("REMOVE USER Heylon");
     }
 
     public void receivedNewGameState(GameStateUpdated e){
@@ -42,6 +44,9 @@ public class LightCyclesGame {
             DatagramPacket packet = new DatagramPacket(requestMessage.getBytes(),requestMessage.length(),destinationAddress,56971);
             socket.send(packet);
             System.out.println("Sent");
+
+            //Testing only
+            socket.close();
         }catch (Exception e){
             System.out.println("Getting server response failed." + e.getMessage());
         }

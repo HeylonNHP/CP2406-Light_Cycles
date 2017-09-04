@@ -51,31 +51,50 @@ public class LightCyclesGame {
         Client request: USER name TURN left Response: None
         Client request: ADD USER name Response: OKAY
          */
-        try{
-            System.out.println("Receiving");
-            byte[] incomingBuffer = new byte[1024];
-            DatagramSocket socket = new DatagramSocket(56971);
-            DatagramPacket incomingRequest = new DatagramPacket(incomingBuffer,incomingBuffer.length);
-            socket.receive(incomingRequest);
-            System.out.println("Got it");
+            try{
+                System.out.println("Receiving");
+                DatagramSocket socket = new DatagramSocket(56971);
 
-            String clientRequest = new String(incomingBuffer);
-            String[] requestComponents = clientRequest.split(" ");
+                while (true){
+                    byte[] incomingBuffer = new byte[1024];
+                    DatagramPacket incomingRequest = new DatagramPacket(incomingBuffer,incomingBuffer.length);
+                    socket.receive(incomingRequest);
+                    System.out.println("Got it");
 
-            System.out.println(clientRequest);
+                    String clientRequest = new String(incomingBuffer);
+                    //Don't trim it and there will be null chars at the end, because the buffer has a set length
+                    clientRequest = clientRequest.trim();
+                    String[] requestComponents = clientRequest.split(" "); //Client request split into parts by a space character
+
+                    System.out.println(clientRequest);
 
 
-            if(clientRequest.contains("ADD USER")){
-                addPlayerToGame(requestComponents[2]);
+                    if(clientRequest.contains("ADD USER")){
+                        String userName = requestComponents[2];
+                        addPlayerToGame(userName);
+                        System.out.println("Added user: " + userName);
+                    }else if(clientRequest.contains("REMOVE USER")){
+                        String userName = requestComponents[2];
+                        removePlayerFromGame(userName);
+                        System.out.println(String.format("Removed user: %s Players in game: %s",userName, playerList.size()));
+                    }
+                }
+            }catch (Exception e){
+
             }
-
-        }catch (Exception e){
-
-        }
     }
 
     private void addPlayerToGame(String playerName){
         Player newPlayer = new Player(playerName);
         playerList.add(newPlayer);
+    }
+
+    private void removePlayerFromGame(String playerName){
+        for(Player player: playerList){
+            if(player.getName().equals(playerName)){
+                playerList.remove(player);
+                break;
+            }
+        }
     }
 }
