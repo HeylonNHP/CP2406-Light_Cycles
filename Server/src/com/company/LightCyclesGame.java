@@ -15,9 +15,11 @@ public class LightCyclesGame {
     CurrentGameState currentGameState = CurrentGameState.IDLE;
     String multicastAddress = "239.69.69.69";
     int multicastPort = 56969;
+    LeaderBoard leaderBoard;
     public LightCyclesGame(Dimension gridDimensions){
         gameGrid = new GameGrid(gridDimensions);
         playerList = new ArrayList<>();
+        leaderBoard = new LeaderBoard();
 
         startGame();
 
@@ -102,6 +104,12 @@ public class LightCyclesGame {
                                 response = "WAITING FOR USERS";
                                 break;
                         }
+                    }else if(clientRequest.contains("SAVE SCORE")){
+                        String scoreName = requestComponents[2];
+                        int scoreValue = Integer.parseInt(requestComponents[3]);
+                        leaderBoard.addHighScore(scoreName,scoreValue);
+                        System.out.println(String.format("Added score for: %s Score: %s", scoreName,scoreValue));
+                        response = "OKAY";
                     }
 
                     if(!response.equals("")){

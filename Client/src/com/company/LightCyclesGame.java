@@ -26,6 +26,8 @@ public class LightCyclesGame {
         getServerResponse("GRID SIZE");
 
         getServerResponse("GAME STATE");
+
+        getServerResponse("SAVE SCORE Heylon 160");
     }
 
     public void receivedNewGameState(GameStateUpdated e){
