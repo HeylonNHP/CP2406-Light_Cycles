@@ -24,7 +24,8 @@ public class GameStateReceiver extends Thread {
                 DatagramPacket receivedPacket = new DatagramPacket(dataBuffer,dataBuffer.length);
                 multicastSocket.receive(receivedPacket);
 
-                GameStateUpdated newUpdate = new GameStateUpdated(this);
+                GameState gameState = interpretGameStateFromString(new String(dataBuffer));
+                GameStateUpdated newUpdate = new GameStateUpdated(this, gameState);
                 raiseGameStateUpdated(newUpdate);
 
                 JOptionPane.showMessageDialog(null, new String(dataBuffer), "alert", JOptionPane.INFORMATION_MESSAGE);
@@ -34,6 +35,23 @@ public class GameStateReceiver extends Thread {
 
             }
         }
+    }
+
+    private static GameState interpretGameStateFromString(String stateData){
+        GameState gameState = new GameState();
+        //Remove any whitespace of null chars at the beginning or end
+        stateData = stateData.trim();
+
+        String[] perPlayerData = stateData.split(" ");
+
+        for(String playerData: perPlayerData){
+            String[] playerAttributes = playerData.split(",");
+            String playerName = playerAttributes[0];
+            int xPos = Integer.parseInt(playerAttributes[1]);
+            int yPos = Integer.parseInt(playerAttributes[2]);
+            gameState.addPlayer(playerName,xPos,yPos);
+        }
+        return gameState;
     }
 
     public void addGameStateUpdateListener(GameStateUpdateListener e){

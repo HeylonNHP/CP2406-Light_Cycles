@@ -22,7 +22,7 @@ public class LightCyclesGame {
     }
 
     private void broadcastGameState(){
-        String message = "Hello world!!!!!!!!!";
+        String message = "Jack,10,10 Jill,12,10 Tron,10,14";
         try{
             InetAddress multicastGroup = InetAddress.getByName(multicastAddress);
             MulticastSocket multicastSocket = new MulticastSocket(multicastPort);
