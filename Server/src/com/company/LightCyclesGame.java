@@ -81,6 +81,8 @@ public class LightCyclesGame {
                         response = "OKAY";
                         System.out.println(String.format("Removed user: %s Players in game: %s",userName, playerList.size()));
                     }else if(clientRequest.equals("GRID SIZE")){
+                        Dimension gridDimensions = gameGrid.getGridSize();
+                        response = String.format("%s %s", gridDimensions.width, gridDimensions.height);
                     }
 
                     if(!response.equals("")){

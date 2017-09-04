@@ -22,6 +22,8 @@ public class LightCyclesGame {
         getServerResponse("ADD USER Heylon");
 
         getServerResponse("REMOVE USER Heylon");
+
+        getServerResponse("GRID SIZE");
     }
 
     public void receivedNewGameState(GameStateUpdated e){
