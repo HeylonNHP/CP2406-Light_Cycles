@@ -68,15 +68,26 @@ public class LightCyclesGame {
 
                     System.out.println(clientRequest);
 
+                    String response = "";
 
                     if(clientRequest.contains("ADD USER")){
                         String userName = requestComponents[2];
                         addPlayerToGame(userName);
+                        response = "OKAY";
                         System.out.println("Added user: " + userName);
                     }else if(clientRequest.contains("REMOVE USER")){
                         String userName = requestComponents[2];
                         removePlayerFromGame(userName);
+                        response = "OKAY";
                         System.out.println(String.format("Removed user: %s Players in game: %s",userName, playerList.size()));
+                    }else if(clientRequest.equals("GRID SIZE")){
+                    }
+
+                    if(!response.equals("")){
+                        InetAddress clientAddress = incomingRequest.getAddress();
+                        int clientPort = incomingRequest.getPort();
+                        DatagramPacket responsePacket = new DatagramPacket(response.getBytes(),response.length(),clientAddress,clientPort);
+                        socket.send(responsePacket);
                     }
                 }
             }catch (Exception e){

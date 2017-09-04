@@ -45,6 +45,19 @@ public class LightCyclesGame {
             socket.send(packet);
             System.out.println("Sent");
 
+            byte[] responseBuffer = new byte[1024];
+            DatagramPacket responsePacket = new DatagramPacket(responseBuffer,responseBuffer.length);
+
+            //Set the timeout incase we never receive a response
+            socket.setSoTimeout(2 * 1000); //2 second timeout
+
+            socket.receive(responsePacket);
+
+            String responseString = new String(responseBuffer);
+            responseString = responseString.trim();
+
+            System.out.println(String.format("Server response: %s",responseString));
+
             //Testing only
             socket.close();
         }catch (Exception e){
