@@ -121,6 +121,20 @@ public class LightCyclesGame {
                             }else if(requestComponents[3].equals("right")){
                                 System.out.println(String.format("Player %s turned %s", userName, "right"));
                             }
+                        }else if(requestComponents[2].equals("GO")){
+                            //Player requests to change the speed of their light cycle
+                            if(requestComponents[3].equals("faster")){
+                                System.out.println("Player " + userName + " has sped up");
+                            }else if(requestComponents[3].equals("slower")){
+                                System.out.println("Player " + userName + " has slowed down");
+                            }
+                        }else if(requestComponents[2].equals("JETWALL")){
+                            //Player requests to turn their jet wall on or off
+                            if(requestComponents[3].equals("on")){
+                                System.out.println("Player " + userName + " turned their jetwall on");
+                            }else if(requestComponents[3].equals("off")){
+                                System.out.println("Player " + userName + " turned their jetwall off");
+                            }
                         }
                     }
 

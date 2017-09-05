@@ -31,6 +31,12 @@ public class LightCyclesGame {
 
         getServerResponse("USER Heylon TURN left");
         getServerResponse("USER Heylon TURN right");
+
+        getServerResponse("USER Heylon GO faster");
+        getServerResponse("USER Heylon GO slower");
+
+        getServerResponse("USER name JETWALL off");
+        getServerResponse("USER name JETWALL on");
     }
 
     public void receivedNewGameState(GameStateUpdated e){
