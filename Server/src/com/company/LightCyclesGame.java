@@ -110,6 +110,18 @@ public class LightCyclesGame {
                         leaderBoard.addHighScore(scoreName,scoreValue);
                         System.out.println(String.format("Added score for: %s Score: %s", scoreName,scoreValue));
                         response = "OKAY";
+                    }else if(clientRequest.contains("USER")){
+                        /*Do not respond to these requests*/
+                        String userName = requestComponents[1];
+
+                        if(requestComponents[2].equals("TURN")){
+                            //Player requests to turn their light cycle
+                            if(requestComponents[3].equals("left")){
+                                System.out.println(String.format("Player %s turned %s", userName, "left"));
+                            }else if(requestComponents[3].equals("right")){
+                                System.out.println(String.format("Player %s turned %s", userName, "right"));
+                            }
+                        }
                     }
 
                     if(!response.equals("")){

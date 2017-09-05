@@ -28,6 +28,9 @@ public class LightCyclesGame {
         getServerResponse("GAME STATE");
 
         getServerResponse("SAVE SCORE Heylon 160");
+
+        getServerResponse("USER Heylon TURN left");
+        getServerResponse("USER Heylon TURN right");
     }
 
     public void receivedNewGameState(GameStateUpdated e){
@@ -43,6 +46,7 @@ public class LightCyclesGame {
 
     public static String getServerResponse(String requestMessage){
         /*Sends a request to the game server and returns the response*/
+
         try {
             System.out.println("Sending");
             InetAddress destinationAddress = InetAddress.getByName("127.0.0.1");
@@ -51,13 +55,21 @@ public class LightCyclesGame {
             socket.send(packet);
             System.out.println("Sent");
 
+            /*Code for receiving response from server*/
             byte[] responseBuffer = new byte[1024];
             DatagramPacket responsePacket = new DatagramPacket(responseBuffer,responseBuffer.length);
 
             //Set the timeout incase we never receive a response
             socket.setSoTimeout(2 * 1000); //2 second timeout
 
-            socket.receive(responsePacket);
+            try{
+                socket.receive(responsePacket);
+            }catch (Exception ex){
+                //Response timed out :(
+                socket.close();
+                System.out.println(String.format("This happened: %s", ex.getMessage()));
+                return "";
+            }
 
             String responseString = new String(responseBuffer);
             responseString = responseString.trim();
