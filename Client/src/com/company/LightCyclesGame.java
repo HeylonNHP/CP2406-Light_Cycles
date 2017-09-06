@@ -131,7 +131,7 @@ public class LightCyclesGame {
     public void joinServer(String yourPlayerName) throws Exception{
         /*This method will ask the server to add you to the game, with the specified name
         * If the server is not waiting for players, it throws an exception
-        * If the server didn't respond with okay, it throws an exception*/
+        * If the server didn't respond with OKAY, it throws an exception*/
 
         if(getGameState() == CurrentGameState.WAITING_FOR_USERS){
             String response = getServerResponse("ADD USER Heylon");
