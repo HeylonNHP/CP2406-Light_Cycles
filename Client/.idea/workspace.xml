@@ -40,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Player.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+            <state relative-caret-position="68">
+              <caret line="4" column="21" lean-forward="false" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="41" />
               <folding>
                 <element signature="e#440#441#0" expanded="true" />
                 <element signature="e#483#484#0" expanded="true" />
@@ -56,6 +56,21 @@
                 <element signature="e#735#736#0" expanded="true" />
                 <element signature="e#765#766#0" expanded="true" />
                 <element signature="e#797#798#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JetWall.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/company/JetWall.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+              <folding>
+                <element signature="e#463#464#0" expanded="true" />
+                <element signature="e#498#499#0" expanded="true" />
+                <element signature="e#536#537#0" expanded="true" />
+                <element signature="e#567#568#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -148,16 +163,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameStateUpdateListener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/GameStateReceiver/GameStateUpdateListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -188,6 +193,8 @@
         <option value="$PROJECT_DIR$/../Server/src/com/company/LightCyclesGame.java" />
         <option value="$PROJECT_DIR$/src/com/company/LightCyclesGame.java" />
         <option value="$PROJECT_DIR$/src/com/company/Player.java" />
+        <option value="$PROJECT_DIR$/src/com/company/LightTrail.java" />
+        <option value="$PROJECT_DIR$/src/com/company/JetWall.java" />
       </list>
     </option>
   </component>
@@ -197,7 +204,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="953" />
     <option name="width" value="974" />
     <option name="height" value="1177" />
@@ -240,14 +247,14 @@
               <item name="Client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="company" type="462c0819:PsiDirectoryNode" />
-              <item name="LightCyclesGame.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+              <item name="GameStateReceiver" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Client" type="b2602c69:ProjectViewProjectNode" />
               <item name="Client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="company" type="462c0819:PsiDirectoryNode" />
-              <item name="Player.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+              <item name="LightCyclesGame.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
             <path>
               <item name="Client" type="b2602c69:ProjectViewProjectNode" />
@@ -332,7 +339,7 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="com.company.GameStateReceiver.*" />
+          <option name="PATTERN" value="com.company.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -390,15 +397,15 @@
       <workItem from="1503382977907" duration="24000" />
       <workItem from="1503383751724" duration="27000" />
       <workItem from="1503984312462" duration="16233000" />
-      <workItem from="1504503920001" duration="41416000" />
+      <workItem from="1504503920001" duration="45292000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57700000" />
+    <option name="totallyTimeSpent" value="61576000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1186" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1186" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -650,8 +657,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+        <state relative-caret-position="68">
+          <caret line="4" column="21" lean-forward="false" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="41" />
           <folding>
             <element signature="e#440#441#0" expanded="true" />
             <element signature="e#483#484#0" expanded="true" />
@@ -663,6 +670,19 @@
             <element signature="e#735#736#0" expanded="true" />
             <element signature="e#765#766#0" expanded="true" />
             <element signature="e#797#798#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/JetWall.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding>
+            <element signature="e#463#464#0" expanded="true" />
+            <element signature="e#498#499#0" expanded="true" />
+            <element signature="e#536#537#0" expanded="true" />
+            <element signature="e#567#568#0" expanded="true" />
           </folding>
         </state>
       </provider>
