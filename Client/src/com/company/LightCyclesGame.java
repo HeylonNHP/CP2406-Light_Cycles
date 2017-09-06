@@ -17,7 +17,7 @@ public class LightCyclesGame {
     public LightCyclesGame(){
         receiver.addGameStateUpdateListener(e -> {receivedNewGameState(e);});
         receiver.start();
-
+        /*
         //test
         getServerResponse("ADD USER Heylon");
 
@@ -43,6 +43,15 @@ public class LightCyclesGame {
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
+        */
+        try{
+            joinServer("Heylon");
+        }catch (Exception e){
+            System.out.println(String.format(
+                    "Something bad happened: %s", e.getMessage()
+            ));
+        }
+
 
     }
 
@@ -116,6 +125,22 @@ public class LightCyclesGame {
                 return CurrentGameState.WAITING_FOR_USERS;
             default:
                 throw new Exception("The server did not respond.");
+        }
+    }
+
+    public void joinServer(String yourPlayerName) throws Exception{
+        /*This method will ask the server to add you to the game, with the specified name
+        * If the server is not waiting for players, it throws an exception
+        * If the server didn't respond with okay, it throws an exception*/
+
+        if(getGameState() == CurrentGameState.WAITING_FOR_USERS){
+            String response = getServerResponse("ADD USER Heylon");
+            if(!response.equals("OKAY")){
+                throw new Exception("The following issue occurred when trying to " +
+                        "create a new user on the server: " + response);
+            }
+        }else{
+            throw new Exception("The server is not accepting new users at this time.");
         }
     }
 }

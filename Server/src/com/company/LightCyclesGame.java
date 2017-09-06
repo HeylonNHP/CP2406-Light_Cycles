@@ -91,10 +91,15 @@ public class LightCyclesGame {
                     String response = "";
 
                     if(clientRequest.contains("ADD USER")){
-                        String userName = requestComponents[2];
-                        addPlayerToGame(userName);
-                        response = "OKAY";
-                        System.out.println("Added user: " + userName);
+                        if(currentGameState == CurrentGameState.WAITING_FOR_USERS){
+                            String userName = requestComponents[2];
+                            addPlayerToGame(userName);
+                            response = "OKAY";
+                            System.out.println("Added user: " + userName);
+                        }else{
+                            response = "FAILED The server isn't accepting new players at this time";
+                        }
+
                     }else if(clientRequest.contains("REMOVE USER")){
                         String userName = requestComponents[2];
                         removePlayerFromGame(userName);
