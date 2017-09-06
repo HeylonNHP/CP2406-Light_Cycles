@@ -16,22 +16,36 @@ public class LightCyclesGame {
     String multicastAddress = "239.69.69.69";
     int multicastPort = 56969;
     LeaderBoard leaderBoard;
+
     public LightCyclesGame(Dimension gridDimensions){
         gameGrid = new GameGrid(gridDimensions);
         playerList = new ArrayList<>();
         leaderBoard = new LeaderBoard();
 
-        startGame();
+        //Begin waiting for users to add themselves to the game
+        currentGameState = CurrentGameState.WAITING_FOR_USERS;
+
+        //Start listening for direct requests - for the time being we're waiting for users (clients) to add themselves to the game
+        Thread requestsThread = new Thread(() ->{
+            startHandlingDirectRequests();
+        });
+        requestsThread.start();
+
+        //startGame();
 
     }
 
     public void startGame(){
         currentGameState = CurrentGameState.PLAYING;
         broadcastGameState();
-        Thread requestsThread = new Thread(() ->{
-            startHandlingDirectRequests();
-        });
-        requestsThread.start();
+    }
+
+    private void beginGameStartCountDown(){
+        /*This will begin the countdown before the game starts
+        * The count down will start only if at least 3 players have been added to the game
+        * Calling this method will reset the countdown if it has already started*/
+        int countDownTimeInSeconds = 10;
+
     }
 
     private void broadcastGameState(){
@@ -153,6 +167,8 @@ public class LightCyclesGame {
     private void addPlayerToGame(String playerName){
         Player newPlayer = new Player(playerName);
         playerList.add(newPlayer);
+
+        /*If the game is */
     }
 
     private void removePlayerFromGame(String playerName){

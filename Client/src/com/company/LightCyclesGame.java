@@ -10,9 +10,9 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.HashMap;
 
+enum CurrentGameState {IDLE, WAITING_FOR_USERS, PLAYING, GAME_OVER}
+
 public class LightCyclesGame {
-    String multicastAddress = "239.69.69.69";
-    int multicastPort = 56969;
     GameStateReceiver receiver = new GameStateReceiver();
     public LightCyclesGame(){
         receiver.addGameStateUpdateListener(e -> {receivedNewGameState(e);});
@@ -37,9 +37,16 @@ public class LightCyclesGame {
 
         getServerResponse("USER name JETWALL off");
         getServerResponse("USER name JETWALL on");
+
+        try{
+            System.out.println(getGameState());
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
     }
 
-    public void receivedNewGameState(GameStateUpdated e){
+    private void receivedNewGameState(GameStateUpdated e){
         GameState gameState = e.getGameState();
 
         for (String playerName: gameState.getPlayerNames()){
@@ -84,10 +91,31 @@ public class LightCyclesGame {
 
             //Testing only
             socket.close();
+
+            return responseString;
         }catch (Exception e){
             System.out.println("Getting server response failed." + e.getMessage());
         }
 
         return "";
+    }
+
+    private static CurrentGameState getGameState() throws Exception{
+        /*Asks the server for the current game state
+        * Will throw an exception if the server doesn't respond*/
+        String response = getServerResponse("GAME STATE");
+
+        switch (response){
+            case "IDLE":
+                return CurrentGameState.IDLE;
+            case "PLAYING":
+                return CurrentGameState.PLAYING;
+            case "GAME OVER":
+                return CurrentGameState.GAME_OVER;
+            case "WAITING FOR USERS":
+                return CurrentGameState.WAITING_FOR_USERS;
+            default:
+                throw new Exception("The server did not respond.");
+        }
     }
 }

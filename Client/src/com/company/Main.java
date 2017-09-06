@@ -20,5 +20,5 @@ public class Main {
         LightCyclesGame newGame = new LightCyclesGame();
 
         mainWindow.setVisible(true);
-    } 
+    }
 }
