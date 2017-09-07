@@ -2,6 +2,7 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Scanner;
 
 public class Main {
     public static JFrame mainWindow;
@@ -16,9 +17,22 @@ public class Main {
         windowSize.height = 500;
 
         mainWindow.setSize(windowSize);
+        startGame();
+        mainWindow.setVisible(true);
+    }
 
+    public static void startGame(){
+        Scanner userInput = new Scanner(System.in);
         LightCyclesGame newGame = new LightCyclesGame();
 
-        mainWindow.setVisible(true);
+        //Ask user for their name, and add them to the server
+        System.out.print("Enter the name you'd like to use: ");
+        String usersName = userInput.nextLine();
+        try{
+            newGame.joinServer(usersName);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
     }
 }
