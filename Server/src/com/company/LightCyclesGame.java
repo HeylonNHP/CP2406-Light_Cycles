@@ -89,7 +89,7 @@ public class LightCyclesGame {
                     byte[] incomingBuffer = new byte[1024];
                     DatagramPacket incomingRequest = new DatagramPacket(incomingBuffer,incomingBuffer.length);
                     socket.receive(incomingRequest);
-                    System.out.println("Got it");
+                    System.out.println("--- Received request ---");
 
                     String clientRequest = new String(incomingBuffer);
                     //Don't trim it and there will be null chars at the end, because the buffer has a set length
@@ -152,53 +152,47 @@ public class LightCyclesGame {
                     }else if(clientRequest.contains("USER")){
                         /*Do not respond to these requests*/
                         String userName = requestComponents[1]; //Is the player name the client specified
+                        try{
+                            Player player = getPlayerByName(userName);
 
-                        if(requestComponents[2].equals("TURN")){
-                            //Player requests to turn their light cycle
-                            if(requestComponents[3].equals("left")){
-                                try {
-                                    Player player = getPlayerByName(userName);
-                                    player.turnLeft();
-                                    System.out.println(String.format("Player %s turned %s", userName, "left"));
-                                }catch (Exception e){
-                                    System.out.println(String.format("Failed to turn %s left", userName));
+                            if(requestComponents[2].equals("TURN")){
+                                //Player requests to turn their light cycle
+                                if(requestComponents[3].equals("left")){
+
+                                        player.turnLeft();
+                                        System.out.println(String.format("Player %s turned %s", userName, "left"));
+
+                                }else if(requestComponents[3].equals("right")){
+
+                                        player.turnRight();
+                                        System.out.println(String.format("Player %s turned %s", userName, "right"));
+
                                 }
-                            }else if(requestComponents[3].equals("right")){
-                                try{
-                                    Player player = getPlayerByName(userName);
-                                    player.turnRight();
-                                    System.out.println(String.format("Player %s turned %s", userName, "right"));
-                                }catch (Exception e){
-                                    System.out.println(String.format("Failed to turn %s right", userName));
+                            }else if(requestComponents[2].equals("GO")){
+                                //Player requests to change the speed of their light cycle
+                                if(requestComponents[3].equals("faster")){
+
+                                        player.setMovingSpeedFast();
+                                        System.out.println("Player " + userName + " has sped up");
+
+                                }else if(requestComponents[3].equals("slower")){
+
+                                        player.setMovingSpeedSlow();
+                                        System.out.println("Player " + userName + " has slowed down");
+
                                 }
-                            }
-                        }else if(requestComponents[2].equals("GO")){
-                            //Player requests to change the speed of their light cycle
-                            if(requestComponents[3].equals("faster")){
-                                try{
-                                    Player player = getPlayerByName(userName);
-                                    player.setMovingSpeedFast();
-                                    System.out.println("Player " + userName + " has sped up");
-                                }catch (Exception e){
-                                    System.out.println(String.format("Player %s failed to speed up", userName));
-                                }
-                            }else if(requestComponents[3].equals("slower")){
-                                try{
-                                    Player player = getPlayerByName(userName);
-                                    player.setMovingSpeedSlow();
-                                    System.out.println("Player " + userName + " has slowed down");
-                                }catch (Exception e){
-                                    System.out.println(String.format("Player %s failed to slow down", userName));
+                            }else if(requestComponents[2].equals("JETWALL")){
+                                //Player requests to turn their jet wall on or off
+                                if(requestComponents[3].equals("on")){
+                                    System.out.println("Player " + userName + " turned their jetwall on");
+                                }else if(requestComponents[3].equals("off")){
+                                    System.out.println("Player " + userName + " turned their jetwall off");
                                 }
                             }
-                        }else if(requestComponents[2].equals("JETWALL")){
-                            //Player requests to turn their jet wall on or off
-                            if(requestComponents[3].equals("on")){
-                                System.out.println("Player " + userName + " turned their jetwall on");
-                            }else if(requestComponents[3].equals("off")){
-                                System.out.println("Player " + userName + " turned their jetwall off");
-                            }
+                        }catch (Exception e){
+                            System.out.println("USER request - Something bad happened: " + e.getMessage());
                         }
+
                     }
 
                     if(!response.equals("")){
