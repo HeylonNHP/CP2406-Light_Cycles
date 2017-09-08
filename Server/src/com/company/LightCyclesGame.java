@@ -13,8 +13,8 @@ public class LightCyclesGame {
     GameGrid gameGrid;
     ArrayList<Player> playerList;
     CurrentGameState currentGameState = CurrentGameState.IDLE;
-    String multicastAddress = "239.69.69.69";
-    int multicastPort = 56969;
+    final String multicastAddress = "239.69.69.69";
+    final int multicastPort = 56969;
     LeaderBoard leaderBoard;
 
     public LightCyclesGame(Dimension gridDimensions){

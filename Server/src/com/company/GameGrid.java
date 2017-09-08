@@ -36,19 +36,21 @@ public class GameGrid {
             yPos = (int)Math.round(Math.random() * gridHeight);
         }
 
-        /*Set player orientation so that it points away from the wall
-        * TODO - Need to add a set direction method on the player object*/
+        /*Set player orientation so that it points away from the wall*/
         if(xPos > (gridWidth/2)){
             //Player is closer to the right
-
+            player.setDirection(PlayerDirection.LEFT);
         }else {
             //Player is closer to the left
+            player.setDirection(PlayerDirection.RIGHT);
         }
 
         if(yPos > (gridHeight/2)){
             //Player is closer to the bottom
+            player.setDirection(PlayerDirection.UP);
         }else {
             //Player is closer to the top
+            player.setDirection(PlayerDirection.DOWN);
         }
 
         System.out.println(String.format("addPlayerAtRandomPosition - Adding player at x: %s y: %s",xPos,yPos));
