@@ -184,8 +184,10 @@ public class LightCyclesGame {
                             }else if(requestComponents[2].equals("JETWALL")){
                                 //Player requests to turn their jet wall on or off
                                 if(requestComponents[3].equals("on")){
+                                    player.enableJetWall();
                                     System.out.println("Player " + userName + " turned their jetwall on");
                                 }else if(requestComponents[3].equals("off")){
+                                    player.disableJetWall();
                                     System.out.println("Player " + userName + " turned their jetwall off");
                                 }
                             }

@@ -92,8 +92,8 @@
       <file leaf-file-name="LightCyclesGame.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../Server/src/com/company/LightCyclesGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="77" column="44" lean-forward="false" selection-start-line="77" selection-start-column="17" selection-end-line="77" selection-end-column="44" />
+            <state relative-caret-position="450">
+              <caret line="190" column="107" lean-forward="true" selection-start-line="190" selection-start-column="107" selection-end-line="190" selection-end-column="107" />
               <folding>
                 <element signature="method#LightCyclesGame#0;class#LightCyclesGame#0" expanded="false" />
                 <element signature="method#beginGameStartCountDown#0;class#LightCyclesGame#0" expanded="false" />
@@ -137,7 +137,7 @@
       <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../Server/src/com/company/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
+            <state relative-caret-position="204">
               <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
               <folding>
                 <element signature="method#turnLeft#0;class#Player#0" expanded="false" />
@@ -380,12 +380,12 @@
       <workItem from="1503382977907" duration="24000" />
       <workItem from="1503383751724" duration="27000" />
       <workItem from="1503984312462" duration="16233000" />
-      <workItem from="1504503920001" duration="65612000" />
+      <workItem from="1504503920001" duration="67454000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81896000" />
+    <option name="totallyTimeSpent" value="83738000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1186" extended-state="6" />
@@ -618,19 +618,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Server/src/com/company/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding>
-            <element signature="method#turnLeft#0;class#Player#0" expanded="false" />
-            <element signature="method#turnRight#0;class#Player#0" expanded="false" />
-            <element signature="e#2012#2013#0" expanded="true" />
-            <element signature="e#2044#2045#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../Server/src/com/company/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -653,10 +640,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../Server/src/com/company/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+          <folding>
+            <element signature="method#turnLeft#0;class#Player#0" expanded="false" />
+            <element signature="method#turnRight#0;class#Player#0" expanded="false" />
+            <element signature="e#2012#2013#0" expanded="true" />
+            <element signature="e#2044#2045#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../Server/src/com/company/LightCyclesGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="77" column="44" lean-forward="false" selection-start-line="77" selection-start-column="17" selection-end-line="77" selection-end-column="44" />
+        <state relative-caret-position="450">
+          <caret line="190" column="107" lean-forward="true" selection-start-line="190" selection-start-column="107" selection-end-line="190" selection-end-column="107" />
           <folding>
             <element signature="method#LightCyclesGame#0;class#LightCyclesGame#0" expanded="false" />
             <element signature="method#beginGameStartCountDown#0;class#LightCyclesGame#0" expanded="false" />
