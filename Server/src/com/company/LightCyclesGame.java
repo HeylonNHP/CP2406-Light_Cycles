@@ -151,7 +151,7 @@ public class LightCyclesGame {
                         response = "OKAY";
                     }else if(clientRequest.contains("USER")){
                         /*Do not respond to these requests*/
-                        String userName = requestComponents[1];
+                        String userName = requestComponents[1]; //Is the player name the client specified
 
                         if(requestComponents[2].equals("TURN")){
                             //Player requests to turn their light cycle
@@ -175,9 +175,21 @@ public class LightCyclesGame {
                         }else if(requestComponents[2].equals("GO")){
                             //Player requests to change the speed of their light cycle
                             if(requestComponents[3].equals("faster")){
-                                System.out.println("Player " + userName + " has sped up");
+                                try{
+                                    Player player = getPlayerByName(userName);
+                                    player.setMovingSpeedFast();
+                                    System.out.println("Player " + userName + " has sped up");
+                                }catch (Exception e){
+                                    System.out.println(String.format("Player %s failed to speed up", userName));
+                                }
                             }else if(requestComponents[3].equals("slower")){
-                                System.out.println("Player " + userName + " has slowed down");
+                                try{
+                                    Player player = getPlayerByName(userName);
+                                    player.setMovingSpeedSlow();
+                                    System.out.println("Player " + userName + " has slowed down");
+                                }catch (Exception e){
+                                    System.out.println(String.format("Player %s failed to slow down", userName));
+                                }
                             }
                         }else if(requestComponents[2].equals("JETWALL")){
                             //Player requests to turn their jet wall on or off
