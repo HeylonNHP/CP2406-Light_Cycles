@@ -12,11 +12,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="26" lean-forward="true" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
+            <state relative-caret-position="510">
+              <caret line="30" column="12" lean-forward="true" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -42,8 +42,8 @@
       <file leaf-file-name="GameStateReceiver.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/GameStateReceiver/GameStateReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="29" column="80" lean-forward="true" selection-start-line="29" selection-start-column="80" selection-end-line="29" selection-end-column="80" />
+            <state relative-caret-position="493">
+              <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -67,8 +67,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../Server/src/com/company/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="61" column="0" lean-forward="true" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+            <state relative-caret-position="289">
+              <caret line="57" column="76" lean-forward="true" selection-start-line="57" selection-start-column="76" selection-end-line="57" selection-end-column="76" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#main#0;class#Main#0" expanded="false" />
@@ -94,7 +94,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameGrid.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameGrid.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../Server/src/com/company/GameGrid.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1120">
@@ -172,7 +172,6 @@
         <option value="$PROJECT_DIR$/src/com/company/GameStateReceiver/GameStateUpdateListener.java" />
         <option value="$PROJECT_DIR$/src/com/company/GameStateReceiver/GameState.java" />
         <option value="$PROJECT_DIR$/src/com/company/GameStateReceiver/GameStateUpdated.java" />
-        <option value="$PROJECT_DIR$/src/com/company/GameStateReceiver/GameStateReceiver.java" />
         <option value="$PROJECT_DIR$/../Server/src/com/company/LeaderBoard.java" />
         <option value="$PROJECT_DIR$/src/com/company/Player.java" />
         <option value="$PROJECT_DIR$/src/com/company/LightTrail.java" />
@@ -182,6 +181,7 @@
         <option value="$PROJECT_DIR$/../Server/src/com/company/Player.java" />
         <option value="$PROJECT_DIR$/../Server/src/com/company/GameGrid.java" />
         <option value="$PROJECT_DIR$/../Server/src/com/company/LightCyclesGame.java" />
+        <option value="$PROJECT_DIR$/src/com/company/GameStateReceiver/GameStateReceiver.java" />
       </list>
     </option>
   </component>
@@ -378,12 +378,12 @@
       <workItem from="1503382977907" duration="24000" />
       <workItem from="1503383751724" duration="27000" />
       <workItem from="1503984312462" duration="16233000" />
-      <workItem from="1504503920001" duration="72581000" />
+      <workItem from="1504503920001" duration="73219000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88865000" />
+    <option name="totallyTimeSpent" value="89503000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1186" extended-state="6" />
@@ -556,19 +556,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/LightCyclesGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="107" column="83" lean-forward="true" selection-start-line="107" selection-start-column="83" selection-end-line="107" selection-end-column="83" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#receivedNewGameState#0;class#LightCyclesGame#0" expanded="false" />
-            <element signature="method#getServerResponse#0;class#LightCyclesGame#0" expanded="false" />
-            <element signature="method#getGameState#0;class#LightCyclesGame#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../Server/src/com/company/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -593,38 +580,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Server/src/com/company/LightCyclesGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="226" column="29" lean-forward="true" selection-start-line="226" selection-start-column="29" selection-end-line="226" selection-end-column="29" />
-          <folding>
-            <element signature="method#LightCyclesGame#0;class#LightCyclesGame#0" expanded="false" />
-            <element signature="method#beginGameStartCountDown#0;class#LightCyclesGame#0" expanded="false" />
-            <element signature="method#broadcastGameState#0;class#LightCyclesGame#0" expanded="false" />
-            <element signature="method#startHandlingDirectRequests#0;class#LightCyclesGame#0" expanded="false" />
-            <element signature="method#getPlayerByName#0;class#LightCyclesGame#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="26" lean-forward="true" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/GameStateReceiver/GameStateReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="29" column="80" lean-forward="true" selection-start-line="29" selection-start-column="80" selection-end-line="29" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/JetWall.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -634,18 +589,6 @@
             <element signature="e#498#499#0" expanded="true" />
             <element signature="e#536#537#0" expanded="true" />
             <element signature="e#567#568#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Server/src/com/company/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="61" column="0" lean-forward="true" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#main#0;class#Main#0" expanded="false" />
-            <element signature="method#getGameGridDimensionsFromUI#0;class#Main#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -662,6 +605,63 @@
             <element signature="method#isGridLocationOccupied#0;class#GameGrid#0" expanded="false" />
             <element signature="e#3043#3044#0" expanded="true" />
             <element signature="e#3081#3082#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Server/src/com/company/LightCyclesGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="226" column="29" lean-forward="true" selection-start-line="226" selection-start-column="29" selection-end-line="226" selection-end-column="29" />
+          <folding>
+            <element signature="method#LightCyclesGame#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#beginGameStartCountDown#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#broadcastGameState#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#startHandlingDirectRequests#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#getPlayerByName#0;class#LightCyclesGame#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/GameStateReceiver/GameStateReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/LightCyclesGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="107" column="83" lean-forward="true" selection-start-line="107" selection-start-column="83" selection-end-line="107" selection-end-column="83" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#receivedNewGameState#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#getServerResponse#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#getGameState#0;class#LightCyclesGame#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Server/src/com/company/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="57" column="76" lean-forward="true" selection-start-line="57" selection-start-column="76" selection-end-line="57" selection-end-column="76" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#main#0;class#Main#0" expanded="false" />
+            <element signature="method#getGameGridDimensionsFromUI#0;class#Main#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="12" lean-forward="true" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

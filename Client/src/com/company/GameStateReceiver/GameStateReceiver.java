@@ -2,6 +2,7 @@ package com.company.GameStateReceiver;
 
 import javax.swing.*;
 import javax.swing.event.EventListenerList;
+import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
@@ -15,12 +16,20 @@ public class GameStateReceiver extends Thread {
     }
     @Override
     public void run(){
+        MulticastSocket multicastSocket;
+        try{
+            multicastSocket = new MulticastSocket(multicastPort);
+            InetAddress multicastGroup = InetAddress.getByName(multicastAddress);
+            multicastSocket.joinGroup(multicastGroup);
+        }catch (IOException e){
+            System.out.println("GameStateReceiver - failed to create socket!!!\n" +
+                    "The game won't be able to listen to the server for game updates!!!");
+            return;
+        }
+
         while (true){
             try{
                 byte[] dataBuffer = new byte[1024];
-                InetAddress multicastGroup = InetAddress.getByName(multicastAddress);
-                MulticastSocket multicastSocket = new MulticastSocket(multicastPort);
-                multicastSocket.joinGroup(multicastGroup);
                 DatagramPacket receivedPacket = new DatagramPacket(dataBuffer,dataBuffer.length);
                 multicastSocket.receive(receivedPacket);
 
