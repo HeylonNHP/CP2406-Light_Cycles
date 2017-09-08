@@ -1,13 +1,16 @@
 package com.company;
 
 enum PlayerDirection {UP,DOWN,LEFT,RIGHT}
+enum PlayerSpeed {STOPPED,SLOW,FAST}
 
 public class Player {
     String name;
     PlayerDirection direction;
     boolean jetWallEnabled;
+    PlayerSpeed speed;
     public Player(String name){
         this.name = name;
+        this.speed = PlayerSpeed.STOPPED;
         setDirection(PlayerDirection.UP);
         enableJetWall();
     }
@@ -64,6 +67,18 @@ public class Player {
 
     public void disableJetWall(){
         this.jetWallEnabled = false;
+    }
+
+    public void setMovingSpeedSlow(){
+        this.speed = PlayerSpeed.SLOW;
+    }
+
+    public void setMovingSpeedFast(){
+        this.speed = PlayerSpeed.FAST;
+    }
+
+    public PlayerSpeed getMovingSpeed(){
+        return this.speed;
     }
 
     @Override
