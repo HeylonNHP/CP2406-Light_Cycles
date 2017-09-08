@@ -43,7 +43,7 @@ public class LightCyclesGame {
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-        */
+
         try{
             joinServer("Heylon");
         }catch (Exception e){
@@ -51,7 +51,7 @@ public class LightCyclesGame {
                     "Something bad happened: %s", e.getMessage()
             ));
         }
-
+*/
 
     }
 
@@ -70,7 +70,7 @@ public class LightCyclesGame {
         /*Sends a request to the game server and returns the response*/
 
         try {
-            System.out.println("Sending");
+            System.out.println("Sending " + requestMessage);
             InetAddress destinationAddress = InetAddress.getByName("127.0.0.1");
             DatagramSocket socket = new DatagramSocket(56970);
             DatagramPacket packet = new DatagramPacket(requestMessage.getBytes(),requestMessage.length(),destinationAddress,56971);
@@ -134,7 +134,7 @@ public class LightCyclesGame {
         * If the server didn't respond with OKAY, it throws an exception*/
 
         if(getGameState() == CurrentGameState.WAITING_FOR_USERS){
-            String response = getServerResponse("ADD USER Heylon");
+            String response = getServerResponse("ADD USER " + yourPlayerName);
             if(!response.equals("OKAY")){
                 throw new Exception("The following issue occurred when trying to " +
                         "create a new user on the server: " + response);

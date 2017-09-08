@@ -49,12 +49,22 @@ public class LightCyclesGame {
     }
 
     private void broadcastGameState(){
-        String message = "Jack,10,10 Jill,12,10 Tron,10,14";
+        String broadcastMessage = "";
+        for(Player player: playerList){
+            try{
+                String playerName = player.getName();
+                Dimension playerPosition = gameGrid.getLocationOfItemOnGrid(player);
+                broadcastMessage += String.format("%s,%s,%s ",playerName, playerPosition.width,playerPosition.height);
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
+        //String message = "Jack,10,10 Jill,12,10 Tron,10,14";
         try{
             InetAddress multicastGroup = InetAddress.getByName(multicastAddress);
             MulticastSocket multicastSocket = new MulticastSocket(multicastPort);
             multicastSocket.joinGroup(multicastGroup);
-            DatagramPacket packetToTransmit = new DatagramPacket(message.getBytes(), message.length(),multicastGroup,multicastPort);
+            DatagramPacket packetToTransmit = new DatagramPacket(broadcastMessage.getBytes(), broadcastMessage.length(),multicastGroup,multicastPort);
 
             multicastSocket.send(packetToTransmit);
 
@@ -93,9 +103,15 @@ public class LightCyclesGame {
                     if(clientRequest.contains("ADD USER")){
                         if(currentGameState == CurrentGameState.WAITING_FOR_USERS){
                             String userName = requestComponents[2];
-                            addPlayerToGame(userName);
-                            response = "OKAY";
-                            System.out.println("Added user: " + userName);
+                            try{
+                                addPlayerToGame(userName);
+                                response = "OKAY";
+                                System.out.println("Added user: " + userName);
+                            }catch (Exception e){
+                                response = "FAILED " + e.getMessage();
+                                System.out.println("Player " + userName + " already exists");
+                            }
+
                         }else{
                             response = "FAILED The server isn't accepting new players at this time";
                         }
@@ -169,11 +185,21 @@ public class LightCyclesGame {
             }
     }
 
-    private void addPlayerToGame(String playerName){
+    private void addPlayerToGame(String playerName) throws Exception{
         Player newPlayer = new Player(playerName);
-        playerList.add(newPlayer);
 
-        /*If the game is */
+        for(Player player:playerList){
+            if(player.getName().equals(newPlayer.getName())){
+                //Player with this name is already in the game
+                throw new Exception("A player with this name already exists!");
+            }
+        }
+
+        playerList.add(newPlayer);
+        //Also add the player to the grid
+        gameGrid.addPlayerAtRandomPosition(newPlayer);
+        //TESTING
+        broadcastGameState();
     }
 
     private void removePlayerFromGame(String playerName){
