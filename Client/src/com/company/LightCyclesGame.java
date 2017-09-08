@@ -17,42 +17,6 @@ public class LightCyclesGame {
     public LightCyclesGame(){
         receiver.addGameStateUpdateListener(e -> {receivedNewGameState(e);});
         receiver.start();
-        /*
-        //test
-        getServerResponse("ADD USER Heylon");
-
-        getServerResponse("REMOVE USER Heylon");
-
-        getServerResponse("GRID SIZE");
-
-        getServerResponse("GAME STATE");
-
-        getServerResponse("SAVE SCORE Heylon 160");
-
-        getServerResponse("USER Heylon TURN left");
-        getServerResponse("USER Heylon TURN right");
-
-        getServerResponse("USER Heylon GO faster");
-        getServerResponse("USER Heylon GO slower");
-
-        getServerResponse("USER name JETWALL off");
-        getServerResponse("USER name JETWALL on");
-
-        try{
-            System.out.println(getGameState());
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-
-        try{
-            joinServer("Heylon");
-        }catch (Exception e){
-            System.out.println(String.format(
-                    "Something bad happened: %s", e.getMessage()
-            ));
-        }
-*/
-
     }
 
     private void receivedNewGameState(GameStateUpdated e){
