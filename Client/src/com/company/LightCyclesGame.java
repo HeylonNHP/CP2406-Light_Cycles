@@ -103,6 +103,10 @@ public class LightCyclesGame {
                 throw new Exception("The following issue occurred when trying to " +
                         "create a new user on the server: " + response);
             }
+            //TESTING - delete afterwards
+            getServerResponse(String.format("USER %s TURN left", yourPlayerName));
+            getServerResponse(String.format("USER %s TURN right", yourPlayerName));
+
         }else{
             throw new Exception("The server is not accepting new users at this time.");
         }

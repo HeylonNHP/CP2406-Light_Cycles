@@ -24,6 +24,40 @@ public class Player {
         return this.direction;
     }
 
+    public void turnLeft(){
+        switch (getDirection()){
+            case UP:
+                setDirection(PlayerDirection.LEFT);
+                break;
+            case LEFT:
+                setDirection(PlayerDirection.DOWN);
+                break;
+            case DOWN:
+                setDirection(PlayerDirection.RIGHT);
+                break;
+            case RIGHT:
+                setDirection(PlayerDirection.UP);
+                break;
+        }
+    }
+
+    public void turnRight(){
+        switch (getDirection()){
+            case UP:
+                setDirection(PlayerDirection.RIGHT);
+                break;
+            case RIGHT:
+                setDirection(PlayerDirection.DOWN);
+                break;
+            case DOWN:
+                setDirection(PlayerDirection.LEFT);
+                break;
+            case LEFT:
+                setDirection(PlayerDirection.UP);
+                break;
+        }
+    }
+
     public void enableJetWall(){
         this.jetWallEnabled = true;
     }

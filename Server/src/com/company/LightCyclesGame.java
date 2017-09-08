@@ -117,10 +117,14 @@ public class LightCyclesGame {
                         }
 
                     }else if(clientRequest.contains("REMOVE USER")){
-                        String userName = requestComponents[2];
-                        removePlayerFromGame(userName);
-                        response = "OKAY";
-                        System.out.println(String.format("Removed user: %s Players in game: %s",userName, playerList.size()));
+                        try{
+                            String userName = requestComponents[2];
+                            removePlayerFromGame(userName);
+                            response = "OKAY";
+                            System.out.println(String.format("Removed user: %s Players in game: %s",userName, playerList.size()));
+                        }catch (Exception e){
+                            response = "FAILED " + e.getMessage();
+                        }
                     }else if(clientRequest.equals("GRID SIZE")){
                         Dimension gridDimensions = gameGrid.getGridSize();
                         response = String.format("%s %s", gridDimensions.width, gridDimensions.height);
@@ -152,9 +156,21 @@ public class LightCyclesGame {
                         if(requestComponents[2].equals("TURN")){
                             //Player requests to turn their light cycle
                             if(requestComponents[3].equals("left")){
-                                System.out.println(String.format("Player %s turned %s", userName, "left"));
+                                try {
+                                    Player player = getPlayerByName(userName);
+                                    player.turnLeft();
+                                    System.out.println(String.format("Player %s turned %s", userName, "left"));
+                                }catch (Exception e){
+                                    System.out.println(String.format("Failed to turn %s left", userName));
+                                }
                             }else if(requestComponents[3].equals("right")){
-                                System.out.println(String.format("Player %s turned %s", userName, "right"));
+                                try{
+                                    Player player = getPlayerByName(userName);
+                                    player.turnRight();
+                                    System.out.println(String.format("Player %s turned %s", userName, "right"));
+                                }catch (Exception e){
+                                    System.out.println(String.format("Failed to turn %s right", userName));
+                                }
                             }
                         }else if(requestComponents[2].equals("GO")){
                             //Player requests to change the speed of their light cycle
@@ -202,12 +218,17 @@ public class LightCyclesGame {
         broadcastGameState();
     }
 
-    private void removePlayerFromGame(String playerName){
+    private void removePlayerFromGame(String playerName) throws Exception{
+        Player player = getPlayerByName(playerName);
+        playerList.remove(player);
+    }
+
+    private Player getPlayerByName(String playerName) throws Exception{
         for(Player player: playerList){
             if(player.getName().equals(playerName)){
-                playerList.remove(player);
-                break;
+                return player;
             }
         }
+        throw new Exception("Cannot find a player with that name!");
     }
 }
