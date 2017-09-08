@@ -1,6 +1,7 @@
 package com.company;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class GameGrid {
     Object[][] gridArray;
@@ -85,5 +86,73 @@ public class GameGrid {
 
     private void setGridLocationToItem(Object item, int x, int y){
         gridArray[x][y] = item;
+    }
+
+    private void setGridLocationToEmpty(int x, int y){
+        gridArray[x][y] = null;
+    }
+
+    public void progressGame(){
+        /*This method when called will be responsible for:
+        * Moving the light cycles (Player) on the grid according to their speed and direction
+        * Creating the jet wall (JetWall) behind the light cycles as they move*/
+
+        ArrayList<Player> movedPlayersList = new ArrayList<>();
+
+        for (int x = 0; x < gridSize.width; x++){
+            for (int y = 0; y < gridSize.height; y++){
+
+                Object currentObject = gridArray[x][y];
+
+                if(currentObject instanceof Player){
+                    Player player = (Player)currentObject;
+
+                    //Determine by how much to move the player
+                    int movementDistance;
+                    switch (player.getMovingSpeed()){
+                        case FAST:
+                            movementDistance = 2;
+                            break;
+                        case SLOW:
+                            movementDistance = 1;
+                            break;
+                        default:
+                            movementDistance = 0;
+                            break;
+                    }
+
+                    //Move the player in the direction it points
+                    System.out.println("progressGame - Player direction currently is " + player.getDirection().toString());
+                    int newXposition = x;
+                    int newYposition = y;
+                    switch (player.getDirection()){
+                        case LEFT:
+                            newXposition = x-movementDistance;
+                            newYposition = y;
+                            break;
+                        case RIGHT:
+                            newXposition = x+movementDistance;
+                            newYposition = y;
+                            break;
+                        case DOWN:
+                            newXposition = x;
+                            newYposition = y+movementDistance;
+                            break;
+                        case UP:
+                            newXposition = x;
+                            newYposition = y-movementDistance;
+                    }
+
+                    if(player.getMovingSpeed() != PlayerSpeed.STOPPED){
+                        /*TODO Add collision checking against other players and their jetwalls*/
+                        setGridLocationToItem(player,newXposition,newYposition);
+                    /*TODO Create jetwall class and place it in the position the player occupied before it got moved*/
+                        setGridLocationToEmpty(x,y);
+                        System.out.println(String.format("progressGame - Found Player %s at x: %s y: %s\n" +
+                                "moving to new position at x: %s y: %s", player.getName(),x,y, newXposition, newYposition));
+                    }
+                }
+            }
+        }
     }
 }
