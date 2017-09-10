@@ -59,6 +59,25 @@ public class GameGrid {
         setGridLocationToItem(player,xPos,yPos);
     }
 
+    public void removePlayerFromGrid(Player player){
+        /*Remove player and all of their jet wall from the grid*/
+        for(int x = 0; x < gridSize.width; x++) {
+            for (int y = 0; y < gridSize.height; y++) {
+                Object currentObject = gridArray[x][y];
+                if(currentObject instanceof Player){
+                    if(currentObject == player){
+                        setGridLocationToEmpty(x,y);
+                    }
+                }else if (currentObject instanceof JetWall){
+                    JetWall currentJetWall = (JetWall)currentObject;
+                    if(currentJetWall.getParentPlayer() == player){
+                        setGridLocationToEmpty(x,y);
+                    }
+                }
+            }
+        }
+    }
+
     public Dimension getLocationOfItemOnGrid(Object item) throws Exception{
         /*Searches the grid by reference for the first occurrence of item and returns the position
          * Will throw an exception if the item isn't found on the grid */
@@ -147,7 +166,20 @@ public class GameGrid {
 
                     //Move player to new position
                     if(player.getMovingSpeed() != PlayerSpeed.STOPPED && !alreadyMovedPlayersList.contains(player)){
-                        /*TODO Add collision checking against other players and their jetwalls*/
+                        /*If the target location on the grid is occupied,
+                         or the target location is outside of the grid
+                         the player gets removed from grid because it has crashed*/
+                        if(newXposition == gridSize.width
+                                || newXposition < 0
+                                || newYposition == gridSize.height
+                                || newYposition < 0
+                                || isGridLocationOccupied(newXposition,newYposition)){
+                            removePlayerFromGrid(player);
+                            System.out.println(String.format("Player %s has crashed at position x: %s y: %s",
+                                    player.getName(), x,y));
+                            continue;
+                        }
+
                         setGridLocationToItem(player,newXposition,newYposition);
                         alreadyMovedPlayersList.add(player);
                         if(player.isJetWallEnabled()){

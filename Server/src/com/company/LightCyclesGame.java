@@ -48,7 +48,7 @@ public class LightCyclesGame {
                 broadcastGameState();
 
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(250);
                 }catch (InterruptedException e){
                     System.out.println(String.format("startGame - Interrupted: %s", e.getMessage()));
                 }
