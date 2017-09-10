@@ -26,8 +26,6 @@ public class LightCyclesGame {
             Dimension playerCoords = gameState.getPlayerCoordinates(playerName);
             System.out.println(String.format("Player: %s x: %s y:%s", playerName, playerCoords.width, playerCoords.height));
         }
-
-        System.out.println("The event listener worked.");
     }
 
     public static String getServerResponse(String requestMessage){
@@ -103,9 +101,11 @@ public class LightCyclesGame {
                 throw new Exception("The following issue occurred when trying to " +
                         "create a new user on the server: " + response);
             }
-            //TESTING - delete afterwards
+            //TESTING - delete code afterwards
+            getServerResponse(String.format("USER %s GO faster", yourPlayerName));
             getServerResponse(String.format("USER %s TURN left", yourPlayerName));
             getServerResponse(String.format("USER %s TURN right", yourPlayerName));
+
 
         }else{
             throw new Exception("The server is not accepting new users at this time.");

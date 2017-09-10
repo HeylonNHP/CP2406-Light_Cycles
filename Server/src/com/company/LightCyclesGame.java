@@ -223,13 +223,22 @@ public class LightCyclesGame {
         //Also add the player to the grid
         gameGrid.addPlayerAtRandomPosition(newPlayer);
         //TESTING
-        broadcastGameState();
-        broadcastGameState();
-        for (int i = 0; i < 5; i++){
-            gameGrid.progressGame();
+        Thread testThread = new Thread(() -> {
             broadcastGameState();
-            Thread.sleep(250);
-        }
+
+            for(int i = 0; i < 10; i++){
+                gameGrid.progressGame();
+                broadcastGameState();
+                try{
+                    Thread.sleep(250);
+                }catch (InterruptedException e){
+                    assert false;
+                }
+            }
+
+        });
+        testThread.start();
+
     }
 
     private void removePlayerFromGame(String playerName) throws Exception{
