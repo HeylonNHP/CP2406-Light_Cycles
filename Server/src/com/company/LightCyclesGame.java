@@ -37,7 +37,26 @@ public class LightCyclesGame {
 
     public void startGame(){
         currentGameState = CurrentGameState.PLAYING;
-        broadcastGameState();
+        Thread gameUpdateThread;
+        gameUpdateThread = new Thread(() -> {
+
+        //Begin progressing the game and broadcasting updates while the game is being played
+            broadcastGameState();
+
+            while (currentGameState == CurrentGameState.PLAYING){
+                gameGrid.progressGame();
+                broadcastGameState();
+
+                try {
+                    Thread.sleep(1000);
+                }catch (InterruptedException e){
+                    System.out.println(String.format("startGame - Interrupted: %s", e.getMessage()));
+                }
+
+            }
+
+        });
+        gameUpdateThread.start();
     }
 
     private void beginGameStartCountDown(){
@@ -223,22 +242,7 @@ public class LightCyclesGame {
         //Also add the player to the grid
         gameGrid.addPlayerAtRandomPosition(newPlayer);
         //TESTING
-        Thread testThread = new Thread(() -> {
-            broadcastGameState();
-
-            for(int i = 0; i < 10; i++){
-                gameGrid.progressGame();
-                broadcastGameState();
-                try{
-                    Thread.sleep(250);
-                }catch (InterruptedException e){
-                    assert false;
-                }
-            }
-
-        });
-        testThread.start();
-
+        startGame();
     }
 
     private void removePlayerFromGame(String playerName) throws Exception{

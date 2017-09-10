@@ -102,7 +102,7 @@ public class LightCyclesGame {
                         "create a new user on the server: " + response);
             }
             //TESTING - delete code afterwards
-            getServerResponse(String.format("USER %s GO faster", yourPlayerName));
+            getServerResponse(String.format("USER %s GO slower", yourPlayerName));
             getServerResponse(String.format("USER %s TURN left", yourPlayerName));
             getServerResponse(String.format("USER %s TURN right", yourPlayerName));
 
