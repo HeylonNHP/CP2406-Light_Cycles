@@ -23,16 +23,51 @@ public class Main {
 
     public static void startGame(){
         Scanner userInput = new Scanner(System.in);
-        LightCyclesGame newGame = new LightCyclesGame();
 
         //Ask user for their name, and add them to the server
         System.out.print("Enter the name you'd like to use: ");
         String usersName = userInput.nextLine();
-        try{
-            newGame.joinServer(usersName);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
 
+        LightCyclesGame newGame = new LightCyclesGame(usersName);
+
+        try {
+            newGame.joinServer();
+
+
+            //TEST code for testing out the game from the console
+            String commandsList = "What would you like to do?\n" +
+                    "Turn: left, right\n" +
+                    "Speed: fast, slow\n" +
+                    "Jetwall: on, off";
+            while (true){
+                System.out.println(commandsList);
+                System.out.print(">>> ");
+                String userChoice = userInput.nextLine();
+
+                switch (userChoice.toLowerCase()){
+                    case "left":
+                        newGame.turnLeft();
+                        break;
+                    case "right":
+                        newGame.turnRight();
+                        break;
+                    case "fast":
+                        newGame.beginMovingQuickly();
+                        break;
+                    case "slow":
+                        newGame.beginMovingSlowly();
+                        break;
+                    case "on":
+                        newGame.turnOnJetwall();
+                        break;
+                    case "off":
+                        newGame.turnOffJetwall();
+                        break;
+                }
+            }
+
+        }catch (Exception e){
+            System.out.println(String.format("Couldn't join server because: %s", e.getMessage()));
+        }
     }
 }

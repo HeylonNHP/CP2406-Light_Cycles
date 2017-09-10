@@ -14,7 +14,9 @@ enum CurrentGameState {IDLE, WAITING_FOR_USERS, PLAYING, GAME_OVER}
 
 public class LightCyclesGame {
     GameStateReceiver receiver = new GameStateReceiver();
-    public LightCyclesGame(){
+    String usersName;
+    public LightCyclesGame(String userName){
+        this.usersName = userName;
         receiver.addGameStateUpdateListener(e -> {receivedNewGameState(e);});
         receiver.start();
     }
@@ -90,25 +92,55 @@ public class LightCyclesGame {
         }
     }
 
-    public void joinServer(String yourPlayerName) throws Exception{
+    public void joinServer() throws Exception{
         /*This method will ask the server to add you to the game, with the specified name
         * If the server is not waiting for players, it throws an exception
         * If the server didn't respond with OKAY, it throws an exception*/
 
         if(getGameState() == CurrentGameState.WAITING_FOR_USERS){
-            String response = getServerResponse("ADD USER " + yourPlayerName);
+            String response = getServerResponse("ADD USER " + usersName);
             if(!response.equals("OKAY")){
                 throw new Exception("The following issue occurred when trying to " +
                         "create a new user on the server: " + response);
             }
             //TESTING - delete code afterwards
-            getServerResponse(String.format("USER %s GO slower", yourPlayerName));
-            getServerResponse(String.format("USER %s TURN left", yourPlayerName));
-            getServerResponse(String.format("USER %s TURN right", yourPlayerName));
+            getServerResponse(String.format("USER %s GO slower", usersName));
+            getServerResponse(String.format("USER %s TURN left", usersName));
+            getServerResponse(String.format("USER %s TURN right", usersName));
 
 
         }else{
             throw new Exception("The server is not accepting new users at this time.");
         }
+    }
+
+    public void turnLeft(){
+        /*Request server to turn your player left*/
+        getServerResponse(String.format("USER %s TURN left", usersName));
+    }
+
+    public void turnRight(){
+        /*Request server to turn your player right*/
+        getServerResponse(String.format("USER %s TURN right", usersName));
+    }
+
+    public void beginMovingSlowly(){
+        /*Request server to set your player speed to slow*/
+        getServerResponse(String.format("USER %s GO slower", usersName));
+    }
+
+    public void beginMovingQuickly(){
+        /*Request server to set your player speed to fast*/
+        getServerResponse(String.format("USER %s GO faster", usersName));
+    }
+
+    public void turnOnJetwall(){
+        /*Request server to turn on your jet wall*/
+        getServerResponse(String.format("USER %s JETWALL on", usersName));
+    }
+
+    public void turnOffJetwall(){
+        /*Request server to turn off your jet wall*/
+        getServerResponse(String.format("USER %s JETWALL off", usersName));
     }
 }

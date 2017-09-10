@@ -88,7 +88,7 @@ public class GameGrid {
                     itemLocation.setSize(x,y);
                     return itemLocation;
                 }else if(gridArray[x][y] != null){
-                    System.out.println(String.format("getLocationOfItemOnGrid - There's something at position x: %s y: %s", x, y));
+                    //System.out.println(String.format("getLocationOfItemOnGrid - There's something at position x: %s y: %s", x, y));
                 }
             }
         }
@@ -192,9 +192,10 @@ public class GameGrid {
                                 "moving to new position at x: %s y: %s", player.getName(),x,y, newXposition, newYposition));
                     }
                 }else if(currentObject instanceof JetWall){
+                    /*
                     //Testing message
                     JetWall jetWall = (JetWall) currentObject;
-                    System.out.println(String.format("Found %s jet wall at x: %s y: %s", jetWall.getParentPlayer().getName(),x,y));
+                    System.out.println(String.format("Found %s jet wall at x: %s y: %s", jetWall.getParentPlayer().getName(),x,y));*/
                 }
             }
         }
