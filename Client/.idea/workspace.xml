@@ -15,8 +15,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="36" column="5" lean-forward="true" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+            <state relative-caret-position="374">
+              <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -66,8 +66,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../Server/src/com/company/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="20" lean-forward="true" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
+            <state relative-caret-position="187">
+              <caret line="46" column="5" lean-forward="true" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#main#0;class#Main#0" expanded="false" />
@@ -77,7 +77,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LightCyclesGame.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LightCyclesGame.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../Server/src/com/company/LightCyclesGame.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="374">
@@ -96,28 +96,29 @@
       <file leaf-file-name="JetWall.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../Server/src/com/company/JetWall.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state relative-caret-position="187">
+              <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
               <folding>
-                <element signature="e#337#338#0" expanded="true" />
-                <element signature="e#372#373#0" expanded="true" />
+                <element signature="e#117#118#0" expanded="true" />
+                <element signature="e#165#166#0" expanded="true" />
+                <element signature="e#204#205#0" expanded="true" />
+                <element signature="e#239#240#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameGrid.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameGrid.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../Server/src/com/company/GameGrid.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="87" column="0" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+            <state relative-caret-position="206">
+              <caret line="86" column="65" lean-forward="false" selection-start-line="86" selection-start-column="65" selection-end-line="86" selection-end-column="65" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#generateGridArray#0;class#GameGrid#0" expanded="false" />
                 <element signature="method#addPlayerAtRandomPosition#0;class#GameGrid#0" expanded="false" />
                 <element signature="method#getLocationOfItemOnGrid#0;class#GameGrid#0" expanded="false" />
                 <element signature="method#isGridLocationOccupied#0;class#GameGrid#0" expanded="false" />
-                <element signature="e#3081#3082#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -139,13 +140,13 @@
       <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../Server/src/com/company/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+            <state relative-caret-position="479">
+              <caret line="73" column="5" lean-forward="true" selection-start-line="73" selection-start-column="5" selection-end-line="73" selection-end-column="5" />
               <folding>
                 <element signature="method#turnLeft#0;class#Player#0" expanded="false" />
                 <element signature="method#turnRight#0;class#Player#0" expanded="false" />
-                <element signature="e#2012#2013#0" expanded="true" />
-                <element signature="e#2044#2045#0" expanded="true" />
+                <element signature="e#2089#2090#0" expanded="true" />
+                <element signature="e#2121#2122#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -178,12 +179,12 @@
         <option value="$PROJECT_DIR$/src/com/company/LightTrail.java" />
         <option value="$PROJECT_DIR$/src/com/company/JetWall.java" />
         <option value="$PROJECT_DIR$/src/com/company/Main.java" />
-        <option value="$PROJECT_DIR$/../Server/src/com/company/Player.java" />
-        <option value="$PROJECT_DIR$/../Server/src/com/company/GameGrid.java" />
         <option value="$PROJECT_DIR$/src/com/company/GameStateReceiver/GameStateReceiver.java" />
         <option value="$PROJECT_DIR$/src/com/company/LightCyclesGame.java" />
         <option value="$PROJECT_DIR$/../Server/src/com/company/LightCyclesGame.java" />
+        <option value="$PROJECT_DIR$/../Server/src/com/company/Player.java" />
         <option value="$PROJECT_DIR$/../Server/src/com/company/JetWall.java" />
+        <option value="$PROJECT_DIR$/../Server/src/com/company/GameGrid.java" />
       </list>
     </option>
   </component>
@@ -258,7 +259,7 @@
               <item name="Server" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="company" type="462c0819:PsiDirectoryNode" />
-              <item name="JetWall.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+              <item name="Player.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
           </expand>
           <select />
@@ -387,12 +388,12 @@
       <workItem from="1503382977907" duration="24000" />
       <workItem from="1503383751724" duration="27000" />
       <workItem from="1503984312462" duration="16233000" />
-      <workItem from="1504503920001" duration="83200000" />
+      <workItem from="1504503920001" duration="86455000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="99484000" />
+    <option name="totallyTimeSpent" value="102739000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1186" extended-state="6" />
@@ -565,19 +566,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Server/src/com/company/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding>
-            <element signature="method#turnLeft#0;class#Player#0" expanded="false" />
-            <element signature="method#turnRight#0;class#Player#0" expanded="false" />
-            <element signature="e#2012#2013#0" expanded="true" />
-            <element signature="e#2044#2045#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../Server/src/com/company/LeaderBoard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -597,21 +585,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Server/src/com/company/GameGrid.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="87" column="0" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#generateGridArray#0;class#GameGrid#0" expanded="false" />
-            <element signature="method#addPlayerAtRandomPosition#0;class#GameGrid#0" expanded="false" />
-            <element signature="method#getLocationOfItemOnGrid#0;class#GameGrid#0" expanded="false" />
-            <element signature="method#isGridLocationOccupied#0;class#GameGrid#0" expanded="false" />
-            <element signature="e#3081#3082#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/LightCyclesGame.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
@@ -624,24 +597,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
+    <entry file="file://$PROJECT_DIR$/../Server/src/com/company/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="5" lean-forward="true" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+        <state relative-caret-position="479">
+          <caret line="73" column="5" lean-forward="true" selection-start-line="73" selection-start-column="5" selection-end-line="73" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Server/src/com/company/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="20" lean-forward="true" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#main#0;class#Main#0" expanded="false" />
-            <element signature="method#getGameGridDimensionsFromUI#0;class#Main#0" expanded="false" />
+            <element signature="method#turnLeft#0;class#Player#0" expanded="false" />
+            <element signature="method#turnRight#0;class#Player#0" expanded="false" />
+            <element signature="e#2089#2090#0" expanded="true" />
+            <element signature="e#2121#2122#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -661,11 +625,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../Server/src/com/company/JetWall.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state relative-caret-position="187">
+          <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
           <folding>
-            <element signature="e#337#338#0" expanded="true" />
-            <element signature="e#372#373#0" expanded="true" />
+            <element signature="e#117#118#0" expanded="true" />
+            <element signature="e#165#166#0" expanded="true" />
+            <element signature="e#204#205#0" expanded="true" />
+            <element signature="e#239#240#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -680,6 +646,42 @@
             <element signature="method#beginGameStartCountDown#0;class#LightCyclesGame#0" expanded="false" />
             <element signature="method#startHandlingDirectRequests#0;class#LightCyclesGame#0" expanded="false" />
             <element signature="method#getPlayerByName#0;class#LightCyclesGame#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Server/src/com/company/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="46" column="5" lean-forward="true" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#main#0;class#Main#0" expanded="false" />
+            <element signature="method#getGameGridDimensionsFromUI#0;class#Main#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Server/src/com/company/GameGrid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="86" column="65" lean-forward="false" selection-start-line="86" selection-start-column="65" selection-end-line="86" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#generateGridArray#0;class#GameGrid#0" expanded="false" />
+            <element signature="method#addPlayerAtRandomPosition#0;class#GameGrid#0" expanded="false" />
+            <element signature="method#getLocationOfItemOnGrid#0;class#GameGrid#0" expanded="false" />
+            <element signature="method#isGridLocationOccupied#0;class#GameGrid#0" expanded="false" />
           </folding>
         </state>
       </provider>

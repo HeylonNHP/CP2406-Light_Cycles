@@ -97,7 +97,9 @@ public class GameGrid {
         * Moving the light cycles (Player) on the grid according to their speed and direction
         * Creating the jet wall (JetWall) behind the light cycles as they move*/
 
-        ArrayList<Player> movedPlayersList = new ArrayList<>();
+        /*Used for keeping track of players that have already been moved in this turn
+        * so they don't accidentally get moved again if the for loop encounters its new position*/
+        ArrayList<Player> alreadyMovedPlayersList = new ArrayList<>();
 
         for (int x = 0; x < gridSize.width; x++){
             for (int y = 0; y < gridSize.height; y++){
@@ -121,7 +123,7 @@ public class GameGrid {
                             break;
                     }
 
-                    //Move the player in the direction it points
+                    //Determine the players new x/y coords based on its direction and speed
                     System.out.println("progressGame - Player direction currently is " + player.getDirection().toString());
                     int newXposition = x;
                     int newYposition = y;
@@ -143,14 +145,24 @@ public class GameGrid {
                             newYposition = y-movementDistance;
                     }
 
-                    if(player.getMovingSpeed() != PlayerSpeed.STOPPED){
+                    //Move player to new position
+                    if(player.getMovingSpeed() != PlayerSpeed.STOPPED && !alreadyMovedPlayersList.contains(player)){
                         /*TODO Add collision checking against other players and their jetwalls*/
                         setGridLocationToItem(player,newXposition,newYposition);
-                    /*TODO Create jetwall class and place it in the position the player occupied before it got moved*/
-                        setGridLocationToEmpty(x,y);
+                        alreadyMovedPlayersList.add(player);
+                        if(player.isJetWallEnabled()){
+                            JetWall jetWall = new JetWall(player);
+                            setGridLocationToItem(jetWall,x,y);
+                        }else{
+                            setGridLocationToEmpty(x,y);
+                        }
                         System.out.println(String.format("progressGame - Found Player %s at x: %s y: %s\n" +
                                 "moving to new position at x: %s y: %s", player.getName(),x,y, newXposition, newYposition));
                     }
+                }else if(currentObject instanceof JetWall){
+                    //Testing message
+                    JetWall jetWall = (JetWall) currentObject;
+                    System.out.println(String.format("Found %s jet wall at x: %s y: %s", jetWall.getParentPlayer().getName(),x,y));
                 }
             }
         }

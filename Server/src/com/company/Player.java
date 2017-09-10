@@ -69,6 +69,10 @@ public class Player {
         this.jetWallEnabled = false;
     }
 
+    public boolean isJetWallEnabled(){
+        return jetWallEnabled;
+    }
+
     public void setMovingSpeedSlow(){
         this.speed = PlayerSpeed.SLOW;
     }

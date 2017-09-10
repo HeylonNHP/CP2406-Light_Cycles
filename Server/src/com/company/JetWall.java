@@ -1,13 +1,9 @@
 package com.company;
 
-enum JetWallDirection {HORIZONTAL,VERTICAL}
-
 public class JetWall {
-    Player parentPlayer;
-    JetWallDirection direction;
-    public JetWall(Player parentPlayer, JetWallDirection direction){
+    private Player parentPlayer;
+    public JetWall(Player parentPlayer){
         this.parentPlayer = parentPlayer;
-        this.direction = direction;
     }
 
     public Player getParentPlayer() {
