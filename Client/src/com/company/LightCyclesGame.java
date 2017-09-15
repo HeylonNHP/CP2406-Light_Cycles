@@ -8,13 +8,12 @@ import java.awt.*;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.util.HashMap;
 
 enum CurrentGameState {IDLE, WAITING_FOR_USERS, PLAYING, GAME_OVER}
 
 public class LightCyclesGame {
-    GameStateReceiver receiver = new GameStateReceiver();
-    String usersName;
+    private GameStateReceiver receiver = new GameStateReceiver();
+    private String usersName;
     public LightCyclesGame(String userName){
         this.usersName = userName;
         receiver.addGameStateUpdateListener(e -> {receivedNewGameState(e);});
@@ -30,7 +29,7 @@ public class LightCyclesGame {
         }
     }
 
-    public static String getServerResponse(String requestMessage){
+    private static String getServerResponse(String requestMessage){
         /*Sends a request to the game server and returns the response*/
 
         try {
@@ -73,7 +72,7 @@ public class LightCyclesGame {
         return "";
     }
 
-    private static CurrentGameState getGameState() throws Exception{
+    private static CurrentGameState getServerGameState() throws Exception{
         /*Asks the server for the current game state
         * Will throw an exception if the server doesn't respond*/
         String response = getServerResponse("GAME STATE");
@@ -97,7 +96,7 @@ public class LightCyclesGame {
         * If the server is not waiting for players, it throws an exception
         * If the server didn't respond with OKAY, it throws an exception*/
 
-        if(getGameState() == CurrentGameState.WAITING_FOR_USERS){
+        if(getServerGameState() == CurrentGameState.WAITING_FOR_USERS){
             String response = getServerResponse("ADD USER " + usersName);
             if(!response.equals("OKAY")){
                 throw new Exception("The following issue occurred when trying to " +

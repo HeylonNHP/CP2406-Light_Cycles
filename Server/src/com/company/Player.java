@@ -4,10 +4,13 @@ enum PlayerDirection {UP,DOWN,LEFT,RIGHT}
 enum PlayerSpeed {STOPPED,SLOW,FAST}
 
 public class Player {
-    String name;
-    PlayerDirection direction;
-    boolean jetWallEnabled;
-    PlayerSpeed speed;
+    private String name;
+    private PlayerDirection direction;
+    private boolean jetWallEnabled;
+    private PlayerSpeed speed;
+
+    /*All these methods CANNOT be private despite what Intellij thinks
+    * They're all being referenced from outside of this class*/
     public Player(String name){
         this.name = name;
         this.speed = PlayerSpeed.STOPPED;

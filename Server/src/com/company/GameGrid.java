@@ -4,8 +4,8 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class GameGrid {
-    Object[][] gridArray;
-    Dimension gridSize;
+    private Object[][] gridArray;
+    private Dimension gridSize;
     public GameGrid(Dimension dimensions){
         generateGridArray(dimensions);
         gridSize = dimensions;
@@ -87,8 +87,6 @@ public class GameGrid {
                     Dimension itemLocation = new Dimension();
                     itemLocation.setSize(x,y);
                     return itemLocation;
-                }else if(gridArray[x][y] != null){
-                    //System.out.println(String.format("getLocationOfItemOnGrid - There's something at position x: %s y: %s", x, y));
                 }
             }
         }
@@ -175,7 +173,7 @@ public class GameGrid {
                                 || newYposition < 0
                                 || isGridLocationOccupied(newXposition,newYposition)){
                             removePlayerFromGrid(player);
-                            System.out.println(String.format("Player %s has crashed at position x: %s y: %s",
+                            System.out.println(String.format("\n ------Player %s has crashed at position x: %s y: %s------ \n",
                                     player.getName(), x,y));
                             continue;
                         }
@@ -191,11 +189,6 @@ public class GameGrid {
                         System.out.println(String.format("progressGame - Found Player %s at x: %s y: %s\n" +
                                 "moving to new position at x: %s y: %s", player.getName(),x,y, newXposition, newYposition));
                     }
-                }else if(currentObject instanceof JetWall){
-                    /*
-                    //Testing message
-                    JetWall jetWall = (JetWall) currentObject;
-                    System.out.println(String.format("Found %s jet wall at x: %s y: %s", jetWall.getParentPlayer().getName(),x,y));*/
                 }
             }
         }

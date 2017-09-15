@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
         mainWindow = new JFrame();
-        mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainWindow.pack();
 
         Dimension windowSize = new Dimension();
@@ -22,6 +22,15 @@ public class Main {
     }
 
     public static void startGame(){
+        /*INSTRCUTIONS FOR TESTING
+        *
+        * Please start the Server app first and click the Start Server! button on
+        * the Server BEFORE starting this Client app
+        * Read the Servers console output for updates on the player position and to
+        * see whether the player crashed. The game state is also displayed in a GUI
+        * message box that you can ignore. Enter your desired player commands into the
+         * Clients console when prompted to control your light cycle in order to test it*/
+
         Scanner userInput = new Scanner(System.in);
 
         //Ask user for their name, and add them to the server
@@ -34,7 +43,9 @@ public class Main {
             newGame.joinServer();
 
 
-            //TEST code for testing out the game from the console
+            /*TEST code for testing out the game from the console
+            * Please ignore the infinite loop warning this is intended
+            * on being infinite for now*/
             String commandsList = "What would you like to do?\n" +
                     "Turn: left, right\n" +
                     "Speed: fast, slow\n" +

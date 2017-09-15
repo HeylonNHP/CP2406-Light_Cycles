@@ -9,8 +9,8 @@ import java.net.MulticastSocket;
 
 public class GameStateReceiver extends Thread {
     private EventListenerList listenerList = new EventListenerList();
-    String multicastAddress = "239.69.69.69";
-    int multicastPort = 56969;
+    private final String multicastAddress = "239.69.69.69";
+    private final int multicastPort = 56969;
     public GameStateReceiver(){
 
     }

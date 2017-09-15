@@ -3,7 +3,7 @@ package com.company;
 import java.util.HashMap;
 
 public class LeaderBoard {
-    HashMap<String,Integer> highScores = new HashMap<String, Integer>();
+    private HashMap<String,Integer> highScores = new HashMap<>();
     public LeaderBoard(){
 
     }

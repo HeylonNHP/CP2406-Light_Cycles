@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) {
         // write your code here
         mainWindow = new JFrame();
-        mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainWindow.pack();
 
         Dimension windowSize = new Dimension();
@@ -54,7 +54,7 @@ public class Main {
     }
 
     private static void startServerHandler(ActionEvent e){
-        System.out.println("Button clicked!");
+        System.out.println("Button clicked! test");
         System.out.println(String.format("Width: %s Height: %s", widthTextInput.getText(), heightTextInput.getText()));
         LightCyclesGame newGame = new LightCyclesGame(getGameGridDimensionsFromUI());
     }

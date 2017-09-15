@@ -10,12 +10,12 @@ import java.util.ArrayList;
 enum CurrentGameState {IDLE, WAITING_FOR_USERS, PLAYING, GAME_OVER}
 
 public class LightCyclesGame {
-    GameGrid gameGrid;
-    ArrayList<Player> playerList;
-    CurrentGameState currentGameState = CurrentGameState.IDLE;
-    final String multicastAddress = "239.69.69.69";
-    final int multicastPort = 56969;
-    LeaderBoard leaderBoard;
+    private GameGrid gameGrid;
+    private ArrayList<Player> playerList;
+    private CurrentGameState currentGameState = CurrentGameState.IDLE;
+    private final String multicastAddress = "239.69.69.69";
+    private final int multicastPort = 56969;
+    private LeaderBoard leaderBoard;
 
     public LightCyclesGame(Dimension gridDimensions){
         gameGrid = new GameGrid(gridDimensions);

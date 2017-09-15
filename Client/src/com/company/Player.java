@@ -5,9 +5,9 @@ import java.awt.*;
 enum PlayerDirection {UP,DOWN,LEFT,RIGHT}
 
 public class Player {
-    String name;
-    Dimension position;
-    PlayerDirection direction;
+    private String name;
+    private Dimension position;
+    private PlayerDirection direction;
 
     public Player(String name, Dimension initialPosition, PlayerDirection initialDirection){
         this.name = name;
