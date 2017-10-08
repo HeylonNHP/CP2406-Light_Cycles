@@ -4,21 +4,19 @@ import java.awt.*;
 import java.util.*;
 
 public class GameState {
-    private HashMap<String, Dimension> playerPositions = new HashMap<>();
+    private ArrayList<PlayerState> playerPositions = new ArrayList<>();
+
     public GameState(){
 
     }
 
-    public void addPlayer(String playerName, int xPosition, int yPosition){
+    public void addPlayer(String playerName, int xPosition, int yPosition, boolean jetwallEnabled){
         Dimension playerPosition = new Dimension(xPosition,yPosition);
-        playerPositions.put(playerName, playerPosition);
+        PlayerState playerState = new PlayerState(playerName, playerPosition, jetwallEnabled);
+        playerPositions.add(playerState);
     }
 
-    public ArrayList<String> getPlayerNames(){
-        return new ArrayList<>(playerPositions.keySet());
-    }
-
-    public Dimension getPlayerCoordinates(String playerName){
-        return playerPositions.get(playerName);
+    public ArrayList<PlayerState> getPlayerStates(){
+        return playerPositions;
     }
 }

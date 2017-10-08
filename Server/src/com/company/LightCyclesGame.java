@@ -73,7 +73,15 @@ public class LightCyclesGame {
             try{
                 String playerName = player.getName();
                 Dimension playerPosition = gameGrid.getLocationOfItemOnGrid(player);
-                broadcastMessage += String.format("%s,%s,%s ",playerName, playerPosition.width,playerPosition.height);
+                String jetwallState;
+
+                if(player.isJetWallEnabled()){
+                    jetwallState = "on";
+                }else {
+                    jetwallState = "off";
+                }
+
+                broadcastMessage += String.format("%s,%s,%s,%s ",playerName, playerPosition.width,playerPosition.height, jetwallState);
             }catch (Exception e){
                 System.out.println(e.getMessage());
             }

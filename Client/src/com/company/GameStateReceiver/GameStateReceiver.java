@@ -60,7 +60,8 @@ public class GameStateReceiver extends Thread {
             String playerName = playerAttributes[0];
             int xPos = Integer.parseInt(playerAttributes[1]);
             int yPos = Integer.parseInt(playerAttributes[2]);
-            gameState.addPlayer(playerName,xPos,yPos);
+            boolean jetWallEnabled = (playerAttributes[3].equals("on"));
+            gameState.addPlayer(playerName,xPos,yPos,jetWallEnabled);
         }
         return gameState;
     }
