@@ -4,21 +4,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Scanner;
 
-public class Main {
-    public static JFrame mainWindow;
-    public static void main(String[] args) {
-	// write your code here
-        mainWindow = new JFrame();
-        mainWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        mainWindow.pack();
+public class Main extends JFrame{
+    public Main(){
+        super("Light cycles game");
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setLayout(new FlowLayout());
 
-        Dimension windowSize = new Dimension();
-        windowSize.width = 500;
-        windowSize.height = 500;
-
-        mainWindow.setSize(windowSize);
         startGame();
-        mainWindow.setVisible(true);
+        pack();
+        setVisible(true);
+    }
+    public static void main(String[] args) {
+        new Main();
     }
 
     public static void startGame(){
