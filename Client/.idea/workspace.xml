@@ -12,52 +12,76 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/MainWindow/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="15" column="48" lean-forward="true" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
+            <state relative-caret-position="231">
+              <caret line="23" column="36" lean-forward="true" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#startGame#0;class#Main#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JoinGameEvent.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/MainWindow/JoinGameEvent.java">
+      <file leaf-file-name="GamePanel.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/company/MainWindow/GamePanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+            <state relative-caret-position="272">
+              <caret line="16" column="19" lean-forward="true" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#469#470#0" expanded="true" />
-                <element signature="e#508#509#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JoinGamePanel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/MainWindow/JoinGamePanel.java">
+      <file leaf-file-name="JetWall.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/VisibleGameObjects/JetWall.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="4" column="18" lean-forward="false" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#raiseJoinGameEvent#0;class#JoinGamePanel#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameStateReceiver.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/GameStateReceiver/GameStateReceiver.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="76" column="50" lean-forward="false" selection-start-line="76" selection-start-column="50" selection-end-line="76" selection-end-column="50" />
+            <state relative-caret-position="68">
+              <caret line="4" column="5" lean-forward="false" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/VisibleGameObjects/Player.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="5" lean-forward="false" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameGrid.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/VisibleGameObjects/GameGrid.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LightCyclesGame.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/LightCyclesGame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="77">
+              <caret line="94" column="42" lean-forward="false" selection-start-line="94" selection-start-column="42" selection-end-line="94" selection-end-column="42" />
+              <folding>
+                <element signature="method#receivedNewGameState#0;class#LightCyclesGame#0" expanded="false" />
+                <element signature="method#getServerResponse#0;class#LightCyclesGame#0" expanded="false" />
+                <element signature="method#getServerGameState#0;class#LightCyclesGame#0" expanded="false" />
+                <element signature="method#turnLeft#0;class#LightCyclesGame#0" expanded="false" />
+                <element signature="method#turnRight#0;class#LightCyclesGame#0" expanded="false" />
+                <element signature="method#beginMovingSlowly#0;class#LightCyclesGame#0" expanded="false" />
+                <element signature="method#beginMovingQuickly#0;class#LightCyclesGame#0" expanded="false" />
+                <element signature="method#turnOnJetwall#0;class#LightCyclesGame#0" expanded="false" />
+                <element signature="method#turnOffJetwall#0;class#LightCyclesGame#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -106,9 +130,13 @@
         <option value="$PROJECT_DIR$/src/com/company/GameStateReceiver/GameState.java" />
         <option value="$PROJECT_DIR$/src/com/company/Main.java" />
         <option value="$PROJECT_DIR$/src/com/company/GameStateReceiver/GameStateReceiver.java" />
-        <option value="$PROJECT_DIR$/src/com/company/MainWindow/JoinGamePanel.java" />
-        <option value="$PROJECT_DIR$/src/com/company/MainWindow/Main.java" />
         <option value="$PROJECT_DIR$/src/com/company/MainWindow/JoinGameEvent.java" />
+        <option value="$PROJECT_DIR$/src/com/company/MainWindow/JoinGamePanel.java" />
+        <option value="$PROJECT_DIR$/src/com/company/VisibleGameObjects/JetWall.java" />
+        <option value="$PROJECT_DIR$/src/com/company/VisibleGameObjects/Player.java" />
+        <option value="$PROJECT_DIR$/src/com/company/VisibleGameObjects/GameGrid.java" />
+        <option value="$PROJECT_DIR$/src/com/company/MainWindow/Main.java" />
+        <option value="$PROJECT_DIR$/src/com/company/MainWindow/GamePanel.java" />
       </list>
     </option>
   </component>
@@ -139,9 +167,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -165,48 +190,27 @@
               <item name="Client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="company" type="462c0819:PsiDirectoryNode" />
-              <item name="GameStateReceiver" type="462c0819:PsiDirectoryNode" />
+              <item name="MainWindow" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Client" type="b2602c69:ProjectViewProjectNode" />
               <item name="Client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="company" type="462c0819:PsiDirectoryNode" />
-              <item name="MainWindow" type="462c0819:PsiDirectoryNode" />
+              <item name="VisibleGameObjects" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Server" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="company" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Server" type="462c0819:PsiDirectoryNode" />
+              <item name="Client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="company" type="462c0819:PsiDirectoryNode" />
               <item name="LightCyclesGame.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
-            </path>
-            <path>
-              <item name="Client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="company" type="462c0819:PsiDirectoryNode" />
-              <item name="Player.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope">
         <subPane subId="Project Files">
           <expand>
@@ -229,6 +233,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -319,14 +325,9 @@
       <envs />
       <method />
     </configuration>
-    <list size="2">
-      <item index="0" class="java.lang.String" itemvalue="Application.Main" />
-      <item index="1" class="java.lang.String" itemvalue="Application.Main (1)" />
-    </list>
     <recent_temporary>
-      <list size="2">
+      <list size="1">
         <item index="0" class="java.lang.String" itemvalue="Application.Main" />
-        <item index="1" class="java.lang.String" itemvalue="Application.Main (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -351,12 +352,13 @@
       <workItem from="1505878719533" duration="1284000" />
       <workItem from="1506858853952" duration="203000" />
       <workItem from="1507458507417" duration="4903000" />
-      <workItem from="1507543127272" duration="9244000" />
+      <workItem from="1507543127272" duration="10951000" />
+      <workItem from="1507616298643" duration="5082000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="137262000" />
+    <option name="totallyTimeSpent" value="144051000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -411,26 +413,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#startGame#0;class#Main#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Server/src/com/company/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="13" column="33" lean-forward="false" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/MainWindow/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#startGame#0;class#Main#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -449,7 +431,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#startGame#0;class#Main#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -468,7 +449,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#startGame#0;class#Main#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -477,7 +457,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="850">
           <caret line="131" column="36" lean-forward="false" selection-start-line="131" selection-start-column="36" selection-end-line="131" selection-end-column="36" />
-          <folding />
+          <folding>
+            <element signature="method#receivedNewGameState#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#getServerResponse#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#getServerGameState#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#turnLeft#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#turnRight#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#beginMovingSlowly#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#beginMovingQuickly#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#turnOnJetwall#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#turnOffJetwall#0;class#LightCyclesGame#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -494,17 +484,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/JetWall.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/VisibleGameObjects/JetWall.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-          <folding>
-            <marker date="1505878634493" expanded="true" signature="316:449" ph="{...}" />
-            <marker date="1505878634493" expanded="false" signature="486:497" ph=" { " />
-            <marker date="1505878634493" expanded="false" signature="517:523" ph=" }" />
-            <marker date="1505878634493" expanded="false" signature="559:570" ph=" { " />
-            <marker date="1505878634493" expanded="false" signature="586:592" ph=" }" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -549,7 +533,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Player.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/VisibleGameObjects/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="16" lean-forward="true" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
@@ -563,7 +547,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#startGame#0;class#Main#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -572,7 +555,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1054">
           <caret line="129" column="5" lean-forward="true" selection-start-line="129" selection-start-column="5" selection-end-line="129" selection-end-column="5" />
-          <folding />
+          <folding>
+            <element signature="method#receivedNewGameState#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#getServerResponse#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#getServerGameState#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#turnLeft#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#turnRight#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#beginMovingSlowly#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#beginMovingQuickly#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#turnOnJetwall#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#turnOffJetwall#0;class#LightCyclesGame#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -583,17 +576,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/JetWall.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/VisibleGameObjects/JetWall.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="4" selection-end-column="43" />
-          <folding>
-            <marker date="1505878634493" expanded="true" signature="316:449" ph="{...}" />
-            <marker date="1505878634493" expanded="false" signature="486:497" ph=" { " />
-            <marker date="1505878634493" expanded="false" signature="517:523" ph=" }" />
-            <marker date="1505878634493" expanded="false" signature="559:570" ph=" { " />
-            <marker date="1505878634493" expanded="false" signature="586:592" ph=" }" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -663,7 +650,6 @@
           <caret line="15" column="32" lean-forward="false" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#startGame#0;class#Main#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -725,7 +711,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#startGame#0;class#Main#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -736,7 +721,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#startGame#0;class#Main#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -746,20 +730,6 @@
         <state relative-caret-position="34">
           <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/JetWall.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="37" lean-forward="false" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
-          <folding>
-            <marker date="1505878634493" expanded="true" signature="316:449" ph="{...}" />
-            <marker date="1505878634493" expanded="false" signature="486:497" ph=" { " />
-            <marker date="1505878634493" expanded="false" signature="517:523" ph=" }" />
-            <marker date="1505878634493" expanded="false" signature="559:570" ph=" { " />
-            <marker date="1505878634493" expanded="false" signature="586:592" ph=" }" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -778,14 +748,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="36" lean-forward="false" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="16" lean-forward="false" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -837,14 +799,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Server/src/com/company/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="13" column="33" lean-forward="false" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/GameStateReceiver/GameState.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -854,14 +808,6 @@
             <element signature="e#576#577#0" expanded="false" />
             <element signature="e#614#615#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/LightCyclesGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="12" column="5" lean-forward="false" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -889,17 +835,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/MainWindow/JoinGamePanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="4" column="18" lean-forward="false" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#raiseJoinGameEvent#0;class#JoinGamePanel#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/MainWindow/JoinGameEvent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -912,13 +847,83 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/MainWindow/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/MainWindow/JoinGamePanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="15" column="48" lean-forward="true" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
+        <state relative-caret-position="340">
+          <caret line="24" column="28" lean-forward="false" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#startGame#0;class#Main#0" expanded="false" />
+            <element signature="method#raiseJoinGameEvent#0;class#JoinGamePanel#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Server/src/com/company/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="13" column="33" lean-forward="false" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/VisibleGameObjects/JetWall.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="5" lean-forward="false" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/VisibleGameObjects/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="5" lean-forward="false" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/VisibleGameObjects/GameGrid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/LightCyclesGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="77">
+          <caret line="94" column="42" lean-forward="false" selection-start-line="94" selection-start-column="42" selection-end-line="94" selection-end-column="42" />
+          <folding>
+            <element signature="method#receivedNewGameState#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#getServerResponse#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#getServerGameState#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#turnLeft#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#turnRight#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#beginMovingSlowly#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#beginMovingQuickly#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#turnOnJetwall#0;class#LightCyclesGame#0" expanded="false" />
+            <element signature="method#turnOffJetwall#0;class#LightCyclesGame#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/MainWindow/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="23" column="36" lean-forward="true" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/MainWindow/GamePanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="19" lean-forward="true" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

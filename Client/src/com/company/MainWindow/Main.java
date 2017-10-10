@@ -7,7 +7,8 @@ import java.awt.*;
 import java.util.Scanner;
 
 public class Main extends JFrame{
-    JoinGamePanel startScreen = new JoinGamePanel();
+    private JoinGamePanel startScreen = new JoinGamePanel();
+    private GamePanel gameScreenPanel;
     public Main(){
         super("Light cycles game");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -15,10 +16,18 @@ public class Main extends JFrame{
 
         startScreen.addJoinGameListener((e) -> {
             JOptionPane.showMessageDialog(this,e.getChosenPlayerName());
+            LightCyclesGame newGame = new LightCyclesGame(e.getChosenPlayerName());
+            gameScreenPanel = new GamePanel(newGame);
+
+            //Remove the join game panel from screen
+            remove((Component) e.getSource());
+            //Add game panel to screen
+            add(gameScreenPanel);
+            repaint();
+            //startGame();
         });
 
         add(startScreen);
-        startGame();
         pack();
         setVisible(true);
     }
