@@ -1,15 +1,23 @@
-package com.company;
+package com.company.MainWindow;
+
+import com.company.LightCyclesGame;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Scanner;
 
 public class Main extends JFrame{
+    JoinGamePanel startScreen = new JoinGamePanel();
     public Main(){
         super("Light cycles game");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
 
+        startScreen.addJoinGameListener((e) -> {
+            JOptionPane.showMessageDialog(this,e.getChosenPlayerName());
+        });
+
+        add(startScreen);
         startGame();
         pack();
         setVisible(true);
