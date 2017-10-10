@@ -1,6 +1,8 @@
 package com.company.MainWindow;
 
 import com.company.LightCyclesGame;
+import com.company.MainWindow.GamePanel.GamePanel;
+import com.company.MainWindow.JoinGamePanel.JoinGamePanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,12 +21,20 @@ public class Main extends JFrame{
             LightCyclesGame newGame = new LightCyclesGame(e.getChosenPlayerName());
             gameScreenPanel = new GamePanel(newGame);
 
+            gameScreenPanel.addJoinServerFailedListener((e1) ->{
+                System.out.println("Hi");
+                remove(gameScreenPanel);
+                add(startScreen);
+                repaint();
+            });
+
             //Remove the join game panel from screen
-            remove((Component) e.getSource());
+            remove(startScreen);
             //Add game panel to screen
             add(gameScreenPanel);
             repaint();
-            //startGame();
+
+            gameScreenPanel.joinServer();
         });
 
         add(startScreen);

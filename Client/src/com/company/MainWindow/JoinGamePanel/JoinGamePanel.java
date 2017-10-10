@@ -1,4 +1,4 @@
-package com.company.MainWindow;
+package com.company.MainWindow.JoinGamePanel;
 
 import javax.swing.*;
 import javax.swing.event.EventListenerList;
@@ -31,6 +31,7 @@ public class JoinGamePanel extends JPanel {
     private void raiseJoinGameEvent(JoinGameEvent eventObject){
         for(JoinGameEventListener listener: listenerList.getListeners(JoinGameEventListener.class)){
             listener.joinGameRequested(eventObject);
+            System.out.println("JoinTest");
         }
     }
 }

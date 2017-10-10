@@ -1,11 +1,7 @@
-package com.company.MainWindow;
+package com.company.MainWindow.JoinGamePanel;
 
-import java.util.EventListener;
 import java.util.EventObject;
 
-interface JoinGameEventListener extends EventListener{
-    void joinGameRequested(JoinGameEvent e);
-}
 public class JoinGameEvent extends EventObject{
     private String chosenPlayerName;
     public JoinGameEvent(Object source, String chosenPlayerName){
