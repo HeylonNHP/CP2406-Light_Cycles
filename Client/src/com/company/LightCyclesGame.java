@@ -106,6 +106,21 @@ public class LightCyclesGame {
                 throw new Exception("The following issue occurred when trying to " +
                         "create a new user on the server: " + response);
             }
+
+            //Request the grid size and initialise the GameGrid object
+            try{
+                String gridSize = serverRequester.getRequestResponse("GRID SIZE");
+                String[] gridSizeArray = gridSize.split(" ");
+                Dimension gridDimensions = new Dimension(Integer.parseInt(gridSizeArray[0]),
+                        Integer.parseInt(gridSizeArray[1]));
+                gameGrid = new GameGrid(gridDimensions);
+                System.out.println(String.format("The grid was created with the following dimensions: " +
+                        "width: %s height: %s", gridDimensions.width, gridDimensions.height));
+            }catch (Exception e){
+                throw new Exception("The server did not respond to the grid size request. Abandon ship!!!!");
+            }
+
+
             //TESTING - delete code afterwards
             getServerResponse(String.format("USER %s GO slower", usersName));
             getServerResponse(String.format("USER %s TURN left", usersName));
