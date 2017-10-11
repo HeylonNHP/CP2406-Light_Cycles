@@ -12,13 +12,30 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/MainWindow/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="27" column="40" lean-forward="true" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
+            <state relative-caret-position="282">
+              <caret line="23" column="64" lean-forward="false" selection-start-line="23" selection-start-column="64" selection-end-line="23" selection-end-column="64" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#startGame#0;class#Main#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameGrid.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/company/VisibleGameObjects/GameGrid.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="36" column="33" lean-forward="false" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#292#293#0" expanded="true" />
+                <element signature="e#333#334#0" expanded="true" />
+                <element signature="method#addPlayerToGrid#0;class#GameGrid#0" expanded="false" />
+                <element signature="method#getPlayerOnGrid#0;class#GameGrid#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -130,7 +147,6 @@
         <option value="$PROJECT_DIR$/src/com/company/MainWindow/JoinGamePanel.java" />
         <option value="$PROJECT_DIR$/src/com/company/VisibleGameObjects/JetWall.java" />
         <option value="$PROJECT_DIR$/src/com/company/VisibleGameObjects/Player.java" />
-        <option value="$PROJECT_DIR$/src/com/company/VisibleGameObjects/GameGrid.java" />
         <option value="$PROJECT_DIR$/src/com/company/MainWindow/GamePanel.java" />
         <option value="$PROJECT_DIR$/src/com/company/MainWindow/GamePanel/JoinServerFailedListener.java" />
         <option value="$PROJECT_DIR$/src/com/company/MainWindow/GamePanel/JoinServerFailedEvent.java" />
@@ -140,8 +156,9 @@
         <option value="$PROJECT_DIR$/src/com/company/MainWindow/GamePanel/GamePanel.java" />
         <option value="$PROJECT_DIR$/JUnitTests/LightCyclesGameGUItests.java" />
         <option value="$PROJECT_DIR$/src/com/company/LightCyclesGame.java" />
-        <option value="$PROJECT_DIR$/src/com/company/MainWindow/Main.java" />
         <option value="$PROJECT_DIR$/src/com/company/ServerRequester.java" />
+        <option value="$PROJECT_DIR$/src/com/company/MainWindow/Main.java" />
+        <option value="$PROJECT_DIR$/src/com/company/VisibleGameObjects/GameGrid.java" />
       </list>
     </option>
   </component>
@@ -196,6 +213,13 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="company" type="462c0819:PsiDirectoryNode" />
               <item name="MainWindow" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Client" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="company" type="462c0819:PsiDirectoryNode" />
+              <item name="VisibleGameObjects" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Client" type="b2602c69:ProjectViewProjectNode" />
@@ -432,7 +456,7 @@
       <workItem from="1506858853952" duration="203000" />
       <workItem from="1507458507417" duration="4903000" />
       <workItem from="1507543127272" duration="10951000" />
-      <workItem from="1507616298643" duration="20643000" />
+      <workItem from="1507616298643" duration="23077000" />
     </task>
     <servers />
   </component>
@@ -445,7 +469,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="159612000" />
+    <option name="totallyTimeSpent" value="162046000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -588,6 +612,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#startGame#0;class#Main#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -691,6 +716,7 @@
           <caret line="15" column="32" lean-forward="false" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#startGame#0;class#Main#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -752,6 +778,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#startGame#0;class#Main#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -762,6 +789,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#startGame#0;class#Main#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -892,14 +920,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/VisibleGameObjects/GameGrid.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/MainWindow/JoinGamePanel/JoinGameEvent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -1004,10 +1024,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/MainWindow/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="27" column="40" lean-forward="true" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
+        <state relative-caret-position="282">
+          <caret line="23" column="64" lean-forward="false" selection-start-line="23" selection-start-column="64" selection-end-line="23" selection-end-column="64" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#startGame#0;class#Main#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/VisibleGameObjects/GameGrid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="36" column="33" lean-forward="false" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#292#293#0" expanded="true" />
+            <element signature="e#333#334#0" expanded="true" />
+            <element signature="method#addPlayerToGrid#0;class#GameGrid#0" expanded="false" />
+            <element signature="method#getPlayerOnGrid#0;class#GameGrid#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -16,15 +16,12 @@ public class Main extends JFrame{
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
 
-        startGame();
-
         startScreen.addJoinGameListener((e) -> {
             JOptionPane.showMessageDialog(this,e.getChosenPlayerName());
             LightCyclesGame newGame = new LightCyclesGame(e.getChosenPlayerName());
             gameScreenPanel = new GamePanel(newGame);
 
             gameScreenPanel.addJoinServerFailedListener((e1) ->{
-                System.out.println("Hi");
                 remove(gameScreenPanel);
                 add(startScreen);
                 repaint();
