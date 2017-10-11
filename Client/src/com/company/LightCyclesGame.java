@@ -4,6 +4,7 @@ import com.company.GameStateReceiver.GameState;
 import com.company.GameStateReceiver.GameStateReceiver;
 import com.company.GameStateReceiver.GameStateUpdated;
 import com.company.GameStateReceiver.PlayerState;
+import com.company.VisibleGameObjects.GameGrid;
 
 import java.awt.*;
 import java.net.DatagramPacket;
@@ -14,6 +15,8 @@ enum CurrentGameState {IDLE, WAITING_FOR_USERS, PLAYING, GAME_OVER}
 
 public class LightCyclesGame {
     private GameStateReceiver receiver = new GameStateReceiver();
+    private GameGrid gameGrid;
+    private ServerRequester serverRequester = new ServerRequester();
     private String usersName;
     public LightCyclesGame(String userName){
         this.usersName = userName;
@@ -116,31 +119,61 @@ public class LightCyclesGame {
 
     public void turnLeft(){
         /*Request server to turn your player left*/
-        getServerResponse(String.format("USER %s TURN left", usersName));
+        //getServerResponse(String.format("USER %s TURN left", usersName));
+        try{
+            serverRequester.sendNonRespondingRequest(String.format("USER %s TURN left", usersName));
+        }catch (Exception e){
+
+        }
     }
 
     public void turnRight(){
         /*Request server to turn your player right*/
-        getServerResponse(String.format("USER %s TURN right", usersName));
+        //getServerResponse(String.format("USER %s TURN right", usersName));
+        try{
+            serverRequester.sendNonRespondingRequest(String.format("USER %s TURN right", usersName));
+        }catch (Exception e){
+
+        }
     }
 
     public void beginMovingSlowly(){
         /*Request server to set your player speed to slow*/
-        getServerResponse(String.format("USER %s GO slower", usersName));
+        //getServerResponse(String.format("USER %s GO slower", usersName));
+        try{
+            serverRequester.sendNonRespondingRequest(String.format("USER %s GO slower", usersName));
+        }catch (Exception e){
+
+        }
     }
 
     public void beginMovingQuickly(){
         /*Request server to set your player speed to fast*/
-        getServerResponse(String.format("USER %s GO faster", usersName));
+        //getServerResponse(String.format("USER %s GO faster", usersName));
+        try{
+            serverRequester.sendNonRespondingRequest(String.format("USER %s GO faster", usersName));
+        }catch (Exception e){
+
+        }
     }
 
     public void turnOnJetwall(){
         /*Request server to turn on your jet wall*/
-        getServerResponse(String.format("USER %s JETWALL on", usersName));
+        //getServerResponse(String.format("USER %s JETWALL on", usersName));
+        try{
+            serverRequester.sendNonRespondingRequest(String.format("USER %s JETWALL on", usersName));
+        }catch (Exception e){
+
+        }
     }
 
     public void turnOffJetwall(){
         /*Request server to turn off your jet wall*/
-        getServerResponse(String.format("USER %s JETWALL off", usersName));
+        //getServerResponse(String.format("USER %s JETWALL off", usersName));
+        try{
+            serverRequester.sendNonRespondingRequest(String.format("USER %s JETWALL off", usersName));
+        }catch (Exception e){
+
+        }
     }
 }
