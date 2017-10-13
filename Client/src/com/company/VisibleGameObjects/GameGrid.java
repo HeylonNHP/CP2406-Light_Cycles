@@ -36,4 +36,8 @@ public class GameGrid {
     public void addJetWallToGrid(JetWall jetWall){
         jetWallList.add(jetWall);
     }
+
+    public Dimension getGridDimensions() {
+        return gridDimensions;
+    }
 }

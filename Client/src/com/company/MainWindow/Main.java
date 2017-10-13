@@ -24,6 +24,12 @@ public class Main extends JFrame{
             gameScreenPanel.addJoinServerFailedListener((e1) ->{
                 remove(gameScreenPanel);
                 add(startScreen);
+                revalidate();
+                repaint();
+            });
+            gameScreenPanel.addRePaintRequestListener((e2) -> {
+                System.out.println("==============Repaint?===============");
+                revalidate();
                 repaint();
             });
 
@@ -31,7 +37,6 @@ public class Main extends JFrame{
             remove(startScreen);
             //Add game panel to screen
             add(gameScreenPanel);
-            repaint();
 
             gameScreenPanel.joinServer();
         });

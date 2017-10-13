@@ -39,7 +39,7 @@ public class GameStateReceiver extends Thread {
                 GameStateUpdated newUpdate = new GameStateUpdated(this, gameState);
                 raiseGameStateUpdated(newUpdate);
 
-                JOptionPane.showMessageDialog(null, new String(dataBuffer), "alert", JOptionPane.INFORMATION_MESSAGE);
+                //JOptionPane.showMessageDialog(null, new String(dataBuffer), "alert", JOptionPane.INFORMATION_MESSAGE);
                 //JOptionPane outputWindow = new JOptionPane(new String(dataBuffer));
                 //outputWindow.setVisible(true);
             }catch (Exception e){

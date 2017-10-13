@@ -122,9 +122,9 @@ public class LightCyclesGame {
 
 
             //TESTING - delete code afterwards
-            getServerResponse(String.format("USER %s GO slower", usersName));
-            getServerResponse(String.format("USER %s TURN left", usersName));
-            getServerResponse(String.format("USER %s TURN right", usersName));
+            //getServerResponse(String.format("USER %s GO slower", usersName));
+            //getServerResponse(String.format("USER %s TURN left", usersName));
+            //getServerResponse(String.format("USER %s TURN right", usersName));
 
 
         }else{
