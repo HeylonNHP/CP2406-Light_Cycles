@@ -1,6 +1,7 @@
 package com.company.MainWindow.GamePanel;
 
 import com.company.LightCyclesGame;
+import com.company.VisibleGameObjects.GameGrid;
 
 import javax.swing.*;
 import javax.swing.event.EventListenerList;
@@ -17,9 +18,6 @@ public class GamePanel extends JPanel {
     }
 
     public void joinServer(){
-        //Testing
-        add(new JButton("Test"));
-        raiseRePaintRequestListener(new EventObject(this));
 
         try{
             lightCyclesGame.joinServer();
@@ -27,6 +25,8 @@ public class GamePanel extends JPanel {
             /*Tried to join the server and something went wrong.*/
             raiseJoinServerFailed(new JoinServerFailedEvent(this,e.getMessage()));
         }
+
+        raiseRePaintRequestListener(new EventObject(this));
     }
 
     public void addJoinServerFailedListener(JoinServerFailedListener e){
@@ -51,8 +51,23 @@ public class GamePanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        Graphics2D graphics2D = (Graphics2D)g;
         System.out.println("GamePanel paint");
-        g.setColor(Color.cyan);
-        g.draw3DRect(0,0,50,50,true);
+
+        GameGrid gameGrid = lightCyclesGame.getGameGrid();
+
+        System.out.println((gameGrid == null)? "It's null":"It's not null");
+
+        if(gameGrid != null){
+            Dimension gridDimensions = gameGrid.getGridDimensions();
+            setPreferredSize(gridDimensions);
+            System.out.println(String.format(
+                    "Width: %s Height: %s", gridDimensions.width, gridDimensions.height
+            ));
+            graphics2D.setColor(Color.blue);
+            graphics2D.fillRect(0,0,gridDimensions.width,gridDimensions.height);
+
+        }
+
     }
 }
