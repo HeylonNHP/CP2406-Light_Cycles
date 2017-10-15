@@ -63,7 +63,7 @@ public class GamePanel extends JPanel{
 
                 //Spacebar pressed
                 if(e.getKeyCode() == 32){
-                    //toggle jetwall
+                    lightCyclesGame.toggleJetwall();
                 }
             }
         });

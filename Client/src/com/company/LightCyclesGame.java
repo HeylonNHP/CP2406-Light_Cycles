@@ -44,6 +44,8 @@ public class LightCyclesGame {
 
                 //Move player to new position
                 player.setPosition(playerState.getPosition());
+                //Set jetwall state
+                player.setJetwallEnabled(playerState.isJetwallEnabled());
 
             }catch (Exception ex){
                 //Player isn't on grid yet - add them
@@ -214,6 +216,19 @@ public class LightCyclesGame {
             serverRequester.sendNonRespondingRequest(String.format("USER %s JETWALL off", usersName));
         }catch (Exception e){
 
+        }
+    }
+
+    public void toggleJetwall(){
+        try{
+            Player thisPlayer = gameGrid.getPlayerOnGrid(usersName);
+            if(thisPlayer.isJetwallEnabled()){
+                turnOffJetwall();
+            }else {
+                turnOnJetwall();
+            }
+        }catch (Exception e){
+            System.out.println("---FAILED TO TOGGLE JETWALL---");
         }
     }
 }

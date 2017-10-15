@@ -6,6 +6,7 @@ public class Player {
     private String name;
     private Dimension position;
     private PlayerDirection direction;
+    private boolean jetwallEnabled = true;
 
     public Player(String name, Dimension initialPosition, PlayerDirection initialDirection){
         this.name = name;
@@ -27,6 +28,14 @@ public class Player {
 
     public PlayerDirection getDirection() {
         return direction;
+    }
+
+    public boolean isJetwallEnabled() {
+        return jetwallEnabled;
+    }
+
+    public void setJetwallEnabled(boolean jetwallEnabled) {
+        this.jetwallEnabled = jetwallEnabled;
     }
 
     public String getName(){
