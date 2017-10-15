@@ -2,8 +2,6 @@ package com.company.VisibleGameObjects;
 
 import java.awt.*;
 
-enum PlayerDirection {UP,DOWN,LEFT,RIGHT}
-
 public class Player {
     private String name;
     private Dimension position;
@@ -33,5 +31,10 @@ public class Player {
 
     public String getName(){
         return this.name;
+    }
+
+    public void draw(Graphics2D g){
+        g.setColor(Color.red);
+        g.fillRect(position.width-1,position.height-1,3,3);
     }
 }

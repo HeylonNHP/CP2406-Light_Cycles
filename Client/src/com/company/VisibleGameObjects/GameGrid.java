@@ -11,7 +11,7 @@ public class GameGrid {
         gridDimensions = gridSize;
     }
 
-    public void addPlayerToGrid(Player player, Dimension locationOnGrid){
+    public void addPlayerToGrid(Player player){
         //Check to see if the player exists on the grid, and if so do nothing
         for(Player playerOnGrid: playerList){
             if(player == playerOnGrid){
@@ -39,5 +39,21 @@ public class GameGrid {
 
     public Dimension getGridDimensions() {
         return gridDimensions;
+    }
+
+    public void draw(Graphics2D g){
+        //Draw the grid background
+        g.setColor(Color.blue);
+        g.fillRect(0,0,gridDimensions.width,gridDimensions.height);
+
+        //Draw jetwalls
+        for(JetWall jetWall: jetWallList){
+            jetWall.draw(g);
+        }
+
+        //Draw light cycles
+        for(Player player: playerList){
+            player.draw(g);
+        }
     }
 }

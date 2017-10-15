@@ -4,7 +4,7 @@ import com.company.GameStateReceiver.GameState;
 import com.company.GameStateReceiver.GameStateReceiver;
 import com.company.GameStateReceiver.GameStateUpdated;
 import com.company.GameStateReceiver.PlayerState;
-import com.company.VisibleGameObjects.GameGrid;
+import com.company.VisibleGameObjects.*;
 
 import java.awt.*;
 import java.net.DatagramPacket;
@@ -30,6 +30,27 @@ public class LightCyclesGame {
             System.out.println(String.format("Player: %s x: %s y:%s jetwall enabled: %s",
                     playerState.getName(),playerState.getPosition().width,
                     playerState.getPosition().height, playerState.isJetwallEnabled()));
+
+            //Update player on grid
+            try{
+                Player player = gameGrid.getPlayerOnGrid(playerState.getName());
+
+                //Place jetwall if they have it enabled
+                if(playerState.isJetwallEnabled()){
+                    //TODO: Set the direction based on the player direction
+                    JetWall playerJetWall = new JetWall(player,player.getPosition(), JetWallDirection.HORIZONTAL);
+                    gameGrid.addJetWallToGrid(playerJetWall);
+                }
+
+                //Move player to new position
+                player.setPosition(playerState.getPosition());
+
+            }catch (Exception ex){
+                //Player isn't on grid yet - add them
+                Player player = new Player(playerState.getName(),
+                        playerState.getPosition(), PlayerDirection.UP);
+                gameGrid.addPlayerToGrid(player);
+            }
         }
     }
 
@@ -122,7 +143,7 @@ public class LightCyclesGame {
 
 
             //TESTING - delete code afterwards
-            //getServerResponse(String.format("USER %s GO slower", usersName));
+            getServerResponse(String.format("USER %s GO slower", usersName));
             //getServerResponse(String.format("USER %s TURN left", usersName));
             //getServerResponse(String.format("USER %s TURN right", usersName));
 

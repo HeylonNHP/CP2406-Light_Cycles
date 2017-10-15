@@ -26,7 +26,11 @@ public class GamePanel extends JPanel {
             raiseJoinServerFailed(new JoinServerFailedEvent(this,e.getMessage()));
         }
 
-        raiseRePaintRequestListener(new EventObject(this));
+        //TODO: Use event handler on lightcyclesgame to update this
+        javax.swing.Timer drawTimer = new javax.swing.Timer(50,(actionEvent) ->{
+            raiseRePaintRequestListener(new EventObject(this));
+        });
+        drawTimer.start();
     }
 
     public void addJoinServerFailedListener(JoinServerFailedListener e){
@@ -64,9 +68,7 @@ public class GamePanel extends JPanel {
             System.out.println(String.format(
                     "Width: %s Height: %s", gridDimensions.width, gridDimensions.height
             ));
-            graphics2D.setColor(Color.blue);
-            graphics2D.fillRect(0,0,gridDimensions.width,gridDimensions.height);
-
+            gameGrid.draw(graphics2D);
         }
 
     }
