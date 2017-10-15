@@ -6,9 +6,12 @@ import com.company.VisibleGameObjects.GameGrid;
 import javax.swing.*;
 import javax.swing.event.EventListenerList;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.EventObject;
 
-public class GamePanel extends JPanel {
+public class GamePanel extends JPanel{
     EventListenerList listeners = new EventListenerList();
     LightCyclesGame lightCyclesGame;
 
@@ -31,6 +34,41 @@ public class GamePanel extends JPanel {
             raiseRePaintRequestListener(new EventObject(this));
         });
         drawTimer.start();
+
+        //Begin listening for user input
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+
+                //Left arrow pressed
+                if(e.getKeyCode() == 37){
+                    lightCyclesGame.turnLeft();
+                }
+
+                //Right arrow pressed
+                if(e.getKeyCode() == 39){
+                    lightCyclesGame.turnRight();
+                }
+
+                //Up arrow pressed
+                if(e.getKeyCode() == 38){
+                    lightCyclesGame.beginMovingQuickly();
+                }
+
+                //Down arrow pressed
+                if(e.getKeyCode() == 40){
+                    lightCyclesGame.beginMovingSlowly();
+                }
+
+                //Spacebar pressed
+                if(e.getKeyCode() == 32){
+                    //toggle jetwall
+                }
+            }
+        });
+        //If you don't set this, the JPanel won't be focused so the KeyListener won't work
+        setFocusable(true);
     }
 
     public void addJoinServerFailedListener(JoinServerFailedListener e){
