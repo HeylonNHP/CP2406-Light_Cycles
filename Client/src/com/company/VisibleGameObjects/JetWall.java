@@ -22,6 +22,11 @@ public class JetWall {
 
     public void draw(Graphics2D g){
         g.setColor(Color.GREEN);
-        g.fillRect(position.width,position.height,1,1);
+        if(direction == JetWallDirection.HORIZONTAL){
+            g.fillRect(position.width-5,position.height-2,10,4);
+        }else {
+            g.fillRect(position.width-2,position.height-5,4,10);
+        }
+
     }
 }

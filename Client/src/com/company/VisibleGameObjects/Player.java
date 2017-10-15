@@ -15,6 +15,17 @@ public class Player {
     }
 
     public void setPosition(Dimension newPosition){
+        //Set direction based on movement relative to last position
+        if(position.width > newPosition.width){
+            setDirection(PlayerDirection.LEFT);
+        }else if(position.width < newPosition.width){
+            setDirection(PlayerDirection.RIGHT);
+        }else if(position.height > newPosition.height){
+            setDirection(PlayerDirection.UP);
+        }else if(position.height < newPosition.height){
+            setDirection(PlayerDirection.DOWN);
+        }
+        //Set new position
         this.position = newPosition;
     }
 

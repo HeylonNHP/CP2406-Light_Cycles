@@ -94,18 +94,16 @@ public class GamePanel extends JPanel{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D graphics2D = (Graphics2D)g;
-        System.out.println("GamePanel paint");
+        //System.out.println("GamePanel paint");
 
         GameGrid gameGrid = lightCyclesGame.getGameGrid();
 
-        System.out.println((gameGrid == null)? "It's null":"It's not null");
+        //System.out.println((gameGrid == null)? "It's null":"It's not null");
 
         if(gameGrid != null){
             Dimension gridDimensions = gameGrid.getGridDimensions();
             setPreferredSize(gridDimensions);
-            System.out.println(String.format(
-                    "Width: %s Height: %s", gridDimensions.width, gridDimensions.height
-            ));
+
             gameGrid.draw(graphics2D);
         }
 

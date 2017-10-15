@@ -1,5 +1,6 @@
 package com.company;
 
+import javax.swing.*;
 import java.awt.*;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -17,6 +18,9 @@ public class LightCyclesGame {
     private final int multicastPort = 56969;
     private LeaderBoard leaderBoard;
 
+    private Timer gameStartTimer;
+    private final int playersRequiredForGameStart = 2;
+
     public LightCyclesGame(Dimension gridDimensions){
         gameGrid = new GameGrid(gridDimensions);
         playerList = new ArrayList<>();
@@ -31,8 +35,11 @@ public class LightCyclesGame {
         });
         requestsThread.start();
 
-        //startGame();
-
+        //initialise game start timer
+        gameStartTimer = new Timer(10000, (e) -> {
+           startGame();
+           gameStartTimer.stop();
+        });
     }
 
     public void startGame(){
@@ -48,7 +55,7 @@ public class LightCyclesGame {
                 broadcastGameState();
 
                 try {
-                    Thread.sleep(250);
+                    Thread.sleep(100);
                 }catch (InterruptedException e){
                     System.out.println(String.format("startGame - Interrupted: %s", e.getMessage()));
                 }
@@ -250,7 +257,10 @@ public class LightCyclesGame {
         //Also add the player to the grid
         gameGrid.addPlayerAtRandomPosition(newPlayer);
         //TESTING
-        startGame();
+        if(playerList.size() > (playersRequiredForGameStart-1)){
+            gameStartTimer.stop();
+            gameStartTimer.start();
+        }
     }
 
     private void removePlayerFromGame(String playerName) throws Exception{

@@ -37,13 +37,20 @@ public class LightCyclesGame {
 
                 //Place jetwall if they have it enabled
                 if(playerState.isJetwallEnabled()){
-                    //TODO: Set the direction based on the player direction
-                    JetWall playerJetWall = new JetWall(player,player.getPosition(), JetWallDirection.HORIZONTAL);
+                    JetWallDirection direction = JetWallDirection.HORIZONTAL;
+                    if(player.getDirection() == PlayerDirection.UP || player.getDirection() == PlayerDirection.DOWN){
+                        direction = JetWallDirection.VERTICAL;
+                    }
+
+                    JetWall playerJetWall = new JetWall(player,player.getPosition(), direction);
                     gameGrid.addJetWallToGrid(playerJetWall);
                 }
 
                 //Move player to new position
                 player.setPosition(playerState.getPosition());
+                System.out.println(String.format(
+                        "Players direction of travel is: %s", player.getDirection().toString()
+                ));
                 //Set jetwall state
                 player.setJetwallEnabled(playerState.isJetwallEnabled());
 
@@ -145,7 +152,7 @@ public class LightCyclesGame {
 
 
             //TESTING - delete code afterwards
-            getServerResponse(String.format("USER %s GO slower", usersName));
+            //getServerResponse(String.format("USER %s GO slower", usersName));
             //getServerResponse(String.format("USER %s TURN left", usersName));
             //getServerResponse(String.format("USER %s TURN right", usersName));
 

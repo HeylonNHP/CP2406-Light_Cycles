@@ -6,8 +6,6 @@ import com.company.MainWindow.JoinGamePanel.JoinGamePanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.util.Scanner;
 
 public class Main extends JFrame{
@@ -30,7 +28,6 @@ public class Main extends JFrame{
                 repaint();
             });
             gameScreenPanel.addRePaintRequestListener((e2) -> {
-                System.out.println("==============Repaint?===============");
                 revalidate();
                 repaint();
             });
