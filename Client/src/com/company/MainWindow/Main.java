@@ -30,6 +30,7 @@ public class Main extends JFrame{
             gameScreenPanel.addRePaintRequestListener((e2) -> {
                 revalidate();
                 repaint();
+                pack();
             });
 
             //Remove the join game panel from screen

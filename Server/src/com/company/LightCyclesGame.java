@@ -21,8 +21,13 @@ public class LightCyclesGame {
     private Timer gameStartTimer;
     private final int playersRequiredForGameStart = 2;
 
+    //I.E - if equals 10, there will be 10 pixels for every location on the grid
+    private final int gridShrinkFactor = 10;
+
     public LightCyclesGame(Dimension gridDimensions){
-        gameGrid = new GameGrid(gridDimensions);
+        Dimension actualGridSize = new Dimension(gridDimensions.width/gridShrinkFactor,
+                gridDimensions.height/gridShrinkFactor);
+        gameGrid = new GameGrid(actualGridSize);
         playerList = new ArrayList<>();
         leaderBoard = new LeaderBoard();
 
@@ -66,20 +71,14 @@ public class LightCyclesGame {
         gameUpdateThread.start();
     }
 
-    private void beginGameStartCountDown(){
-        /*This will begin the countdown before the game starts
-        * The count down will start only if at least 3 players have been added to the game
-        * Calling this method will reset the countdown if it has already started*/
-        int countDownTimeInSeconds = 10;
-
-    }
-
     private void broadcastGameState(){
         String broadcastMessage = "";
         for(Player player: playerList){
             try{
                 String playerName = player.getName();
                 Dimension playerPosition = gameGrid.getLocationOfItemOnGrid(player);
+                playerPosition = new Dimension(playerPosition.width*gridShrinkFactor,
+                        playerPosition.height*gridShrinkFactor);
                 String jetwallState;
 
                 if(player.isJetWallEnabled()){
@@ -93,7 +92,7 @@ public class LightCyclesGame {
                 System.out.println(e.getMessage());
             }
         }
-        //String message = "Jack,10,10 Jill,12,10 Tron,10,14";
+
         try{
             InetAddress multicastGroup = InetAddress.getByName(multicastAddress);
             MulticastSocket multicastSocket = new MulticastSocket(multicastPort);
@@ -161,6 +160,9 @@ public class LightCyclesGame {
                         }
                     }else if(clientRequest.equals("GRID SIZE")){
                         Dimension gridDimensions = gameGrid.getGridSize();
+                        gridDimensions = new Dimension(gridDimensions.width*gridShrinkFactor,
+                                gridDimensions.height*gridShrinkFactor);
+
                         response = String.format("%s %s", gridDimensions.width, gridDimensions.height);
                     }else if(clientRequest.contains("GAME STATE")){
                         switch (currentGameState){

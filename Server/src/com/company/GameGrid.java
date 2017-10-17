@@ -130,10 +130,11 @@ public class GameGrid {
                     int movementDistance;
                     switch (player.getMovingSpeed()){
                         case FAST:
-                            movementDistance = 10;
+                            movementDistance = 1;
                             break;
                         case SLOW:
-                            movementDistance = 5;
+                            //TODO: Make this slower than the fast speed
+                            movementDistance = 1;
                             break;
                         default:
                             movementDistance = 0;

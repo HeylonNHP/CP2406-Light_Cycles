@@ -56,6 +56,15 @@ public class Main {
     private static void startServerHandler(ActionEvent e){
         System.out.println("Button clicked! test");
         System.out.println(String.format("Width: %s Height: %s", widthTextInput.getText(), heightTextInput.getText()));
+        Dimension gameGridDimensions = getGameGridDimensionsFromUI();
+
+        //Ensure they're divisible by 10
+        if(gameGridDimensions.width % 10 != 0 || gameGridDimensions.height % 10 != 0){
+            JOptionPane.showMessageDialog(null,
+                    "Game grid dimensions must be divisible by 10");
+            return;
+        }
+
         LightCyclesGame newGame = new LightCyclesGame(getGameGridDimensionsFromUI());
     }
 }
