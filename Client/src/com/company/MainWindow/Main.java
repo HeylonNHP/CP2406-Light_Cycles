@@ -17,8 +17,10 @@ public class Main extends JFrame{
         setLayout(new FlowLayout());
 
         startScreen.addJoinGameListener((e) -> {
-            JOptionPane.showMessageDialog(this,e.getChosenPlayerName());
-            LightCyclesGame newGame = new LightCyclesGame(e.getChosenPlayerName());
+            String testMessage = String.format("Name: %s Colour: %s", e.getChosenPlayerName(),
+                    e.getChosenColour().toString());
+            JOptionPane.showMessageDialog(this,testMessage);
+            LightCyclesGame newGame = new LightCyclesGame(e.getChosenPlayerName(), e.getChosenColour());
             gameScreenPanel = new GamePanel(newGame);
 
             gameScreenPanel.addJoinServerFailedListener((e1) ->{
@@ -65,7 +67,7 @@ public class Main extends JFrame{
         System.out.print("Enter the name you'd like to use: ");
         String usersName = userInput.nextLine();
 
-        LightCyclesGame newGame = new LightCyclesGame(usersName);
+        LightCyclesGame newGame = new LightCyclesGame(usersName, Color.red);
 
         try {
             newGame.joinServer();

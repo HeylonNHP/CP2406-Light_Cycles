@@ -19,8 +19,10 @@ public class LightCyclesGame {
     private GameGrid gameGrid;
     private ServerRequester serverRequester = new ServerRequester();
     private String usersName;
-    public LightCyclesGame(String userName){
+    private Color usersColour;
+    public LightCyclesGame(String userName, Color userColour){
         this.usersName = userName;
+        this.usersColour = userColour;
         receiver.addGameStateUpdateListener(e -> {receivedNewGameState(e);});
         receiver.start();
     }
@@ -77,8 +79,15 @@ public class LightCyclesGame {
 
             }catch (Exception ex){
                 //Player isn't on grid yet - add them
-                Player player = new Player(playerState.getName(),
-                        playerState.getPosition(), PlayerDirection.UP);
+                Player player;
+                if(playerState.getName().equals(usersName)){
+                    //If we happen to be adding this users player to the grid, parse in their chosen colour
+                    player = new Player(playerState.getName(),
+                            playerState.getPosition(), PlayerDirection.UP, usersColour);
+                }else {
+                    player = new Player(playerState.getName(),
+                            playerState.getPosition(), PlayerDirection.UP);
+                }
                 gameGrid.addPlayerToGrid(player);
             }
         }
