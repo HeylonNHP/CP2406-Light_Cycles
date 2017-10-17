@@ -23,6 +23,24 @@ public class GameGrid {
         playerList.add(player);
     }
 
+    public void removePlayerFromGrid(Player player){
+        /*Remove the requested player, and their jetwall from the grid*/
+        ArrayList<JetWall> jetwallsToRemove = new ArrayList<>();
+        //Remove their jetwall
+        for (JetWall jetWall: jetWallList){
+            if(jetWall.getParentPlayer() == player){
+                jetwallsToRemove.add(jetWall);
+            }
+        }
+
+        for(JetWall jetWall: jetwallsToRemove){
+            jetWallList.remove(jetWall);
+        }
+
+        //Remove player
+        playerList.remove(player);
+    }
+
     public Player getPlayerOnGrid(String playerName) throws Exception{
         for(Player player: playerList){
             String name = player.getName();
@@ -31,6 +49,10 @@ public class GameGrid {
             }
         }
         throw new Exception("Player not found on the grid!");
+    }
+
+    public ArrayList<Player> getPlayerList() {
+        return playerList;
     }
 
     public void addJetWallToGrid(JetWall jetWall){

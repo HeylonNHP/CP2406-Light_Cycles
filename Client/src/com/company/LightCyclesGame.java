@@ -10,6 +10,7 @@ import java.awt.*;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.util.ArrayList;
 
 enum CurrentGameState {IDLE, WAITING_FOR_USERS, PLAYING, GAME_OVER}
 
@@ -53,6 +54,26 @@ public class LightCyclesGame {
                 ));
                 //Set jetwall state
                 player.setJetwallEnabled(playerState.isJetwallEnabled());
+
+                /*If the broadcast message no-longer contains a player that's on the grid, remove them*/
+                ArrayList<Player> playersToRemove = new ArrayList<>();
+                ArrayList<PlayerState> playerStates = gameState.getPlayerStates();
+
+                for(Player playerOnGrid:gameGrid.getPlayerList()){
+                    boolean playerStillExists = false;
+                    for(PlayerState playerState1:playerStates){
+                        if(playerState1.getName().equals(playerOnGrid.getName())){
+                            playerStillExists = true;
+                        }
+                    }
+                    if(!playerStillExists){
+                        playersToRemove.add(playerOnGrid);
+                    }
+                }
+
+                for(Player playerToRemove:playersToRemove){
+                    gameGrid.removePlayerFromGrid(playerToRemove);
+                }
 
             }catch (Exception ex){
                 //Player isn't on grid yet - add them
