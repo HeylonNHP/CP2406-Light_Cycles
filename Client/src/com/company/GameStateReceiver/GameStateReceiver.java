@@ -33,7 +33,7 @@ public class GameStateReceiver extends Thread {
                 DatagramPacket receivedPacket = new DatagramPacket(dataBuffer,dataBuffer.length);
                 multicastSocket.receive(receivedPacket);
 
-                System.out.println(receivedPacket.getAddress().toString());
+                //System.out.println(receivedPacket.getAddress().toString());
 
                 GameState gameState = interpretGameStateFromString(new String(dataBuffer));
                 GameStateUpdated newUpdate = new GameStateUpdated(this, gameState);

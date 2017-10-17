@@ -38,8 +38,20 @@ public class LightCyclesGame {
             try{
                 Player player = gameGrid.getPlayerOnGrid(playerState.getName());
 
-                //Place jetwall if they have it enabled
-                if(playerState.isJetwallEnabled()){
+                Dimension newPlayerPosition = playerState.getPosition();
+                Dimension currentPlayerPosition = player.getPosition();
+
+                System.out.println(
+                        String.format("Has moved horizontally: %s " +
+                                "Has moved vertically: %s",
+                                currentPlayerPosition.width != newPlayerPosition.width,
+                                currentPlayerPosition.height != newPlayerPosition.height)
+                );
+
+                //Place jetwall if they have it enabled and they have moved since the last broadcast update
+                if(playerState.isJetwallEnabled() &&
+                        (currentPlayerPosition.width != newPlayerPosition.width ||
+                        currentPlayerPosition.height != newPlayerPosition.height)){
                     JetWallDirection direction = JetWallDirection.HORIZONTAL;
                     if(player.getDirection() == PlayerDirection.UP || player.getDirection() == PlayerDirection.DOWN){
                         direction = JetWallDirection.VERTICAL;
@@ -50,7 +62,7 @@ public class LightCyclesGame {
                 }
 
                 //Move player to new position
-                player.setPosition(playerState.getPosition());
+                player.setPosition(newPlayerPosition);
                 System.out.println(String.format(
                         "Players direction of travel is: %s", player.getDirection().toString()
                 ));
