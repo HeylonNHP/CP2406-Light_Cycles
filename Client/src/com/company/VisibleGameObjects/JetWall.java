@@ -1,6 +1,7 @@
 package com.company.VisibleGameObjects;
 
 import java.awt.*;
+import java.awt.color.ColorSpace;
 
 public class JetWall {
     private Player parentPlayer;
@@ -21,7 +22,15 @@ public class JetWall {
     }
 
     public void draw(Graphics2D g){
-        g.setColor(Color.GREEN);
+        Color jetwallColor = getParentPlayer().getColour();
+
+        int red = (int)(jetwallColor.getRed() / 2f);
+        int green = (int)(jetwallColor.getGreen() / 2f);
+        int blue = (int)(jetwallColor.getBlue() / 2f);
+
+        jetwallColor = new Color(red,green,blue);
+
+        g.setColor(jetwallColor);
         if(direction == JetWallDirection.HORIZONTAL){
             g.fillRect(position.width-5,position.height-2,10,4);
         }else {
