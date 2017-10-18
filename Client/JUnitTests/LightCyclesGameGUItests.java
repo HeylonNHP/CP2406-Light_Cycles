@@ -1,8 +1,7 @@
-import com.company.LightCyclesGame;
-import com.company.MainWindow.GamePanel.GamePanel;
+import game.client.LightCyclesGame;
+import game.client.MainWindow.GamePanel.GamePanel;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runners.JUnit4;
 
 import java.awt.*;
 
