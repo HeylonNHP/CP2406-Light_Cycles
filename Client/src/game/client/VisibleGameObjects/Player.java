@@ -8,6 +8,7 @@ public class Player {
     private Dimension position;
     private PlayerDirection direction;
     private boolean jetwallEnabled = true;
+    private int score = 0;
 
     public Player(String name, Dimension initialPosition, PlayerDirection initialDirection){
         //Use a random colour
@@ -22,6 +23,14 @@ public class Player {
         this.colour = colour;
     }
 
+    private void incrementScore(){
+        score += 10;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
     public void setPosition(Dimension newPosition){
         //Set direction based on movement relative to last position
         if(position.width > newPosition.width){
@@ -33,6 +42,13 @@ public class Player {
         }else if(position.height < newPosition.height){
             setDirection(PlayerDirection.DOWN);
         }
+
+        //If moved with jetwall enabled update score
+        if((position.width != newPosition.width || position.height != newPosition.height) &&
+                isJetwallEnabled()){
+            incrementScore();
+        }
+
         //Set new position
         this.position = newPosition;
     }

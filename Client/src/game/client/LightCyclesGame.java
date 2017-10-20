@@ -208,6 +208,10 @@ public class LightCyclesGame {
         return gameGrid;
     }
 
+    public String getUsersName() {
+        return usersName;
+    }
+
     public void turnLeft(){
         /*Request server to turn your player left*/
         //getServerResponse(String.format("USER %s TURN left", usersName));
