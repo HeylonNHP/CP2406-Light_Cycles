@@ -268,6 +268,7 @@ public class LightCyclesGame {
     private void removePlayerFromGame(String playerName) throws Exception{
         Player player = getPlayerByName(playerName);
         playerList.remove(player);
+        gameGrid.removePlayerFromGrid(player);
     }
 
     private Player getPlayerByName(String playerName) throws Exception{

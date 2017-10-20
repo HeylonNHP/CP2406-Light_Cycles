@@ -44,6 +44,16 @@ public class DetailsDisplayPanel extends JPanel {
             mainWindow.switchToStartScreen();
         });
 
+        leaveGameButton.addActionListener((e) ->{
+            try{
+                gameObject.leaveGame();
+                mainWindow.switchToStartScreen();
+            }catch (Exception ex1){
+                JOptionPane.showMessageDialog(null,"Something went wrong when trying to leave the game: " +
+                ex1.getMessage());
+            }
+        });
+
         add(gamePanel);
         gamePanel.joinServer();
         this.gameGrid = gameObject.getGameGrid();

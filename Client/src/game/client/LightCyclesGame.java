@@ -284,4 +284,20 @@ public class LightCyclesGame {
             System.out.println("---FAILED TO TOGGLE JETWALL---");
         }
     }
+
+    public void leaveGame() throws Exception{
+        String response = "";
+        try{
+            response = serverRequester.getRequestResponse(String.format(
+                    "REMOVE USER %s", usersName
+            ));
+        }catch (Exception e){
+
+        }
+
+        if(!response.contains("OKAY")){
+            String error = response.replace("FAILED ", "");
+            throw new Exception(error);
+        }
+    }
 }
