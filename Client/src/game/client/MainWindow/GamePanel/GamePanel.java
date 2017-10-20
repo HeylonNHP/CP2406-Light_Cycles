@@ -1,6 +1,7 @@
 package game.client.MainWindow.GamePanel;
 
 import game.client.LightCyclesGame;
+import game.client.MainWindow.GamePanel.DetailsDisplayPanel.DetailsDisplayPanel;
 import game.client.VisibleGameObjects.GameGrid;
 
 import javax.swing.*;
@@ -31,6 +32,8 @@ public class GamePanel extends JPanel{
         //TODO: Use event handler on lightcyclesgame to update this
         javax.swing.Timer drawTimer = new javax.swing.Timer(50,(actionEvent) ->{
             raiseRePaintRequestListener(new EventObject(this));
+            setFocusable(true);
+            requestFocusInWindow();
         });
         drawTimer.start();
 
@@ -68,13 +71,13 @@ public class GamePanel extends JPanel{
         });
         //If you don't set this, the JPanel won't be focused so the KeyListener won't work
         setFocusable(true);
+        requestFocusInWindow();
     }
 
     public void addJoinServerFailedListener(JoinServerFailedListener e){
         listeners.add(JoinServerFailedListener.class,e);
     }
     private void raiseJoinServerFailed(JoinServerFailedEvent e){
-        JOptionPane.showMessageDialog(this, e.getConnectionFailureReason());
         for(JoinServerFailedListener listener: listeners.getListeners(JoinServerFailedListener.class)){
             listener.joinServerFailed(e);
         }
@@ -102,6 +105,7 @@ public class GamePanel extends JPanel{
         if(gameGrid != null){
             Dimension gridDimensions = gameGrid.getGridDimensions();
             setPreferredSize(gridDimensions);
+            setSize(gridDimensions);
 
             gameGrid.draw(graphics2D);
         }
