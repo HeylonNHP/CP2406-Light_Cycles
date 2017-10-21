@@ -11,6 +11,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 enum CurrentGameState {IDLE, WAITING_FOR_USERS, PLAYING, GAME_OVER}
 
@@ -298,6 +299,34 @@ public class LightCyclesGame {
         if(!response.contains("OKAY")){
             String error = response.replace("FAILED ", "");
             throw new Exception(error);
+        }
+    }
+
+    public HashMap<String,Integer> getLeaderBoard() throws Exception{
+        String response = "";
+        try{
+            response = serverRequester.getRequestResponse("GET LEADERBOARD");
+        }catch (Exception e){
+
+        }
+
+
+        if (response.equals("FAILED")){
+            String error = response.replace("FAILED ","");
+            throw new Exception(error);
+        }else if (response.contains("OKAY:")){
+            String leaderBoardString = response.replace("OKAY:", "");
+            HashMap<String,Integer> leaderBoard = new HashMap<>();
+
+            String[] leaderBoardEntries = leaderBoardString.split(" ");
+
+            for(String leaderBoardEntry:leaderBoardEntries){
+                String[] nameAndScore = leaderBoardEntry.split(",");
+                leaderBoard.put(nameAndScore[0], Integer.parseInt(nameAndScore[1]));
+            }
+            return leaderBoard;
+        }else{
+            throw new Exception("Something went wrong when requesting the leader board from the server");
         }
     }
 }
