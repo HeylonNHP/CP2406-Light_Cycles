@@ -20,7 +20,7 @@ public class LightCyclesGame {
     private LeaderBoard leaderBoard;
 
     private Timer gameStartTimer;
-    private final int playersRequiredForGameStart = 2;
+    private final int playersRequiredForGameStart = 1;
 
     //I.E - if equals 10, there will be 10 pixels for every location on the grid
     private final int gridShrinkFactor = 10;
