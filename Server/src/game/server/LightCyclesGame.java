@@ -7,6 +7,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 enum CurrentGameState {IDLE, WAITING_FOR_USERS, PLAYING, GAME_OVER}
 
@@ -179,12 +180,25 @@ public class LightCyclesGame {
                                 response = "WAITING FOR USERS";
                                 break;
                         }
-                    }else if(clientRequest.contains("SAVE SCORE")){
+                    }else if(clientRequest.contains("SAVE SCORE")) {
                         String scoreName = requestComponents[2];
                         int scoreValue = Integer.parseInt(requestComponents[3]);
-                        leaderBoard.addHighScore(scoreName,scoreValue);
-                        System.out.println(String.format("Added score for: %s Score: %s", scoreName,scoreValue));
+                        leaderBoard.addHighScore(scoreName, scoreValue);
+                        System.out.println(String.format("Added score for: %s Score: %s", scoreName, scoreValue));
                         response = "OKAY";
+                    }else if(clientRequest.contains("GET LEADERBOARD")){
+                        //Send back all the scores on the leaderboard
+                        HashMap<String,Integer> scores = leaderBoard.getHighScores();
+                        if(scores.size() < 1){
+                            response = "FAILED No scores on leaderboard yet";
+                        }else{
+                            response = "OKAY:";
+                            for(String playerName:scores.keySet()){
+                                response += String.format("%s,%s ", playerName,
+                                        scores.get(playerName));
+                            }
+                        }
+
                     }else if(clientRequest.contains("USER")){
                         /*Do not respond to these requests*/
                         String userName = requestComponents[1]; //Is the player name the client specified

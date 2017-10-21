@@ -11,4 +11,8 @@ public class LeaderBoard {
     public void addHighScore(String name, Integer score){
         highScores.put(name,score);
     }
+
+    public HashMap<String, Integer> getHighScores() {
+        return highScores;
+    }
 }
