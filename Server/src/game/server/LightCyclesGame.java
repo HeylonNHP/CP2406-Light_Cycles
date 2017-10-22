@@ -89,8 +89,15 @@ public class LightCyclesGame {
                 }
 
                 broadcastMessage += String.format("%s,%s,%s,%s ",playerName, playerPosition.width,playerPosition.height, jetwallState);
+
+                if(broadcastMessage.equals("")){
+                    //There are probably no players left on the grid if this is the case
+                    broadcastMessage = Character.toString((char)255);
+                }
             }catch (Exception e){
-                System.out.println(e.getMessage());
+                System.out.println(String.format(
+                        "Generating broadcast message: %s", e.getMessage()
+                ));
             }
         }
 
@@ -102,11 +109,14 @@ public class LightCyclesGame {
 
             multicastSocket.send(packetToTransmit);
 
+            multicastSocket.close();
+
         }catch (Exception e){
-
+            System.out.println(String.format(
+                    "Sending broadcast message: %s", e.getMessage()
+            ));
         }
-
-
+        System.out.println(String.format("Broadcast message: %s", broadcastMessage));
     }
 
     private void startHandlingDirectRequests(){

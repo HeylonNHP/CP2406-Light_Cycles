@@ -21,22 +21,28 @@ public class LightCyclesGame {
     private ServerRequester serverRequester = new ServerRequester();
     private String usersName;
     private Color usersColour;
-    public LightCyclesGame(String userName, Color userColour){
+
+    public LightCyclesGame(String userName, Color userColour) {
         this.usersName = userName;
         this.usersColour = userColour;
-        receiver.addGameStateUpdateListener(e -> {receivedNewGameState(e);});
+        receiver.addGameStateUpdateListener(e -> {
+            receivedNewGameState(e);
+        });
         receiver.start();
     }
 
-    private void receivedNewGameState(GameStateUpdated e){
+    private void receivedNewGameState(GameStateUpdated e) {
         GameState gameState = e.getGameState();
-        for(PlayerState playerState: gameState.getPlayerStates()){
+
+        System.out.println("--------------=NEW GAME STATE=----------------");
+
+        for (PlayerState playerState : gameState.getPlayerStates()) {
             System.out.println(String.format("Player: %s x: %s y:%s jetwall enabled: %s",
-                    playerState.getName(),playerState.getPosition().width,
+                    playerState.getName(), playerState.getPosition().width,
                     playerState.getPosition().height, playerState.isJetwallEnabled()));
 
             //Update player on grid
-            try{
+            try {
                 Player player = gameGrid.getPlayerOnGrid(playerState.getName());
 
                 Dimension newPlayerPosition = playerState.getPosition();
@@ -44,21 +50,21 @@ public class LightCyclesGame {
 
                 System.out.println(
                         String.format("Has moved horizontally: %s " +
-                                "Has moved vertically: %s",
+                                        "Has moved vertically: %s",
                                 currentPlayerPosition.width != newPlayerPosition.width,
                                 currentPlayerPosition.height != newPlayerPosition.height)
                 );
 
                 //Place jetwall if they have it enabled and they have moved since the last broadcast update
-                if(playerState.isJetwallEnabled() &&
+                if (playerState.isJetwallEnabled() &&
                         (currentPlayerPosition.width != newPlayerPosition.width ||
-                        currentPlayerPosition.height != newPlayerPosition.height)){
+                                currentPlayerPosition.height != newPlayerPosition.height)) {
                     JetWallDirection direction = JetWallDirection.HORIZONTAL;
-                    if(player.getDirection() == PlayerDirection.UP || player.getDirection() == PlayerDirection.DOWN){
+                    if (player.getDirection() == PlayerDirection.UP || player.getDirection() == PlayerDirection.DOWN) {
                         direction = JetWallDirection.VERTICAL;
                     }
 
-                    JetWall playerJetWall = new JetWall(player,player.getPosition(), direction);
+                    JetWall playerJetWall = new JetWall(player, player.getPosition(), direction);
                     gameGrid.addJetWallToGrid(playerJetWall);
                 }
 
@@ -70,63 +76,63 @@ public class LightCyclesGame {
                 //Set jetwall state
                 player.setJetwallEnabled(playerState.isJetwallEnabled());
 
-                /*If the broadcast message no-longer contains a player that's on the grid, remove them*/
-                ArrayList<Player> playersToRemove = new ArrayList<>();
-                ArrayList<PlayerState> playerStates = gameState.getPlayerStates();
-
-                for(Player playerOnGrid:gameGrid.getPlayerList()){
-                    boolean playerStillExists = false;
-                    for(PlayerState playerState1:playerStates){
-                        if(playerState1.getName().equals(playerOnGrid.getName())){
-                            playerStillExists = true;
-                        }
-                    }
-                    if(!playerStillExists){
-                        playersToRemove.add(playerOnGrid);
-                    }
-                }
-
-                for(Player playerToRemove:playersToRemove){
-                    gameGrid.removePlayerFromGrid(playerToRemove);
-                }
-
-            }catch (Exception ex){
+            } catch (Exception ex) {
                 //Player isn't on grid yet - add them
                 Player player;
-                if(playerState.getName().equals(usersName)){
+                if (playerState.getName().equals(usersName)) {
                     //If we happen to be adding this users player to the grid, parse in their chosen colour
                     player = new Player(playerState.getName(),
                             playerState.getPosition(), PlayerDirection.UP, usersColour);
-                }else {
+                } else {
                     player = new Player(playerState.getName(),
                             playerState.getPosition(), PlayerDirection.UP);
                 }
                 gameGrid.addPlayerToGrid(player);
             }
         }
+
+        /*If the broadcast message no-longer contains a player that's on the grid, remove them*/
+        ArrayList<Player> playersToRemove = new ArrayList<>();
+        ArrayList<PlayerState> playerStates = gameState.getPlayerStates();
+
+        for (Player playerOnGrid : gameGrid.getPlayerList()) {
+            boolean playerStillExists = false;
+            for (PlayerState playerState1 : playerStates) {
+                if (playerState1.getName().equals(playerOnGrid.getName())) {
+                    playerStillExists = true;
+                }
+            }
+            if (!playerStillExists) {
+                playersToRemove.add(playerOnGrid);
+            }
+        }
+
+        for (Player playerToRemove : playersToRemove) {
+            gameGrid.removePlayerFromGrid(playerToRemove);
+        }
     }
 
-    private static String getServerResponse(String requestMessage){
+    private static String getServerResponse(String requestMessage) {
         /*Sends a request to the game server and returns the response*/
 
         try {
             System.out.println("Sending " + requestMessage);
             InetAddress destinationAddress = InetAddress.getByName("127.0.0.1");
             DatagramSocket socket = new DatagramSocket(56970);
-            DatagramPacket packet = new DatagramPacket(requestMessage.getBytes(),requestMessage.length(),destinationAddress,56971);
+            DatagramPacket packet = new DatagramPacket(requestMessage.getBytes(), requestMessage.length(), destinationAddress, 56971);
             socket.send(packet);
             System.out.println("Sent");
 
             /*Code for receiving response from server*/
             byte[] responseBuffer = new byte[1024];
-            DatagramPacket responsePacket = new DatagramPacket(responseBuffer,responseBuffer.length);
+            DatagramPacket responsePacket = new DatagramPacket(responseBuffer, responseBuffer.length);
 
             //Set the timeout incase we never receive a response
             socket.setSoTimeout(2 * 1000); //2 second timeout
 
-            try{
+            try {
                 socket.receive(responsePacket);
-            }catch (Exception ex){
+            } catch (Exception ex) {
                 //Response timed out :(
                 socket.close();
                 System.out.println(String.format("This happened: %s", ex.getMessage()));
@@ -136,25 +142,25 @@ public class LightCyclesGame {
             String responseString = new String(responseBuffer);
             responseString = responseString.trim();
 
-            System.out.println(String.format("Server response: %s",responseString));
+            System.out.println(String.format("Server response: %s", responseString));
 
             //Testing only
             socket.close();
 
             return responseString;
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Getting server response failed." + e.getMessage());
         }
 
         return "";
     }
 
-    private static CurrentGameState getServerGameState() throws Exception{
+    private static CurrentGameState getServerGameState() throws Exception {
         /*Asks the server for the current game state
         * Will throw an exception if the server doesn't respond*/
         String response = getServerResponse("GAME STATE");
 
-        switch (response){
+        switch (response) {
             case "IDLE":
                 return CurrentGameState.IDLE;
             case "PLAYING":
@@ -168,20 +174,20 @@ public class LightCyclesGame {
         }
     }
 
-    public void joinServer() throws Exception{
+    public void joinServer() throws Exception {
         /*This method will ask the server to add you to the game, with the specified name
         * If the server is not waiting for players, it throws an exception
         * If the server didn't respond with OKAY, it throws an exception*/
 
-        if(getServerGameState() == CurrentGameState.WAITING_FOR_USERS){
+        if (getServerGameState() == CurrentGameState.WAITING_FOR_USERS) {
             String response = getServerResponse("ADD USER " + usersName);
-            if(!response.equals("OKAY")){
+            if (!response.equals("OKAY")) {
                 throw new Exception("The following issue occurred when trying to " +
                         "create a new user on the server: " + response);
             }
 
             //Request the grid size and initialise the GameGrid object
-            try{
+            try {
                 String gridSize = serverRequester.getRequestResponse("GRID SIZE");
                 String[] gridSizeArray = gridSize.split(" ");
                 Dimension gridDimensions = new Dimension(Integer.parseInt(gridSizeArray[0]),
@@ -189,7 +195,7 @@ public class LightCyclesGame {
                 gameGrid = new GameGrid(gridDimensions);
                 System.out.println(String.format("The grid was created with the following dimensions: " +
                         "width: %s height: %s", gridDimensions.width, gridDimensions.height));
-            }catch (Exception e){
+            } catch (Exception e) {
                 throw new Exception("The server did not respond to the grid size request. Abandon ship!!!!");
             }
 
@@ -200,7 +206,7 @@ public class LightCyclesGame {
             //getServerResponse(String.format("USER %s TURN right", usersName));
 
 
-        }else{
+        } else {
             throw new Exception("The server is not accepting new users at this time.");
         }
     }
@@ -213,119 +219,118 @@ public class LightCyclesGame {
         return usersName;
     }
 
-    public void turnLeft(){
+    public void turnLeft() {
         /*Request server to turn your player left*/
         //getServerResponse(String.format("USER %s TURN left", usersName));
-        try{
+        try {
             serverRequester.sendNonRespondingRequest(String.format("USER %s TURN left", usersName));
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
     }
 
-    public void turnRight(){
+    public void turnRight() {
         /*Request server to turn your player right*/
         //getServerResponse(String.format("USER %s TURN right", usersName));
-        try{
+        try {
             serverRequester.sendNonRespondingRequest(String.format("USER %s TURN right", usersName));
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
     }
 
-    public void beginMovingSlowly(){
+    public void beginMovingSlowly() {
         /*Request server to set your player speed to slow*/
         //getServerResponse(String.format("USER %s GO slower", usersName));
-        try{
+        try {
             serverRequester.sendNonRespondingRequest(String.format("USER %s GO slower", usersName));
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
     }
 
-    public void beginMovingQuickly(){
+    public void beginMovingQuickly() {
         /*Request server to set your player speed to fast*/
         //getServerResponse(String.format("USER %s GO faster", usersName));
-        try{
+        try {
             serverRequester.sendNonRespondingRequest(String.format("USER %s GO faster", usersName));
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
     }
 
-    public void turnOnJetwall(){
+    public void turnOnJetwall() {
         /*Request server to turn on your jet wall*/
         //getServerResponse(String.format("USER %s JETWALL on", usersName));
-        try{
+        try {
             serverRequester.sendNonRespondingRequest(String.format("USER %s JETWALL on", usersName));
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
     }
 
-    public void turnOffJetwall(){
+    public void turnOffJetwall() {
         /*Request server to turn off your jet wall*/
         //getServerResponse(String.format("USER %s JETWALL off", usersName));
-        try{
+        try {
             serverRequester.sendNonRespondingRequest(String.format("USER %s JETWALL off", usersName));
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
     }
 
-    public void toggleJetwall(){
-        try{
+    public void toggleJetwall() {
+        try {
             Player thisPlayer = gameGrid.getPlayerOnGrid(usersName);
-            if(thisPlayer.isJetwallEnabled()){
+            if (thisPlayer.isJetwallEnabled()) {
                 turnOffJetwall();
-            }else {
+            } else {
                 turnOnJetwall();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("---FAILED TO TOGGLE JETWALL---");
         }
     }
 
-    public void leaveGame() throws Exception{
+    public void leaveGame() throws Exception {
         String response = "";
-        try{
+        try {
             response = serverRequester.getRequestResponse(String.format(
                     "REMOVE USER %s", usersName
             ));
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 
-        if(!response.contains("OKAY")){
+        if (!response.contains("OKAY")) {
             String error = response.replace("FAILED ", "");
             throw new Exception(error);
         }
     }
 
-    public HashMap<String,Integer> getLeaderBoard() throws Exception{
+    public HashMap<String, Integer> getLeaderBoard() throws Exception {
         String response = "";
-        try{
+        try {
             response = serverRequester.getRequestResponse("GET LEADERBOARD");
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 
-
-        if (response.equals("FAILED")){
-            String error = response.replace("FAILED ","");
+        if (response.equals("FAILED")) {
+            String error = response.replace("FAILED ", "");
             throw new Exception(error);
-        }else if (response.contains("OKAY:")){
+        } else if (response.contains("OKAY:")) {
             String leaderBoardString = response.replace("OKAY:", "");
-            HashMap<String,Integer> leaderBoard = new HashMap<>();
+            HashMap<String, Integer> leaderBoard = new HashMap<>();
 
             String[] leaderBoardEntries = leaderBoardString.split(" ");
 
-            for(String leaderBoardEntry:leaderBoardEntries){
+            for (String leaderBoardEntry : leaderBoardEntries) {
                 String[] nameAndScore = leaderBoardEntry.split(",");
                 leaderBoard.put(nameAndScore[0], Integer.parseInt(nameAndScore[1]));
             }
             return leaderBoard;
-        }else{
+        } else {
             throw new Exception("Something went wrong when requesting the leader board from the server");
         }
     }

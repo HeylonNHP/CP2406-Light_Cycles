@@ -34,15 +34,13 @@ public class GameStateReceiver extends Thread {
 
                 //System.out.println(receivedPacket.getAddress().toString());
 
-                GameState gameState = interpretGameStateFromString(new String(dataBuffer));
+                String bufferString = new String(dataBuffer);
+
+                GameState gameState = interpretGameStateFromString(bufferString);
                 GameStateUpdated newUpdate = new GameStateUpdated(this, gameState);
                 raiseGameStateUpdated(newUpdate);
-
-                //JOptionPane.showMessageDialog(null, new String(dataBuffer), "alert", JOptionPane.INFORMATION_MESSAGE);
-                //JOptionPane outputWindow = new JOptionPane(new String(dataBuffer));
-                //outputWindow.setVisible(true);
             }catch (Exception e){
-
+                e.printStackTrace();
             }
         }
     }
@@ -51,6 +49,10 @@ public class GameStateReceiver extends Thread {
         GameState gameState = new GameState();
         //Remove any whitespace of null chars at the beginning or end
         stateData = stateData.trim();
+
+        if(stateData.equals("")){
+            return gameState;
+        }
 
         String[] perPlayerData = stateData.split(" ");
 
@@ -74,6 +76,7 @@ public class GameStateReceiver extends Thread {
     }
 
     private void raiseGameStateUpdated(GameStateUpdated e){
+        System.out.println("Game state event listener fired");
         GameStateUpdateListener[] listeners = listenerList.getListeners(GameStateUpdateListener.class);
         for (GameStateUpdateListener listener: listeners) {
             listener.GameStateUpdate(e);
