@@ -20,7 +20,7 @@ public class LightCyclesGame {
     private LeaderBoard leaderBoard;
 
     private Timer gameStartTimer;
-    private final int playersRequiredForGameStart = 1;
+    private final int playersRequiredForGameStart = 2;
 
     //I.E - if equals 10, there will be 10 pixels for every location on the grid
     private final int gridShrinkFactor = 10;
@@ -58,6 +58,7 @@ public class LightCyclesGame {
 
             while (currentGameState == CurrentGameState.PLAYING){
                 gameGrid.progressGame();
+
                 broadcastGameState();
 
                 try {
@@ -74,10 +75,12 @@ public class LightCyclesGame {
 
     private void broadcastGameState(){
         String broadcastMessage = "";
+        int playersLeftOnGrid = 0;
         for(Player player: playerList){
             try{
                 String playerName = player.getName();
                 Dimension playerPosition = gameGrid.getLocationOfItemOnGrid(player);
+                playersLeftOnGrid++;
                 playerPosition = new Dimension(playerPosition.width*gridShrinkFactor,
                         playerPosition.height*gridShrinkFactor);
                 String jetwallState;
@@ -89,17 +92,25 @@ public class LightCyclesGame {
                 }
 
                 broadcastMessage += String.format("%s,%s,%s,%s ",playerName, playerPosition.width,playerPosition.height, jetwallState);
-
-                if(broadcastMessage.equals("")){
-                    //There are probably no players left on the grid if this is the case
-                    broadcastMessage = Character.toString((char)255);
-                }
             }catch (Exception e){
                 System.out.println(String.format(
                         "Generating broadcast message: %s", e.getMessage()
                 ));
             }
         }
+
+        if(broadcastMessage.equals("")){
+            //There are probably no players left on the grid if this is the case
+            //End the game - might as well
+            currentGameState = CurrentGameState.GAME_OVER;
+
+            System.out.println("Empty broadcast message! Ending game.");
+        }else if(playersLeftOnGrid <= 1 && playersLeftOnGrid < playersRequiredForGameStart){
+            //If there's only one player left on the grid, and the game was set to start with more than one player - also end the game
+            currentGameState = CurrentGameState.GAME_OVER;
+        }
+
+        System.out.printf("Players currently on the grid: %s\n", playersLeftOnGrid);
 
         try{
             InetAddress multicastGroup = InetAddress.getByName(multicastAddress);
