@@ -8,6 +8,7 @@ public class Player {
     private PlayerDirection direction;
     private boolean jetWallEnabled;
     private PlayerSpeed speed;
+    private boolean isWinner = false;
 
     /*All these methods CANNOT be private despite what Intellij thinks
     * They're all being referenced from outside of this class*/
@@ -86,6 +87,14 @@ public class Player {
 
     public PlayerSpeed getMovingSpeed(){
         return this.speed;
+    }
+
+    public boolean isWinner() {
+        return isWinner;
+    }
+
+    public void setWinner(boolean winner) {
+        isWinner = winner;
     }
 
     @Override

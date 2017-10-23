@@ -79,8 +79,10 @@ public class LightCyclesGame {
         for(Player player: playerList){
             try{
                 String playerName = player.getName();
+                //This will throw an exception if the player doesn't exist on the grid
                 Dimension playerPosition = gameGrid.getLocationOfItemOnGrid(player);
                 playersLeftOnGrid++;
+
                 playerPosition = new Dimension(playerPosition.width*gridShrinkFactor,
                         playerPosition.height*gridShrinkFactor);
                 String jetwallState;
@@ -108,6 +110,14 @@ public class LightCyclesGame {
         }else if(playersLeftOnGrid <= 1 && playersLeftOnGrid < playersRequiredForGameStart){
             //If there's only one player left on the grid, and the game was set to start with more than one player - also end the game
             currentGameState = CurrentGameState.GAME_OVER;
+            for(Player player:playerList){
+                try{
+                    gameGrid.getLocationOfItemOnGrid(player);
+                    player.setWinner(true);
+                }catch (Exception e){
+                    System.out.printf("Player %s not found on grid - they must have lost\n", player.getName());
+                }
+            }
         }
 
         System.out.printf("Players currently on the grid: %s\n", playersLeftOnGrid);
