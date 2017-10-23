@@ -6,6 +6,8 @@ import game.client.GameStateReceiver.GameStateUpdated;
 import game.client.GameStateReceiver.PlayerState;
 import game.client.VisibleGameObjects.*;
 
+import javax.swing.*;
+import javax.swing.event.EventListenerList;
 import java.awt.*;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -16,6 +18,7 @@ import java.util.HashMap;
 enum CurrentGameState {IDLE, WAITING_FOR_USERS, PLAYING, GAME_OVER}
 
 public class LightCyclesGame {
+    private EventListenerList listeners = new EventListenerList();
     private GameStateReceiver receiver = new GameStateReceiver();
     private GameGrid gameGrid;
     private ServerRequester serverRequester = new ServerRequester();
@@ -33,8 +36,6 @@ public class LightCyclesGame {
 
     private void receivedNewGameState(GameStateUpdated e) {
         GameState gameState = e.getGameState();
-
-        System.out.println("--------------=NEW GAME STATE=----------------");
 
         for (PlayerState playerState : gameState.getPlayerStates()) {
             System.out.println(String.format("Player: %s x: %s y:%s jetwall enabled: %s",
@@ -110,6 +111,21 @@ public class LightCyclesGame {
         for (Player playerToRemove : playersToRemove) {
             gameGrid.removePlayerFromGrid(playerToRemove);
         }
+
+        //TEST CODE
+        try{
+            String gameState_ = serverRequester.getRequestResponse("GAME STATE");
+            if(gameState_.contains("GAME OVER")){
+                String debugmsg = String.format("My name: %s Game state: %s", usersName, gameState_);
+                JOptionPane.showMessageDialog(null, debugmsg);
+            }
+            System.out.printf(
+                    "Game state: %s\n", gameState_
+            );
+        }catch (Exception ex){
+
+        }
+
     }
 
     private static String getServerResponse(String requestMessage) {
@@ -332,6 +348,16 @@ public class LightCyclesGame {
             return leaderBoard;
         } else {
             throw new Exception("Something went wrong when requesting the leader board from the server");
+        }
+    }
+
+    public void addGameOverListener(GameOverEvent e){
+        listeners.add(GameOverEvent.class,e);
+    }
+
+    public void raiseGameOverListener(GameOverOccurred e){
+        for(GameOverEvent event: listeners.getListeners(GameOverEvent.class)){
+            event.gameOverOccurred(e);
         }
     }
 }
