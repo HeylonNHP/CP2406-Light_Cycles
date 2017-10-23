@@ -205,7 +205,17 @@ public class LightCyclesGame {
                                 response = "PLAYING";
                                 break;
                             case GAME_OVER:
-                                response = "GAME OVER";
+                                //Get winning player
+                                boolean winnerFound = false;
+                                for(Player player: playerList){
+                                    if(player.isWinner()){
+                                        response = "GAME OVER " + player.getName();
+                                        winnerFound = true;
+                                    }
+                                }
+                                if(!winnerFound){
+                                    response = "GAME OVER -";
+                                }
                                 break;
                             case WAITING_FOR_USERS:
                                 response = "WAITING FOR USERS";
