@@ -112,20 +112,24 @@ public class LightCyclesGame {
             gameGrid.removePlayerFromGrid(playerToRemove);
         }
 
-        //TEST CODE
-        try{
-            String gameState_ = serverRequester.getRequestResponse("GAME STATE");
-            if(gameState_.contains("GAME OVER")){
-                String debugmsg = String.format("My name: %s Game state: %s", usersName, gameState_);
-                JOptionPane.showMessageDialog(null, debugmsg);
+        //Check for game over
+        /*Sometimes we wont be able to 'bind' to the server if other clients are doing the same
+        * Just loop until we bind. Ah well.*/
+        boolean checkComplete = false;
+        while (!checkComplete) {
+            try {
+                String gameState_ = serverRequester.getRequestResponse("GAME STATE");
+                if (gameState_.contains("GAME OVER")) {
+                    GameOver(gameState_);
+                }
+                System.out.printf(
+                        "Game state: %s\n", gameState_
+                );
+                checkComplete = true;
+            } catch (Exception ex) {
+                System.out.printf("Couldn't connect to the server for this reason: %s\n", ex.getMessage());
             }
-            System.out.printf(
-                    "Game state: %s\n", gameState_
-            );
-        }catch (Exception ex){
-
         }
-
     }
 
     private static String getServerResponse(String requestMessage) {
@@ -351,12 +355,18 @@ public class LightCyclesGame {
         }
     }
 
-    public void addGameOverListener(GameOverEvent e){
-        listeners.add(GameOverEvent.class,e);
+    private void GameOver(String serverResponseMessage) {
+        serverResponseMessage = serverResponseMessage.replace("GAME OVER ", "");
+        GameOverOccurred gameOverOccurred = new GameOverOccurred(this, serverResponseMessage);
+        raiseGameOverListener(gameOverOccurred);
     }
 
-    public void raiseGameOverListener(GameOverOccurred e){
-        for(GameOverEvent event: listeners.getListeners(GameOverEvent.class)){
+    public void addGameOverListener(GameOverEvent e) {
+        listeners.add(GameOverEvent.class, e);
+    }
+
+    public void raiseGameOverListener(GameOverOccurred e) {
+        for (GameOverEvent event : listeners.getListeners(GameOverEvent.class)) {
             event.gameOverOccurred(e);
         }
     }

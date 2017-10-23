@@ -13,6 +13,7 @@ public class DetailsDisplayPanel extends JPanel {
     JLabel scoreLabel = new JLabel("Score");
     JLabel userName = new JLabel("Name");
     JButton leaveGameButton = new JButton("Leave game");
+    JButton viewScoreboardButton = new JButton("View scoreboard");
     Main mainWindow;
     GamePanel gamePanel;
 
@@ -27,12 +28,29 @@ public class DetailsDisplayPanel extends JPanel {
         this.gameObject = gameObject;
         this.usersName = gameObject.getUsersName();
 
+        userName.setText("Name: " + gameObject.getUsersName());
+
         add(scoreLabel);
         add(userName);
         add(leaveGameButton);
     }
 
     public void joinServer(){
+        gameObject.addGameOverListener((e) ->{
+            JOptionPane.showMessageDialog(null,
+                    String.format(
+                            "My name: %s Winners name: %s \nI %s",
+                            usersName, e.getWinningPlayerName(),
+                            usersName.equals(e.getWinningPlayerName())? "Won":"Lost"
+                    ));
+            remove(leaveGameButton);
+            add(viewScoreboardButton);
+
+            //Update main window
+            mainWindow.revalidate();
+            mainWindow.repaint();
+        });
+
         gamePanel.addRePaintRequestListener((e) -> {
             mainWindow.revalidate();
             mainWindow.repaint();

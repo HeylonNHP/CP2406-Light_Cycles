@@ -46,6 +46,7 @@ public class GameStateReceiver extends Thread {
     }
 
     private static GameState interpretGameStateFromString(String stateData){
+        //System.out.printf("Game state: %s\n", stateData);
         GameState gameState = new GameState();
         //Remove any whitespace of null chars at the beginning or end
         stateData = stateData.trim();

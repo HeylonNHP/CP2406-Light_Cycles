@@ -37,6 +37,11 @@ public class GamePanel extends JPanel{
         });
         drawTimer.start();
 
+        lightCyclesGame.addGameOverListener((e) ->{
+            //Stop the re-draw timer when the game ends
+            drawTimer.stop();
+        });
+
         //Begin listening for user input
         addKeyListener(new KeyAdapter() {
             @Override

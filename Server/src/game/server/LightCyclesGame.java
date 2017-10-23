@@ -110,10 +110,15 @@ public class LightCyclesGame {
         }else if(playersLeftOnGrid <= 1 && playersLeftOnGrid < playersRequiredForGameStart){
             //If there's only one player left on the grid, and the game was set to start with more than one player - also end the game
             currentGameState = CurrentGameState.GAME_OVER;
+            //Set the winner attribute on the winning player
             for(Player player:playerList){
                 try{
                     gameGrid.getLocationOfItemOnGrid(player);
                     player.setWinner(true);
+                    //Remove winning player from the grid
+                    gameGrid.removePlayerFromGrid(player);
+                    //Set broadcast message to empty to indicate the game is over to the clients
+                    broadcastMessage = "";
                 }catch (Exception e){
                     System.out.printf("Player %s not found on grid - they must have lost\n", player.getName());
                 }
