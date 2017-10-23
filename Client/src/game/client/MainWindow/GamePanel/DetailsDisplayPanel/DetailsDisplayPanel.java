@@ -8,6 +8,7 @@ import game.client.VisibleGameObjects.Player;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
 
 public class DetailsDisplayPanel extends JPanel {
     JLabel scoreLabel = new JLabel("Score");
@@ -44,6 +45,18 @@ public class DetailsDisplayPanel extends JPanel {
                             usersName.equals(e.getWinningPlayerName())? "Won":"Lost"
                     ));
             remove(leaveGameButton);
+
+            viewScoreboardButton.addActionListener((e2) -> {
+                HashMap<String,Integer> highScores;
+                try{
+                    highScores = gameObject.getLeaderBoard();
+                }catch (Exception ex){
+                    highScores = new HashMap<>();
+                }
+
+                mainWindow.switchToLeaderBoard(highScores);
+            });
+
             add(viewScoreboardButton);
 
             //Update main window

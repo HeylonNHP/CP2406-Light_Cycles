@@ -332,11 +332,12 @@ public class LightCyclesGame {
         String response = "";
         try {
             response = serverRequester.getRequestResponse("GET LEADERBOARD");
+            System.out.printf("Leaderboard response: %s", response);
         } catch (Exception e) {
-
+            System.out.println(e.getMessage());
         }
 
-        if (response.equals("FAILED")) {
+        if (response.contains("FAILED")) {
             String error = response.replace("FAILED ", "");
             throw new Exception(error);
         } else if (response.contains("OKAY:")) {

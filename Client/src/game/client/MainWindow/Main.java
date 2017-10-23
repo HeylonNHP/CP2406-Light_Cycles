@@ -4,9 +4,11 @@ import game.client.LightCyclesGame;
 import game.client.MainWindow.GamePanel.DetailsDisplayPanel.DetailsDisplayPanel;
 import game.client.MainWindow.GamePanel.GamePanel;
 import game.client.MainWindow.JoinGamePanel.JoinGamePanel;
+import game.client.MainWindow.LeaderBoardViewer.LeaderBoardViewer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main extends JFrame{
@@ -21,7 +23,7 @@ public class Main extends JFrame{
         startScreen.addJoinGameListener((e) -> {
             String testMessage = String.format("Name: %s Colour: %s", e.getChosenPlayerName(),
                     e.getChosenColour().toString());
-            JOptionPane.showMessageDialog(this,testMessage);
+            //JOptionPane.showMessageDialog(this,testMessage);
             LightCyclesGame newGame = new LightCyclesGame(e.getChosenPlayerName(), e.getChosenColour());
 
             displayPanel = new DetailsDisplayPanel(this,newGame);
@@ -60,6 +62,16 @@ public class Main extends JFrame{
     public void switchToStartScreen(){
         getContentPane().removeAll();
         add(startScreen);
+    }
+
+    public void switchToLeaderBoard(HashMap<String, Integer> highScores){
+        LeaderBoardViewer leaderBoard = new LeaderBoardViewer(highScores);
+
+        getContentPane().removeAll();
+        add(leaderBoard);
+
+        revalidate();
+        repaint();
     }
 
     public static void main(String[] args) {
