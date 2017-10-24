@@ -19,6 +19,7 @@ public class DetailsDisplayPanel extends JPanel {
     GamePanel gamePanel;
 
     private String usersName;
+    private int usersScore;
     private GameGrid gameGrid;
     private LightCyclesGame gameObject;
     public DetailsDisplayPanel(Main mainWindow, LightCyclesGame gameObject){
@@ -39,7 +40,7 @@ public class DetailsDisplayPanel extends JPanel {
     public void joinServer(){
         gameObject.addGameOverListener((e) ->{
             boolean hasWon = usersName.equals(e.getWinningPlayerName());
-            JOptionPane.showMessageDialog(null,
+            JOptionPane.showMessageDialog(this,
                     String.format(
                             "My name: %s Winners name: %s \nI %s",
                             usersName, e.getWinningPlayerName(),
@@ -50,6 +51,11 @@ public class DetailsDisplayPanel extends JPanel {
                 System.out.printf("Post score response: %s\n", postScore);
                 if(postScore){
                     //Post score to leaderboard
+                    try{
+                        gameObject.postScoreToLeaderBoard(usersScore);
+                    }catch (Exception ex){
+                        JOptionPane.showMessageDialog(this, "Failed to post score!");
+                    }
                 }
             }
             remove(leaveGameButton);
@@ -114,7 +120,8 @@ public class DetailsDisplayPanel extends JPanel {
         super.paintComponent(g);
         try{
             Player userPlayer = gameGrid.getPlayerOnGrid(usersName);
-            String scoreString = String.format("Score: %s", userPlayer.getScore());
+            usersScore = userPlayer.getScore();
+            String scoreString = String.format("Score: %s", usersScore);
             scoreLabel.setText(scoreString);
         }catch (Exception e){
             System.out.println(String.format(

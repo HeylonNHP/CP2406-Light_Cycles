@@ -356,6 +356,12 @@ public class LightCyclesGame {
         }
     }
 
+    public void postScoreToLeaderBoard(int score) throws Exception{
+        String requestString = String.format("SAVE SCORE %s %s",
+                usersName, score);
+        serverRequester.sendNonRespondingRequest(requestString);
+    }
+
     private void GameOver(String serverResponseMessage) {
         serverResponseMessage = serverResponseMessage.replace("GAME OVER ", "");
         GameOverOccurred gameOverOccurred = new GameOverOccurred(this, serverResponseMessage);
