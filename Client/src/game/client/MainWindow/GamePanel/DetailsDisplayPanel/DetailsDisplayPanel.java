@@ -15,6 +15,7 @@ public class DetailsDisplayPanel extends JPanel {
     JLabel userName = new JLabel("Name");
     JButton leaveGameButton = new JButton("Leave game");
     JButton viewScoreboardButton = new JButton("View scoreboard");
+    JPanel hudPanel = new JPanel(new FlowLayout());
     Main mainWindow;
     GamePanel gamePanel;
 
@@ -23,18 +24,18 @@ public class DetailsDisplayPanel extends JPanel {
     private GameGrid gameGrid;
     private LightCyclesGame gameObject;
     public DetailsDisplayPanel(Main mainWindow, LightCyclesGame gameObject){
-        //super(new GridLayout(2,3));
-        super(new FlowLayout());
+        super();
+        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         this.mainWindow = mainWindow;
         this.gamePanel = new GamePanel(gameObject);
         this.gameObject = gameObject;
         this.usersName = gameObject.getUsersName();
 
         userName.setText("Name: " + gameObject.getUsersName());
-
-        add(scoreLabel);
-        add(userName);
-        add(leaveGameButton);
+        hudPanel.add(scoreLabel);
+        hudPanel.add(userName);
+        hudPanel.add(leaveGameButton);
+        add(hudPanel);
     }
 
     public void joinServer(){
@@ -57,7 +58,7 @@ public class DetailsDisplayPanel extends JPanel {
                         "<html>You lost. The game has ended.<br>" +
                                 "Please proceed to hang your head in shame.</html>");
             }
-            remove(leaveGameButton);
+            hudPanel.remove(leaveGameButton);
 
             viewScoreboardButton.addActionListener((e2) -> {
                 HashMap<String,Integer> highScores;
@@ -70,7 +71,7 @@ public class DetailsDisplayPanel extends JPanel {
                 mainWindow.switchToLeaderBoard(highScores);
             });
 
-            add(viewScoreboardButton);
+            hudPanel.add(viewScoreboardButton);
 
             //Update main window
             mainWindow.revalidate();

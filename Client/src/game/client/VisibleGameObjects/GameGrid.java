@@ -1,9 +1,12 @@
 package game.client.VisibleGameObjects;
 
+import javax.swing.event.EventListenerList;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.EventObject;
 
 public class GameGrid {
+    EventListenerList listenerList = new EventListenerList();
     Dimension gridDimensions;
     ArrayList<Player> playerList = new ArrayList<>();
     ArrayList<JetWall> jetWallList = new ArrayList<>();
@@ -21,6 +24,7 @@ public class GameGrid {
 
         //Otherwise add the player to the grid
         playerList.add(player);
+        raiseGridUpdatedListener();
     }
 
     public void removePlayerFromGrid(Player player){
@@ -39,6 +43,7 @@ public class GameGrid {
 
         //Remove player
         playerList.remove(player);
+        raiseGridUpdatedListener();
     }
 
     public Player getPlayerOnGrid(String playerName) throws Exception{
@@ -57,6 +62,7 @@ public class GameGrid {
 
     public void addJetWallToGrid(JetWall jetWall){
         jetWallList.add(jetWall);
+        raiseGridUpdatedListener();
     }
 
     public Dimension getGridDimensions() {
@@ -64,9 +70,20 @@ public class GameGrid {
     }
 
     public void draw(Graphics2D g){
+        final int squareDist = 5;
+        final int squareSize = 50;
         //Draw the grid background
-        g.setColor(Color.blue);
+        g.setColor(Color.black);
         g.fillRect(0,0,gridDimensions.width,gridDimensions.height);
+
+        g.setColor(new Color(0,0,100));
+        //draw squares
+        for(int x = squareDist; x < gridDimensions.width; x += squareSize + squareDist){
+            for (int y = squareDist; y < gridDimensions.height; y += squareSize + squareDist){
+                g.fillRect(x,y,squareSize,squareSize);
+            }
+        }
+
 
         //Draw jetwalls
         for(JetWall jetWall: jetWallList){
@@ -76,6 +93,17 @@ public class GameGrid {
         //Draw light cycles
         for(Player player: playerList){
             player.draw(g);
+        }
+    }
+
+    public void addGridUpdatedListener(GameGridUpdatedEvent e){
+        listenerList.add(GameGridUpdatedEvent.class,e);
+    }
+
+    private void raiseGridUpdatedListener(){
+        EventObject e = new EventObject(this);
+        for(GameGridUpdatedEvent listener: listenerList.getListeners(GameGridUpdatedEvent.class)){
+            listener.gameGridUpdated(e);
         }
     }
 }
