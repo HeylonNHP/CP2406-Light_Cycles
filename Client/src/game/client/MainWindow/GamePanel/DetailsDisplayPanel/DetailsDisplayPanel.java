@@ -38,12 +38,20 @@ public class DetailsDisplayPanel extends JPanel {
 
     public void joinServer(){
         gameObject.addGameOverListener((e) ->{
+            boolean hasWon = usersName.equals(e.getWinningPlayerName());
             JOptionPane.showMessageDialog(null,
                     String.format(
                             "My name: %s Winners name: %s \nI %s",
                             usersName, e.getWinningPlayerName(),
-                            usersName.equals(e.getWinningPlayerName())? "Won":"Lost"
+                            hasWon? "Won":"Lost"
                     ));
+            if(hasWon) {
+                boolean postScore = promptUserToPostScore();
+                System.out.printf("Post score response: %s\n", postScore);
+                if(postScore){
+                    //Post score to leaderboard
+                }
+            }
             remove(leaveGameButton);
 
             viewScoreboardButton.addActionListener((e2) -> {
@@ -88,6 +96,17 @@ public class DetailsDisplayPanel extends JPanel {
         add(gamePanel);
         gamePanel.joinServer();
         this.gameGrid = gameObject.getGameGrid();
+    }
+
+    private boolean promptUserToPostScore(){
+        Object[] options = {"Post score", "Nah mate"};
+
+        int choice = JOptionPane.showOptionDialog(this,
+                "<html>You have won!<br>You may now post your score to the leader board.</html>",
+                "You win!", JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE,null,
+                options,options[0]);
+
+        return choice == 0;
     }
 
     @Override
