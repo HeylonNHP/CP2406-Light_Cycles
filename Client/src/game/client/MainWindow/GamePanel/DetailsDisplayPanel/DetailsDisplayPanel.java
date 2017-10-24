@@ -40,12 +40,7 @@ public class DetailsDisplayPanel extends JPanel {
     public void joinServer(){
         gameObject.addGameOverListener((e) ->{
             boolean hasWon = usersName.equals(e.getWinningPlayerName());
-            JOptionPane.showMessageDialog(this,
-                    String.format(
-                            "My name: %s Winners name: %s \nI %s",
-                            usersName, e.getWinningPlayerName(),
-                            hasWon? "Won":"Lost"
-                    ));
+
             if(hasWon) {
                 boolean postScore = promptUserToPostScore();
                 System.out.printf("Post score response: %s\n", postScore);
@@ -57,6 +52,10 @@ public class DetailsDisplayPanel extends JPanel {
                         JOptionPane.showMessageDialog(this, "Failed to post score!");
                     }
                 }
+            }else{
+                JOptionPane.showMessageDialog(this,
+                        "<html>You lost. The game has ended.<br>" +
+                                "Please proceed to hang your head in shame.</html>");
             }
             remove(leaveGameButton);
 
@@ -108,7 +107,7 @@ public class DetailsDisplayPanel extends JPanel {
         Object[] options = {"Post score", "Nah mate"};
 
         int choice = JOptionPane.showOptionDialog(this,
-                "<html>You have won!<br>You may now post your score to the leader board.</html>",
+                "<html><b>You have won!</b><br>You may now post your score to the leader board.</html>",
                 "You win!", JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE,null,
                 options,options[0]);
 
