@@ -9,6 +9,7 @@ public class Player {
     private boolean jetWallEnabled;
     private PlayerSpeed speed;
     private boolean isWinner = false;
+    private boolean canMoveThisTurn = true;
 
     /*All these methods CANNOT be private despite what Intellij thinks
     * They're all being referenced from outside of this class*/
@@ -78,10 +79,12 @@ public class Player {
     }
 
     public void setMovingSpeedSlow(){
+        canMoveThisTurn = false;
         this.speed = PlayerSpeed.SLOW;
     }
 
     public void setMovingSpeedFast(){
+        canMoveThisTurn = true;
         this.speed = PlayerSpeed.FAST;
     }
 
@@ -95,6 +98,14 @@ public class Player {
 
     public void setWinner(boolean winner) {
         isWinner = winner;
+    }
+
+    public void setCanMoveThisTurn(boolean canMoveThisTurn) {
+        this.canMoveThisTurn = canMoveThisTurn;
+    }
+
+    public boolean isCanMoveThisTurn() {
+        return canMoveThisTurn;
     }
 
     @Override

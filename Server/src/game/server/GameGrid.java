@@ -164,7 +164,12 @@ public class GameGrid {
                     }
 
                     //Move player to new position
-                    if(player.getMovingSpeed() != PlayerSpeed.STOPPED && !alreadyMovedPlayersList.contains(player)){
+                    if(player.getMovingSpeed() != PlayerSpeed.STOPPED && !alreadyMovedPlayersList.contains(player)
+                            && player.isCanMoveThisTurn()){
+                        //In the next grid progression, this player wont move to provide the illusion of a slow moving speed
+                        if(player.getMovingSpeed() == PlayerSpeed.SLOW){
+                            player.setCanMoveThisTurn(false);
+                        }
                         /*If the target location on the grid is occupied,
                          or the target location is outside of the grid
                          the player gets removed from grid because it has crashed*/
@@ -189,6 +194,9 @@ public class GameGrid {
                         }
                         System.out.println(String.format("progressGame - Found Player %s at x: %s y: %s\n" +
                                 "moving to new position at x: %s y: %s", player.getName(),x,y, newXposition, newYposition));
+                    }else if(player.getMovingSpeed() != PlayerSpeed.STOPPED && !alreadyMovedPlayersList.contains(player) &&
+                            !player.isCanMoveThisTurn()){
+                        player.setCanMoveThisTurn(true);
                     }
                 }
             }
