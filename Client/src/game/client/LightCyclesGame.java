@@ -57,16 +57,20 @@ public class LightCyclesGame {
                 );
 
                 //Place jetwall if they have it enabled and they have moved since the last broadcast update
-                if (playerState.isJetwallEnabled() &&
-                        (currentPlayerPosition.width != newPlayerPosition.width ||
+                if ((currentPlayerPosition.width != newPlayerPosition.width ||
                                 currentPlayerPosition.height != newPlayerPosition.height)) {
-                    JetWallDirection direction = JetWallDirection.HORIZONTAL;
-                    if (player.getDirection() == PlayerDirection.UP || player.getDirection() == PlayerDirection.DOWN) {
-                        direction = JetWallDirection.VERTICAL;
+                    if(playerState.isJetwallEnabled()){
+                        JetWallDirection direction = JetWallDirection.HORIZONTAL;
+                        if (player.getDirection() == PlayerDirection.UP || player.getDirection() == PlayerDirection.DOWN) {
+                            direction = JetWallDirection.VERTICAL;
+                        }
+
+                        JetWall playerJetWall = new JetWall(player, player.getPosition(), direction);
+                        gameGrid.addJetWallToGrid(playerJetWall);
+                    }else{
+                        gameGrid.raiseGridUpdatedListener();
                     }
 
-                    JetWall playerJetWall = new JetWall(player, player.getPosition(), direction);
-                    gameGrid.addJetWallToGrid(playerJetWall);
                 }
 
                 //Move player to new position

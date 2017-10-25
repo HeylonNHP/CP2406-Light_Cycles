@@ -82,7 +82,37 @@ public class Player {
     }
 
     public void draw(Graphics2D g){
-        g.setColor(getColour());
-        g.fillRect(position.width-1,position.height-1,3,3);
+        /*https://stackoverflow.com/questions/7517688/rotate-a-java-graphics2d-rectangle
+        * Test this rotated draw method*/
+        Graphics2D localGraphics = (Graphics2D) g.create();
+        localGraphics.setColor(getColour());
+        //localGraphics.fillRect(position.width-1,position.height-1,3,3);
+        int x = position.width;
+        int y = position.height;
+
+        int rotationDeg;
+        switch (direction){
+            case UP:
+                rotationDeg = 0;
+                break;
+            case RIGHT:
+                rotationDeg = 90;
+                break;
+            case DOWN:
+                rotationDeg = 180;
+                break;
+            case LEFT:
+                rotationDeg = 270;
+                break;
+            default:
+                rotationDeg = 0;
+        }
+
+        localGraphics.rotate(Math.toRadians(rotationDeg),
+                x,y);
+
+        Polygon playerPoly = new Polygon(new int[] {0+x,-6+x,0+x,6+x},new int[]{-10+y,10+y,6+y,10+y},4);
+        localGraphics.fillPolygon(playerPoly);
+        localGraphics.dispose();
     }
 }

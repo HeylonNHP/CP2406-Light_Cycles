@@ -100,7 +100,7 @@ public class GameGrid {
         listenerList.add(GameGridUpdatedEvent.class,e);
     }
 
-    private void raiseGridUpdatedListener(){
+    public void raiseGridUpdatedListener(){
         EventObject e = new EventObject(this);
         for(GameGridUpdatedEvent listener: listenerList.getListeners(GameGridUpdatedEvent.class)){
             listener.gameGridUpdated(e);

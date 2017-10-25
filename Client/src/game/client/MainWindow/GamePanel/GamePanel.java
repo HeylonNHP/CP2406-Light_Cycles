@@ -2,6 +2,7 @@ package game.client.MainWindow.GamePanel;
 
 import game.client.LightCyclesGame;
 import game.client.MainWindow.GamePanel.DetailsDisplayPanel.DetailsDisplayPanel;
+import game.client.MainWindow.Main;
 import game.client.VisibleGameObjects.GameGrid;
 
 import javax.swing.*;
@@ -14,6 +15,7 @@ import java.util.EventObject;
 public class GamePanel extends JPanel{
     EventListenerList listeners = new EventListenerList();
     LightCyclesGame lightCyclesGame;
+    boolean gameStarted = false;
 
     public GamePanel(LightCyclesGame gameObject){
         super(true);
@@ -29,17 +31,11 @@ public class GamePanel extends JPanel{
             raiseJoinServerFailed(new JoinServerFailedEvent(this,e.getMessage()));
         }
 
-        //TODO: Use event handler on lightcyclesgame to update this
-        javax.swing.Timer drawTimer = new javax.swing.Timer(50,(actionEvent) ->{
+        lightCyclesGame.getGameGrid().addGridUpdatedListener((e) -> {
             raiseRePaintRequestListener(new EventObject(this));
             setFocusable(true);
             requestFocusInWindow();
-        });
-        drawTimer.start();
-
-        lightCyclesGame.addGameOverListener((e) ->{
-            //Stop the re-draw timer when the game ends
-            drawTimer.stop();
+            gameStarted = true;
         });
 
         //Begin listening for user input
@@ -74,9 +70,15 @@ public class GamePanel extends JPanel{
                 }
             }
         });
+
         //If you don't set this, the JPanel won't be focused so the KeyListener won't work
         setFocusable(true);
         requestFocusInWindow();
+        //Initially paint the grid while waiting for players
+        Dimension size = lightCyclesGame.getGameGrid().getGridDimensions();
+        setPreferredSize(size);
+        setSize(size);
+        raiseRePaintRequestListener(new EventObject(this));
     }
 
     public void addJoinServerFailedListener(JoinServerFailedListener e){
@@ -101,6 +103,9 @@ public class GamePanel extends JPanel{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D graphics2D = (Graphics2D)g;
+        RenderingHints defaultRH = graphics2D.getRenderingHints();
+        RenderingHints enhancedRH = new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+        graphics2D.setRenderingHints(enhancedRH);
         //System.out.println("GamePanel paint");
 
         GameGrid gameGrid = lightCyclesGame.getGameGrid();
@@ -108,12 +113,33 @@ public class GamePanel extends JPanel{
         //System.out.println((gameGrid == null)? "It's null":"It's not null");
 
         if(gameGrid != null){
+            System.out.println("Grid NOT null");
             Dimension gridDimensions = gameGrid.getGridDimensions();
             setPreferredSize(gridDimensions);
             setSize(gridDimensions);
 
             gameGrid.draw(graphics2D);
+
+            if(!gameStarted) {
+                graphics2D.setColor(new Color(200, 0, 0));
+                drawCenteredString((Graphics) graphics2D, "...Waiting for players...",
+                        new Rectangle(0, 0, gridDimensions.width, gridDimensions.height),
+                        new Font("Arial", Font.BOLD, 36));
+            }
         }
 
+        graphics2D.setRenderingHints(defaultRH);
+    }
+    public void drawCenteredString(Graphics g, String text, Rectangle rect, Font font) {
+        // Get the FontMetrics
+        FontMetrics metrics = g.getFontMetrics(font);
+        // Determine the X coordinate for the text
+        int x = rect.x + (rect.width - metrics.stringWidth(text)) / 2;
+        // Determine the Y coordinate for the text (note we add the ascent, as in java 2d 0 is top of the screen)
+        int y = rect.y + ((rect.height - metrics.getHeight()) / 2) + metrics.getAscent();
+        // Set the font
+        g.setFont(font);
+        // Draw the String
+        g.drawString(text, x, y);
     }
 }
