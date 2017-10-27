@@ -24,7 +24,8 @@ public class Main extends JFrame{
             String testMessage = String.format("Name: %s Colour: %s", e.getChosenPlayerName(),
                     e.getChosenColour().toString());
             //JOptionPane.showMessageDialog(this,testMessage);
-            LightCyclesGame newGame = new LightCyclesGame(e.getChosenPlayerName(), e.getChosenColour());
+            LightCyclesGame newGame = new LightCyclesGame(e.getChosenPlayerName(), e.getChosenColour(),
+                    e.getIpAddress(),e.getPort());
 
             displayPanel = new DetailsDisplayPanel(this,newGame);
 
@@ -76,66 +77,5 @@ public class Main extends JFrame{
 
     public static void main(String[] args) {
         new Main();
-    }
-
-    public static void startGame(){
-        /*INSTRCUTIONS FOR TESTING
-        *
-        * Please start the Server app first and click the Start Server! button on
-        * the Server BEFORE starting this Client app
-        * Read the Servers console output for updates on the player position and to
-        * see whether the player crashed. The game state is also displayed in a GUI
-        * message box that you can ignore. Enter your desired player commands into the
-         * Clients console when prompted to control your light cycle in order to test it*/
-
-        Scanner userInput = new Scanner(System.in);
-
-        //Ask user for their name, and add them to the server
-        System.out.print("Enter the name you'd like to use: ");
-        String usersName = userInput.nextLine();
-
-        LightCyclesGame newGame = new LightCyclesGame(usersName, Color.red);
-
-        try {
-            newGame.joinServer();
-
-
-            /*TEST code for testing out the game from the console
-            * Please ignore the infinite loop warning this is intended
-            * on being infinite for now*/
-            String commandsList = "What would you like to do?\n" +
-                    "Turn: left, right\n" +
-                    "Speed: fast, slow\n" +
-                    "Jetwall: on, off";
-            while (true){
-                System.out.println(commandsList);
-                System.out.print(">>> ");
-                String userChoice = userInput.nextLine();
-
-                switch (userChoice.toLowerCase()){
-                    case "left":
-                        newGame.turnLeft();
-                        break;
-                    case "right":
-                        newGame.turnRight();
-                        break;
-                    case "fast":
-                        newGame.beginMovingQuickly();
-                        break;
-                    case "slow":
-                        newGame.beginMovingSlowly();
-                        break;
-                    case "on":
-                        newGame.turnOnJetwall();
-                        break;
-                    case "off":
-                        newGame.turnOffJetwall();
-                        break;
-                }
-            }
-
-        }catch (Exception e){
-            System.out.println(String.format("Couldn't join server because: %s", e.getMessage()));
-        }
     }
 }

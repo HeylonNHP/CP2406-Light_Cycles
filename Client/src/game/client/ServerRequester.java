@@ -13,6 +13,8 @@ public class ServerRequester {
     }
 
     public ServerRequester(String destIPAddress, int destPort){
+        System.out.printf("Setting up server requester with IP: %s:%s",
+                destIPAddress,destPort);
         setDestIPAddress(destIPAddress);
         setDestPort(destPort);
     }

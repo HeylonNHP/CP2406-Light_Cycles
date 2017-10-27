@@ -1,8 +1,7 @@
 package game.client.MainWindow.GamePanel;
 
 import game.client.LightCyclesGame;
-import game.client.MainWindow.GamePanel.DetailsDisplayPanel.DetailsDisplayPanel;
-import game.client.MainWindow.Main;
+
 import game.client.VisibleGameObjects.GameGrid;
 
 import javax.swing.*;
@@ -122,7 +121,7 @@ public class GamePanel extends JPanel{
 
             if(!gameStarted) {
                 graphics2D.setColor(new Color(200, 0, 0));
-                drawCenteredString((Graphics) graphics2D, "...Waiting for players...",
+                drawCenteredString(graphics2D, "...Waiting for players...",
                         new Rectangle(0, 0, gridDimensions.width, gridDimensions.height),
                         new Font("Arial", Font.BOLD, 36));
             }

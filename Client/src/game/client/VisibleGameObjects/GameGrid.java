@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.EventObject;
 
 public class GameGrid {
-    EventListenerList listenerList = new EventListenerList();
-    Dimension gridDimensions;
-    ArrayList<Player> playerList = new ArrayList<>();
-    ArrayList<JetWall> jetWallList = new ArrayList<>();
+    private EventListenerList listenerList = new EventListenerList();
+    private Dimension gridDimensions;
+    private ArrayList<Player> playerList = new ArrayList<>();
+    private ArrayList<JetWall> jetWallList = new ArrayList<>();
     public GameGrid(Dimension gridSize){
         gridDimensions = gridSize;
     }
@@ -37,9 +37,7 @@ public class GameGrid {
             }
         }
 
-        for(JetWall jetWall: jetwallsToRemove){
-            jetWallList.remove(jetWall);
-        }
+        jetWallList.removeAll(jetwallsToRemove);
 
         //Remove player
         playerList.remove(player);

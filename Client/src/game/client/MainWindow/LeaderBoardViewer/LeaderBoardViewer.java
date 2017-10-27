@@ -1,7 +1,6 @@
 package game.client.MainWindow.LeaderBoardViewer;
 
 import javax.swing.*;
-import javax.swing.table.TableModel;
 import java.awt.*;
 import java.util.HashMap;
 

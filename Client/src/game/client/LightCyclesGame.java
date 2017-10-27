@@ -6,7 +6,6 @@ import game.client.GameStateReceiver.GameStateUpdated;
 import game.client.GameStateReceiver.PlayerState;
 import game.client.VisibleGameObjects.*;
 
-import javax.swing.*;
 import javax.swing.event.EventListenerList;
 import java.awt.*;
 import java.net.DatagramPacket;
@@ -21,11 +20,13 @@ public class LightCyclesGame {
     private EventListenerList listeners = new EventListenerList();
     private GameStateReceiver receiver = new GameStateReceiver();
     private GameGrid gameGrid;
-    private ServerRequester serverRequester = new ServerRequester();
+    private ServerRequester serverRequester;
     private String usersName;
     private Color usersColour;
 
-    public LightCyclesGame(String userName, Color userColour) {
+    public LightCyclesGame(String userName, Color userColour,
+                           String serverIP, int serverPort) {
+        serverRequester = new ServerRequester(serverIP,serverPort);
         this.usersName = userName;
         this.usersColour = userColour;
         receiver.addGameStateUpdateListener(e -> {
@@ -376,7 +377,7 @@ public class LightCyclesGame {
         listeners.add(GameOverEvent.class, e);
     }
 
-    public void raiseGameOverListener(GameOverOccurred e) {
+    private void raiseGameOverListener(GameOverOccurred e) {
         for (GameOverEvent event : listeners.getListeners(GameOverEvent.class)) {
             event.gameOverOccurred(e);
         }
