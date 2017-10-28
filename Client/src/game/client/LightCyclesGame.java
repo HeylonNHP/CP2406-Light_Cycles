@@ -180,10 +180,10 @@ public class LightCyclesGame {
         return "";
     }
 
-    private static CurrentGameState getServerGameState() throws Exception {
+    private CurrentGameState getServerGameState() throws Exception {
         /*Asks the server for the current game state
         * Will throw an exception if the server doesn't respond*/
-        String response = getServerResponse("GAME STATE");
+        String response = serverRequester.getRequestResponse("GAME STATE");
 
         switch (response) {
             case "IDLE":
@@ -205,7 +205,7 @@ public class LightCyclesGame {
         * If the server didn't respond with OKAY, it throws an exception*/
 
         if (getServerGameState() == CurrentGameState.WAITING_FOR_USERS) {
-            String response = getServerResponse("ADD USER " + usersName);
+            String response = serverRequester.getRequestResponse("ADD USER " + usersName);
             if (!response.equals("OKAY")) {
                 throw new Exception("The following issue occurred when trying to " +
                         "create a new user on the server: " + response);

@@ -2,11 +2,9 @@ package game.server;
 
 import javax.swing.*;
 import java.awt.*;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.MulticastSocket;
+import java.net.*;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
 
 enum CurrentGameState {IDLE, WAITING_FOR_USERS, PLAYING, GAME_OVER}
@@ -17,6 +15,8 @@ public class LightCyclesGame {
     private CurrentGameState currentGameState = CurrentGameState.IDLE;
     private final String multicastAddress = "239.69.69.69";
     private final int multicastPort = 56969;
+    private final InetAddress networkInterface = localAddress();
+    private MulticastBroadcaster multicastBroadcaster;
     private LeaderBoard leaderBoard;
 
     private Timer gameStartTimer;
@@ -31,6 +31,13 @@ public class LightCyclesGame {
         gameGrid = new GameGrid(actualGridSize);
         playerList = new ArrayList<>();
         leaderBoard = new LeaderBoard();
+
+        try{
+            multicastBroadcaster = new MulticastBroadcaster(multicastAddress,multicastPort);
+        }catch (Exception e){
+            System.out.printf("Failed to initialise to multicast broadcaster!: %s\n",e.getMessage());
+        }
+
 
         //Begin waiting for users to add themselves to the game
         currentGameState = CurrentGameState.WAITING_FOR_USERS;
@@ -128,15 +135,7 @@ public class LightCyclesGame {
         System.out.printf("Players currently on the grid: %s\n", playersLeftOnGrid);
 
         try{
-            InetAddress multicastGroup = InetAddress.getByName(multicastAddress);
-            MulticastSocket multicastSocket = new MulticastSocket(multicastPort);
-            multicastSocket.joinGroup(multicastGroup);
-            DatagramPacket packetToTransmit = new DatagramPacket(broadcastMessage.getBytes(), broadcastMessage.length(),multicastGroup,multicastPort);
-
-            multicastSocket.send(packetToTransmit);
-
-            multicastSocket.close();
-
+            multicastBroadcaster.broadcastString(broadcastMessage);
         }catch (Exception e){
             System.out.println(String.format(
                     "Sending broadcast message: %s", e.getMessage()
@@ -338,5 +337,30 @@ public class LightCyclesGame {
             }
         }
         throw new Exception("Cannot find a player with that name!");
+    }
+
+    public static InetAddress localAddress()
+    {
+        /*https://stackoverflow.com/questions/31928317/java-udp-multicast-only-working-on-localhost*/
+        String ip;
+        try {
+            Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+            while (interfaces.hasMoreElements()) {
+                NetworkInterface iface = interfaces.nextElement();
+                if (iface.isLoopback() || !iface.isUp())
+                    continue;
+
+                Enumeration<InetAddress> addresses = iface.getInetAddresses();
+                while(addresses.hasMoreElements()) {
+                    InetAddress addr = addresses.nextElement();
+                    ip = addr.getHostAddress();
+                    if (ip.startsWith("10.") || ip.startsWith("172.31.") || ip.startsWith("192.168"))
+                        return addr;
+                }
+            }
+        } catch (SocketException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
     }
 }
