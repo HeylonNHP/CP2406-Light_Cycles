@@ -8,9 +8,6 @@ import game.client.VisibleGameObjects.*;
 
 import javax.swing.event.EventListenerList;
 import java.awt.*;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -137,68 +134,10 @@ public class LightCyclesGame {
         }
     }
 
-    private static String getServerResponse(String requestMessage) {
-        /*Sends a request to the game server and returns the response*/
-
-        try {
-            System.out.println("Sending " + requestMessage);
-            InetAddress destinationAddress = InetAddress.getByName("127.0.0.1");
-            DatagramSocket socket = new DatagramSocket(56970);
-            DatagramPacket packet = new DatagramPacket(requestMessage.getBytes(), requestMessage.length(), destinationAddress, 56971);
-            socket.send(packet);
-            System.out.println("Sent");
-
-            /*Code for receiving response from server*/
-            byte[] responseBuffer = new byte[1024];
-            DatagramPacket responsePacket = new DatagramPacket(responseBuffer, responseBuffer.length);
-
-            //Set the timeout incase we never receive a response
-            socket.setSoTimeout(2 * 1000); //2 second timeout
-
-            try {
-                socket.receive(responsePacket);
-            } catch (Exception ex) {
-                //Response timed out :(
-                socket.close();
-                System.out.println(String.format("This happened: %s", ex.getMessage()));
-                return "";
-            }
-
-            String responseString = new String(responseBuffer);
-            responseString = responseString.trim();
-
-            System.out.println(String.format("Server response: %s", responseString));
-
-            //Testing only
-            socket.close();
-
-            return responseString;
-        } catch (Exception e) {
-            System.out.println("Getting server response failed." + e.getMessage());
-        }
-
-        return "";
-    }
-
     private CurrentGameState getServerGameState() throws Exception {
         /*Asks the server for the current game state
         * Will throw an exception if the server doesn't respond*/
         String response = serverRequester.getRequestResponse("GAME STATE");
-
-        /*
-        switch (response) {
-            case "IDLE":
-                return CurrentGameState.IDLE;
-            case "PLAYING":
-                return CurrentGameState.PLAYING;
-            case "GAME OVER":
-                return CurrentGameState.GAME_OVER;
-            case "WAITING FOR USERS":
-                return CurrentGameState.WAITING_FOR_USERS;
-            default:
-                throw new Exception("The server did not respond.");
-        }
-        */
 
         if(response.equals("IDLE")){
             return CurrentGameState.IDLE;
@@ -237,13 +176,6 @@ public class LightCyclesGame {
             } catch (Exception e) {
                 throw new Exception("The server did not respond to the grid size request. Abandon ship!!!!");
             }
-
-
-            //TESTING - delete code afterwards
-            //getServerResponse(String.format("USER %s GO slower", usersName));
-            //getServerResponse(String.format("USER %s TURN left", usersName));
-            //getServerResponse(String.format("USER %s TURN right", usersName));
-
 
         } else {
             throw new Exception("The server is not accepting new users at this time.");
@@ -395,5 +327,12 @@ public class LightCyclesGame {
         for (GameOverEvent event : listeners.getListeners(GameOverEvent.class)) {
             event.gameOverOccurred(e);
         }
+    }
+
+    private void close(){
+        //Close this game object. Alright, parties over fellas!
+        listeners = null;
+        receiver.close();
+
     }
 }

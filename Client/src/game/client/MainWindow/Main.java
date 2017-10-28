@@ -15,6 +15,7 @@ public class Main extends JFrame{
     private JoinGamePanel startScreen = new JoinGamePanel();
     private GamePanel gameScreenPanel;
     private DetailsDisplayPanel displayPanel;
+    private LightCyclesGame gameObject;
     public Main(){
         super("Light cycles game");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -24,10 +25,10 @@ public class Main extends JFrame{
             String testMessage = String.format("Name: %s Colour: %s", e.getChosenPlayerName(),
                     e.getChosenColour().toString());
             //JOptionPane.showMessageDialog(this,testMessage);
-            LightCyclesGame newGame = new LightCyclesGame(e.getChosenPlayerName(), e.getChosenColour(),
+            gameObject = new LightCyclesGame(e.getChosenPlayerName(), e.getChosenColour(),
                     e.getIpAddress(),e.getPort());
 
-            displayPanel = new DetailsDisplayPanel(this,newGame);
+            displayPanel = new DetailsDisplayPanel(this,gameObject);
 
             remove(startScreen);
             add(displayPanel);

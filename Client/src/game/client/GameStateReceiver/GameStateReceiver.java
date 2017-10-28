@@ -10,12 +10,13 @@ public class GameStateReceiver extends Thread {
     private EventListenerList listenerList = new EventListenerList();
     private final String multicastAddress = "239.69.69.69";
     private final int multicastPort = 56969;
+    MulticastSocket multicastSocket;
+    private boolean running = true;
     public GameStateReceiver(){
 
     }
     @Override
     public void run(){
-        MulticastSocket multicastSocket;
         try{
             multicastSocket = new MulticastSocket(multicastPort);
             InetAddress multicastGroup = InetAddress.getByName(multicastAddress);
@@ -39,6 +40,10 @@ public class GameStateReceiver extends Thread {
                 GameState gameState = interpretGameStateFromString(bufferString);
                 GameStateUpdated newUpdate = new GameStateUpdated(this, gameState);
                 raiseGameStateUpdated(newUpdate);
+
+                if(!running){
+                    break;
+                }
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -82,5 +87,11 @@ public class GameStateReceiver extends Thread {
         for (GameStateUpdateListener listener: listeners) {
             listener.GameStateUpdate(e);
         }
+    }
+
+    public void close(){
+        listenerList = null;
+        multicastSocket.close();
+        running = false;
     }
 }
