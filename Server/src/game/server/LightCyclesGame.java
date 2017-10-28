@@ -15,7 +15,6 @@ public class LightCyclesGame {
     private CurrentGameState currentGameState = CurrentGameState.IDLE;
     private final String multicastAddress = "239.69.69.69";
     private final int multicastPort = 56969;
-    private final InetAddress networkInterface = localAddress();
     private MulticastBroadcaster multicastBroadcaster;
     private LeaderBoard leaderBoard;
 
@@ -337,30 +336,5 @@ public class LightCyclesGame {
             }
         }
         throw new Exception("Cannot find a player with that name!");
-    }
-
-    public static InetAddress localAddress()
-    {
-        /*https://stackoverflow.com/questions/31928317/java-udp-multicast-only-working-on-localhost*/
-        String ip;
-        try {
-            Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
-            while (interfaces.hasMoreElements()) {
-                NetworkInterface iface = interfaces.nextElement();
-                if (iface.isLoopback() || !iface.isUp())
-                    continue;
-
-                Enumeration<InetAddress> addresses = iface.getInetAddresses();
-                while(addresses.hasMoreElements()) {
-                    InetAddress addr = addresses.nextElement();
-                    ip = addr.getHostAddress();
-                    if (ip.startsWith("10.") || ip.startsWith("172.31.") || ip.startsWith("192.168"))
-                        return addr;
-                }
-            }
-        } catch (SocketException e) {
-            throw new RuntimeException(e);
-        }
-        return null;
     }
 }

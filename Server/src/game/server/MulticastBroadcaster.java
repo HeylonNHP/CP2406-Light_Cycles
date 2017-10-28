@@ -11,7 +11,9 @@ public class MulticastBroadcaster {
     public MulticastBroadcaster(String ipAddress, int port) throws IOException{
         multicastGroup = InetAddress.getByName(ipAddress);
         multicastSocket = new MulticastSocket(port);
-        multicastSocket.setInterface(localAddress());
+        InetAddress address = localAddress();
+        System.out.printf("Broadcast address: %s:%s\n",address.getHostAddress(),port);
+        multicastSocket.setInterface(address);
         multicastSocket.joinGroup(multicastGroup);
         this.port = port;
     }
@@ -33,7 +35,7 @@ public class MulticastBroadcaster {
             Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
             while (interfaces.hasMoreElements()) {
                 NetworkInterface iface = interfaces.nextElement();
-                if (iface.isLoopback() || !iface.isUp())
+                if (iface.isLoopback() || !iface.isUp() || iface.isVirtual())
                     continue;
 
                 Enumeration<InetAddress> addresses = iface.getInetAddresses();
