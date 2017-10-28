@@ -185,6 +185,7 @@ public class LightCyclesGame {
         * Will throw an exception if the server doesn't respond*/
         String response = serverRequester.getRequestResponse("GAME STATE");
 
+        /*
         switch (response) {
             case "IDLE":
                 return CurrentGameState.IDLE;
@@ -196,6 +197,19 @@ public class LightCyclesGame {
                 return CurrentGameState.WAITING_FOR_USERS;
             default:
                 throw new Exception("The server did not respond.");
+        }
+        */
+
+        if(response.equals("IDLE")){
+            return CurrentGameState.IDLE;
+        }else if(response.equals("PLAYING")){
+            return CurrentGameState.PLAYING;
+        }else if (response.contains("GAME OVER")){
+            return CurrentGameState.GAME_OVER;
+        }else if(response.equals("WAITING FOR USERS")){
+            return CurrentGameState.WAITING_FOR_USERS;
+        }else {
+            throw new Exception("The server did not respond.");
         }
     }
 

@@ -109,8 +109,6 @@ public class GamePanel extends JPanel{
 
         GameGrid gameGrid = lightCyclesGame.getGameGrid();
 
-        //System.out.println((gameGrid == null)? "It's null":"It's not null");
-
         if(gameGrid != null){
             System.out.println("Grid NOT null");
             Dimension gridDimensions = gameGrid.getGridDimensions();

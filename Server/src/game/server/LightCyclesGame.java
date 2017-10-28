@@ -294,6 +294,8 @@ public class LightCyclesGame {
 
                     }
 
+                    System.out.printf("Response: %s\n", response);
+
                     if(!response.equals("")){
                         InetAddress clientAddress = incomingRequest.getAddress();
                         int clientPort = incomingRequest.getPort();
@@ -302,7 +304,7 @@ public class LightCyclesGame {
                     }
                 }
             }catch (Exception e){
-
+                System.out.printf("Something went wrong when replying to a request :(\n");
             }
     }
 
@@ -354,5 +356,15 @@ public class LightCyclesGame {
     private void endGame(){
         currentGameState = CurrentGameState.GAME_OVER;
         raiseGameOverEvent();
+    }
+
+    public void restartGame() throws Exception{
+        if(currentGameState == CurrentGameState.GAME_OVER){
+            playerList = new ArrayList<>();
+            currentGameState = CurrentGameState.WAITING_FOR_USERS;
+            gameStartTimer.start();
+        }else {
+            throw new Exception("Game is not currently in a state where it can be restarted!");
+        }
     }
 }

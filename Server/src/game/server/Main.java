@@ -9,6 +9,8 @@ public class Main {
     public static GridLayout mainWindowGridLayout;
     static JTextField widthTextInput = new JTextField();
     static JTextField heightTextInput = new JTextField();
+    static JButton startGameButton = new JButton("Start server!");
+    static LightCyclesGame newGame;
     public static void main(String[] args) {
         // write your code here
         mainWindow = new JFrame();
@@ -22,7 +24,13 @@ public class Main {
         mainWindow.setSize(windowSize);
 
         mainWindowGridLayout = new GridLayout(0,2);
-        mainWindow.setLayout(mainWindowGridLayout);
+        mainWindow.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        //Make components fill their cells
+        gbc.weighty = 1;
+        gbc.weightx = 1;
+        gbc.fill = GridBagConstraints.BOTH;
 
         JLabel widthLabel = new JLabel("Grid width");
 
@@ -31,16 +39,23 @@ public class Main {
 
         heightTextInput.setText("500");
 
-        mainWindow.add(widthLabel);
-        mainWindow.add(widthTextInput);
-        mainWindow.add(heightLabel);
-        mainWindow.add(heightTextInput);
-
-        JButton startGameButton = new JButton("Start server!");
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        mainWindow.add(widthLabel,gbc);
+        gbc.gridy = 1;
+        mainWindow.add(heightLabel,gbc);
+        gbc.gridy = 0;
+        gbc.gridx = 1;
+        mainWindow.add(widthTextInput,gbc);
+        gbc.gridy = 1;
+        mainWindow.add(heightTextInput,gbc);
 
         startGameButton.addActionListener(e -> {startServerHandler(e);});
 
-        mainWindow.add(startGameButton);
+        gbc.gridy = 2;
+        gbc.gridx = 0;
+        gbc.gridwidth = 2;
+        mainWindow.add(startGameButton,gbc);
 
 
         mainWindow.setVisible(true);
@@ -54,17 +69,38 @@ public class Main {
     }
 
     private static void startServerHandler(ActionEvent e){
-        System.out.println("Button clicked! test");
-        System.out.println(String.format("Width: %s Height: %s", widthTextInput.getText(), heightTextInput.getText()));
-        Dimension gameGridDimensions = getGameGridDimensionsFromUI();
+        final String startNewGameString = "Start new game";
+        final String gameRunningString = "Game is running";
+        if (startGameButton.getText().equals(startNewGameString)){
+            try{
+                newGame.restartGame();
+                startGameButton.setText(gameRunningString);
+                startGameButton.setEnabled(false);
+            }catch (Exception ex){
+                JOptionPane.showMessageDialog(null, ex);
+            }
 
-        //Ensure they're divisible by 10
-        if(gameGridDimensions.width % 10 != 0 || gameGridDimensions.height % 10 != 0){
-            JOptionPane.showMessageDialog(null,
-                    "Game grid dimensions must be divisible by 10");
-            return;
+        }else {
+            System.out.println(String.format("Width: %s Height: %s", widthTextInput.getText(), heightTextInput.getText()));
+            Dimension gameGridDimensions = getGameGridDimensionsFromUI();
+
+            //Ensure they're divisible by 10
+            if(gameGridDimensions.width % 10 != 0 || gameGridDimensions.height % 10 != 0){
+                JOptionPane.showMessageDialog(null,
+                        "Game grid dimensions must be divisible by 10");
+                return;
+            }
+
+            newGame = new LightCyclesGame(getGameGridDimensionsFromUI());
+            startGameButton.setText(gameRunningString);
+            startGameButton.setEnabled(false);
+            widthTextInput.setEnabled(false);
+            heightTextInput.setEnabled(false);
+
+            newGame.addGameOverListener((e1) -> {
+                startGameButton.setText(startNewGameString);
+                startGameButton.setEnabled(true);
+            });
         }
-
-        LightCyclesGame newGame = new LightCyclesGame(getGameGridDimensionsFromUI());
     }
 }
