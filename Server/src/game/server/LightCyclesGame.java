@@ -1,15 +1,18 @@
 package game.server;
 
 import javax.swing.*;
+import javax.swing.event.EventListenerList;
 import java.awt.*;
 import java.net.*;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.EventObject;
 import java.util.HashMap;
 
 enum CurrentGameState {IDLE, WAITING_FOR_USERS, PLAYING, GAME_OVER}
 
 public class LightCyclesGame {
+    private EventListenerList listenerList = new EventListenerList();
     private GameGrid gameGrid;
     private ArrayList<Player> playerList;
     private CurrentGameState currentGameState = CurrentGameState.IDLE;
@@ -110,12 +113,12 @@ public class LightCyclesGame {
         if(broadcastMessage.equals("")){
             //There are probably no players left on the grid if this is the case
             //End the game - might as well
-            currentGameState = CurrentGameState.GAME_OVER;
+            endGame();
 
             System.out.println("Empty broadcast message! Ending game.");
         }else if(playersLeftOnGrid <= 1 && playersLeftOnGrid < playersRequiredForGameStart){
             //If there's only one player left on the grid, and the game was set to start with more than one player - also end the game
-            currentGameState = CurrentGameState.GAME_OVER;
+            endGame();
             //Set the winner attribute on the winning player
             for(Player player:playerList){
                 try{
@@ -336,5 +339,20 @@ public class LightCyclesGame {
             }
         }
         throw new Exception("Cannot find a player with that name!");
+    }
+
+    public void addGameOverListener(GameOverListener e){
+        listenerList.add(GameOverListener.class,e);
+    }
+    private void raiseGameOverEvent(){
+        EventObject e = new EventObject(this);
+        for(GameOverListener listener:listenerList.getListeners(GameOverListener.class)){
+            listener.gameOverOccurred(e);
+        }
+    }
+
+    private void endGame(){
+        currentGameState = CurrentGameState.GAME_OVER;
+        raiseGameOverEvent();
     }
 }
