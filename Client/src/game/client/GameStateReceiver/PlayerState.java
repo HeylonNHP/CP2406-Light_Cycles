@@ -3,9 +3,9 @@ package game.client.GameStateReceiver;
 import java.awt.*;
 
 public class PlayerState {
-    Dimension position;
-    String name;
-    boolean jetwallEnabled;
+    private Dimension position;
+    private String name;
+    private boolean jetwallEnabled;
 
     public PlayerState(String playerName, Dimension playerPosition, boolean jetwallEnabled){
         setName(playerName);

@@ -45,9 +45,7 @@ public class LightCyclesGame {
         currentGameState = CurrentGameState.WAITING_FOR_USERS;
 
         //Start listening for direct requests - for the time being we're waiting for users (clients) to add themselves to the game
-        Thread requestsThread = new Thread(() ->{
-            startHandlingDirectRequests();
-        });
+        Thread requestsThread = new Thread(() -> startHandlingDirectRequests());
         requestsThread.start();
 
         //initialise game start timer
@@ -57,7 +55,7 @@ public class LightCyclesGame {
         });
     }
 
-    public void startGame(){
+    private void startGame(){
         currentGameState = CurrentGameState.PLAYING;
         Thread gameUpdateThread;
         gameUpdateThread = new Thread(() -> {

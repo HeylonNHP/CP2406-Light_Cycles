@@ -53,9 +53,7 @@ public class Main extends JFrame{
     public void switchToLeaderBoard(HashMap<String, Integer> highScores){
         LeaderBoardViewer leaderBoard = new LeaderBoardViewer(highScores);
 
-        leaderBoard.addReturnToStartScreenRequestListener((e) ->{
-            switchToStartScreen();
-        });
+        leaderBoard.addReturnToStartScreenRequestListener((e) -> switchToStartScreen());
 
         getContentPane().removeAll();
         add(leaderBoard);
@@ -64,7 +62,7 @@ public class Main extends JFrame{
         repaint();
     }
 
-    public void endGame(){
+    private void endGame(){
         /*Will close the current game*/
         displayPanel = null;
         gameObject.close();

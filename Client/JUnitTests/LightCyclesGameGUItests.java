@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.awt.*;
 
 public class LightCyclesGameGUItests {
-    boolean eventFired = false;
+    private boolean eventFired = false;
     @Test
     public void testJoinServerFailedEvent(){
         LightCyclesGame game = new LightCyclesGame("Test", Color.red,"127.0.0.1",
@@ -22,7 +22,7 @@ public class LightCyclesGameGUItests {
         Assert.assertTrue(eventFired);
     }
 
-    boolean gridUpdatedEventFired = false;
+    private boolean gridUpdatedEventFired = false;
     @Test
     public void testGameGrid(){
         Dimension gridSize = new Dimension(500,500);

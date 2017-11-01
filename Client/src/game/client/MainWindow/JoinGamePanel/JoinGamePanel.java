@@ -7,12 +7,12 @@ import javax.swing.event.EventListenerList;
 import java.awt.*;
 
 public class JoinGamePanel extends JPanel {
-    EventListenerList listenerList = new EventListenerList();
-    JTextField nameInputBox = new JTextField();
-    JColorChooser colorChooser = new JColorChooser();
-    JButton joinGameButton = new JButton("Join game!");
-    JTextField ipText = new JTextField("127.0.0.1");
-    JTextField portText = new JTextField("56970");
+    private EventListenerList listenerList = new EventListenerList();
+    private JTextField nameInputBox = new JTextField();
+    private JColorChooser colorChooser = new JColorChooser();
+    private JButton joinGameButton = new JButton("Join game!");
+    private JTextField ipText = new JTextField("127.0.0.1");
+    private JTextField portText = new JTextField("56970");
     public JoinGamePanel(){
         //super(new GridLayout(0,1), false);
         super(new GridBagLayout());
@@ -37,9 +37,7 @@ public class JoinGamePanel extends JPanel {
         frameGBC.gridwidth = 2;
         add(colourChooserButton,frameGBC);
 
-        colourChooserButton.addActionListener((e) ->{
-            new ColourChooserWindow(colorChooser);
-        });
+        colourChooserButton.addActionListener((e) -> new ColourChooserWindow(colorChooser));
 
         //IP address
         JPanel serverIPPanel = new JPanel(new GridBagLayout());

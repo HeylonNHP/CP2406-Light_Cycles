@@ -5,9 +5,9 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 
 public class ServerRequester {
-    String destIPAddress;
-    int destPort;
-    final int responseTimeout = 2000; //2 second timeout
+    private String destIPAddress;
+    private int destPort;
+    private final int responseTimeout = 2000; //2 second timeout
     public ServerRequester(){
         this("127.0.0.1",56970);
     }

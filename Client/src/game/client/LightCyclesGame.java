@@ -26,9 +26,7 @@ public class LightCyclesGame {
         serverRequester = new ServerRequester(serverIP,serverPort);
         this.usersName = userName;
         this.usersColour = userColour;
-        receiver.addGameStateUpdateListener(e -> {
-            receivedNewGameState(e);
-        });
+        receiver.addGameStateUpdateListener(e -> receivedNewGameState(e));
         receiver.start();
     }
 
@@ -196,7 +194,7 @@ public class LightCyclesGame {
         try {
             serverRequester.sendNonRespondingRequest(String.format("USER %s TURN left", usersName));
         } catch (Exception e) {
-
+            System.out.println("Turn left failed");
         }
     }
 
@@ -206,7 +204,7 @@ public class LightCyclesGame {
         try {
             serverRequester.sendNonRespondingRequest(String.format("USER %s TURN right", usersName));
         } catch (Exception e) {
-
+            System.out.println("Turn right failed");
         }
     }
 
@@ -216,7 +214,7 @@ public class LightCyclesGame {
         try {
             serverRequester.sendNonRespondingRequest(String.format("USER %s GO slower", usersName));
         } catch (Exception e) {
-
+            System.out.println("Begin moving slowly failed");
         }
     }
 
@@ -226,27 +224,27 @@ public class LightCyclesGame {
         try {
             serverRequester.sendNonRespondingRequest(String.format("USER %s GO faster", usersName));
         } catch (Exception e) {
-
+            System.out.println("Begin moving quickly failed");
         }
     }
 
-    public void turnOnJetwall() {
+    private void turnOnJetwall() {
         /*Request server to turn on your jet wall*/
         //getServerResponse(String.format("USER %s JETWALL on", usersName));
         try {
             serverRequester.sendNonRespondingRequest(String.format("USER %s JETWALL on", usersName));
         } catch (Exception e) {
-
+            System.out.println("Turning on jetwall failed");
         }
     }
 
-    public void turnOffJetwall() {
+    private void turnOffJetwall() {
         /*Request server to turn off your jet wall*/
         //getServerResponse(String.format("USER %s JETWALL off", usersName));
         try {
             serverRequester.sendNonRespondingRequest(String.format("USER %s JETWALL off", usersName));
         } catch (Exception e) {
-
+            System.out.println("Turning off jetwall failed");
         }
     }
 
@@ -270,7 +268,7 @@ public class LightCyclesGame {
                     "REMOVE USER %s", usersName
             ));
         } catch (Exception e) {
-
+            System.out.println("Leave game: Request to server failed " + e.getMessage());
         }
 
         if (!response.contains("OKAY")) {

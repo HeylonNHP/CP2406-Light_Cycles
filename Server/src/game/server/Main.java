@@ -5,12 +5,12 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Main {
-    public static JFrame mainWindow;
-    public static GridLayout mainWindowGridLayout;
-    static JTextField widthTextInput = new JTextField();
-    static JTextField heightTextInput = new JTextField();
-    static JButton startGameButton = new JButton("Start server!");
-    static LightCyclesGame newGame;
+    private static JFrame mainWindow;
+    private static GridLayout mainWindowGridLayout;
+    private static JTextField widthTextInput = new JTextField();
+    private static JTextField heightTextInput = new JTextField();
+    private static JButton startGameButton = new JButton("Start server!");
+    private static LightCyclesGame newGame;
     public static void main(String[] args) {
         // write your code here
         mainWindow = new JFrame();
@@ -50,7 +50,7 @@ public class Main {
         gbc.gridy = 1;
         mainWindow.add(heightTextInput,gbc);
 
-        startGameButton.addActionListener(e -> {startServerHandler(e);});
+        startGameButton.addActionListener(e -> startServerHandler(e));
 
         gbc.gridy = 2;
         gbc.gridx = 0;

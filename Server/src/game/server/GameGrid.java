@@ -94,11 +94,7 @@ public class GameGrid {
     }
 
     private boolean isGridLocationOccupied(int x, int y){
-        if(gridArray[x][y] == null){
-            return false;
-        }else{
-            return true;
-        }
+        return gridArray[x][y] != null;
     }
 
     private void setGridLocationToItem(Object item, int x, int y){

@@ -12,9 +12,9 @@ import java.awt.event.KeyEvent;
 import java.util.EventObject;
 
 public class GamePanel extends JPanel{
-    EventListenerList listeners = new EventListenerList();
-    LightCyclesGame lightCyclesGame;
-    boolean gameStarted = false;
+    private EventListenerList listeners = new EventListenerList();
+    private LightCyclesGame lightCyclesGame;
+    private boolean gameStarted = false;
 
     public GamePanel(LightCyclesGame gameObject){
         super(true);
