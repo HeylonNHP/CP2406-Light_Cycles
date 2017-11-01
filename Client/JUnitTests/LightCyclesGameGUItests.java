@@ -86,6 +86,28 @@ public class LightCyclesGameGUItests {
 
     @Test
     public void playerTest(){
+        String name = "Heylon";
+        Dimension position = new Dimension(1,1);
+        PlayerDirection direction = PlayerDirection.DOWN;
+        Player player = new Player(name,position,direction);
+
+        Assert.assertTrue(name.equals(player.getName()));
+
+        Assert.assertEquals(0, player.getScore());
+
+        player.setPosition(position);
+
+        Assert.assertEquals(0, player.getScore());
+
+        Assert.assertTrue(player.getDirection() == direction);
+
+        Assert.assertTrue(player.isJetwallEnabled());
+
+        Assert.assertTrue(player.getPosition() == position);
+
+        player.setPosition(new Dimension(101,102));
+
+        Assert.assertTrue(player.getScore() > 0);
 
     }
 
