@@ -49,8 +49,6 @@ public class JoinGamePanel extends JPanel {
         JLabel ipLabel = new JLabel("IP address");
         JLabel portLabel = new JLabel("Port");
 
-        JButton checkButton = new JButton("Check");
-
         gbc.gridx = 0;
         gbc.gridy = 0;
         serverIPPanel.add(ipTitleLabel,gbc);
@@ -64,10 +62,6 @@ public class JoinGamePanel extends JPanel {
         gbc.ipadx = 0;
         gbc.gridx = 0;
         serverIPPanel.add(portLabel,gbc);
-        gbc.gridy = 1;
-        gbc.gridx = 2;
-        gbc.gridheight = 2;
-        serverIPPanel.add(checkButton,gbc);
 
         serverIPPanel.setPreferredSize(new Dimension(400,120));
         serverIPPanel.setBackground(Color.lightGray);
