@@ -85,7 +85,8 @@ public class DetailsDisplayPanel extends JPanel {
         });
 
         gamePanel.addJoinServerFailedListener((e) -> {
-            JOptionPane.showMessageDialog(null,e.getConnectionFailureReason());
+            JOptionPane.showMessageDialog(null,"DetailsDisplayPanel: " +
+                    e.getConnectionFailureReason());
             mainWindow.switchToStartScreen();
         });
 
