@@ -111,4 +111,26 @@ public class LightCyclesGameGUItests {
 
     }
 
+    @Test
+    public void lightCyclesGameTest(){
+        String name = "Me!";
+        Color playerColour = Color.red;
+        String ipAddress = "127.0.0.1";
+        int port = 50000;
+        LightCyclesGame gameObj = new LightCyclesGame(name,playerColour,ipAddress,port);
+
+        Assert.assertTrue(name.equals(gameObj.getUsersName()));
+
+        //Game should complain that it cannot join the server
+        boolean threwException = false;
+        try {
+            gameObj.joinServer();
+        }catch (Exception e){
+            threwException = true;
+        }
+        Assert.assertTrue(threwException);
+
+        gameObj.close();
+    }
+
 }
