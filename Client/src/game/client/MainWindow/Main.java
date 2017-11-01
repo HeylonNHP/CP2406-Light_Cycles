@@ -25,6 +25,7 @@ public class Main extends JFrame{
             String testMessage = String.format("Name: %s Colour: %s", e.getChosenPlayerName(),
                     e.getChosenColour().toString());
             //JOptionPane.showMessageDialog(this,testMessage);
+
             gameObject = new LightCyclesGame(e.getChosenPlayerName(), e.getChosenColour(),
                     e.getIpAddress(),e.getPort());
 
@@ -33,27 +34,6 @@ public class Main extends JFrame{
             remove(startScreen);
             add(displayPanel);
             displayPanel.joinServer();
-            /*
-            gameScreenPanel = new GamePanel(newGame);
-
-            gameScreenPanel.addJoinServerFailedListener((e1) ->{
-                remove(gameScreenPanel);
-                add(startScreen);
-                revalidate();
-                repaint();
-            });
-            gameScreenPanel.addRePaintRequestListener((e2) -> {
-                revalidate();
-                repaint();
-                pack();
-            });
-
-            //Remove the join game panel from screen
-            remove(startScreen);
-            //Add game panel to screen
-            add(gameScreenPanel);
-
-            gameScreenPanel.joinServer();*/
         });
 
         add(startScreen);
@@ -63,17 +43,32 @@ public class Main extends JFrame{
 
     public void switchToStartScreen(){
         getContentPane().removeAll();
+        endGame();
         add(startScreen);
+        revalidate();
+        repaint();
+        pack();
     }
 
     public void switchToLeaderBoard(HashMap<String, Integer> highScores){
         LeaderBoardViewer leaderBoard = new LeaderBoardViewer(highScores);
+
+        leaderBoard.addReturnToStartScreenRequestListener((e) ->{
+            switchToStartScreen();
+        });
 
         getContentPane().removeAll();
         add(leaderBoard);
 
         revalidate();
         repaint();
+    }
+
+    public void endGame(){
+        /*Will close the current game*/
+        displayPanel = null;
+        gameObject.close();
+        gameObject = null;
     }
 
     public static void main(String[] args) {

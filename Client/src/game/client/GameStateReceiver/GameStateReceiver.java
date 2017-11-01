@@ -29,6 +29,9 @@ public class GameStateReceiver extends Thread {
 
         while (true){
             try{
+                if(!running){
+                    return;
+                }
                 byte[] dataBuffer = new byte[1024];
                 DatagramPacket receivedPacket = new DatagramPacket(dataBuffer,dataBuffer.length);
                 multicastSocket.receive(receivedPacket);
@@ -40,10 +43,6 @@ public class GameStateReceiver extends Thread {
                 GameState gameState = interpretGameStateFromString(bufferString);
                 GameStateUpdated newUpdate = new GameStateUpdated(this, gameState);
                 raiseGameStateUpdated(newUpdate);
-
-                if(!running){
-                    break;
-                }
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -90,8 +89,8 @@ public class GameStateReceiver extends Thread {
     }
 
     public void close(){
+        running = false;
         listenerList = null;
         multicastSocket.close();
-        running = false;
     }
 }

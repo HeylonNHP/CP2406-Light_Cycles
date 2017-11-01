@@ -28,6 +28,7 @@ public class GamePanel extends JPanel{
         }catch (Exception e){
             /*Tried to join the server and something went wrong.*/
             raiseJoinServerFailed(new JoinServerFailedEvent(this,e.getMessage()));
+            return;
         }
 
         lightCyclesGame.getGameGrid().addGridUpdatedListener((e) -> {
@@ -105,7 +106,9 @@ public class GamePanel extends JPanel{
         RenderingHints defaultRH = graphics2D.getRenderingHints();
         RenderingHints enhancedRH = new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
         graphics2D.setRenderingHints(enhancedRH);
-        //System.out.println("GamePanel paint");
+
+        Font titleFont = new Font("Arial", Font.BOLD, 36);
+        Font largeTextFont = new Font(titleFont.getFamily(),titleFont.getStyle(),20);
 
         GameGrid gameGrid = lightCyclesGame.getGameGrid();
 
@@ -118,16 +121,43 @@ public class GamePanel extends JPanel{
             gameGrid.draw(graphics2D);
 
             if(!gameStarted) {
+
                 graphics2D.setColor(new Color(200, 0, 0));
                 drawCenteredString(graphics2D, "...Waiting for players...",
-                        new Rectangle(0, 0, gridDimensions.width, gridDimensions.height),
-                        new Font("Arial", Font.BOLD, 36));
+                        new Rectangle(0, 0, gridDimensions.width, 350),
+                        titleFont);
+
+                drawHorizontalCentredString(graphics2D,"Objective:",titleFont,0,50,gridDimensions.width);
+
+                drawHorizontalCentredString(graphics2D,"To be the last player remaining on the grid.",
+                        largeTextFont,0,86,gridDimensions.width);
+
+                int keyGraphicsYpos = 300;
+                int keyGraphicsXpos = gridDimensions.width/2;
+
+                drawKeyboardKey(graphics2D,keyGraphicsXpos-65,keyGraphicsYpos,'◄');
+                drawKeyboardKey(graphics2D,keyGraphicsXpos+65,keyGraphicsYpos,'►');
+                drawKeyboardKey(graphics2D,keyGraphicsXpos,keyGraphicsYpos-50,'▲');
+                drawKeyboardKey(graphics2D,keyGraphicsXpos,keyGraphicsYpos,'▼');
+                drawKeyboardKey(graphics2D,keyGraphicsXpos,keyGraphicsYpos+100,' ');
+
+                graphics2D.setColor(Color.orange);
+                graphics2D.setFont(largeTextFont);
+
+                graphics2D.drawString("Turn left", keyGraphicsXpos-180,keyGraphicsYpos);
+                graphics2D.drawString("Turn right", keyGraphicsXpos+100,keyGraphicsYpos);
+                drawHorizontalCentredString(graphics2D,"Move forward quickly", largeTextFont,
+                        0,keyGraphicsYpos-80,gridDimensions.width);
+                drawHorizontalCentredString(graphics2D,"Move forward slowly", largeTextFont,
+                        0,keyGraphicsYpos+50,gridDimensions.width);
+                drawHorizontalCentredString(graphics2D,"Toggle jet wall", largeTextFont,
+                        0,keyGraphicsYpos+150,gridDimensions.width);
             }
         }
 
         graphics2D.setRenderingHints(defaultRH);
     }
-    public void drawCenteredString(Graphics g, String text, Rectangle rect, Font font) {
+    private static void drawCenteredString(Graphics g, String text, Rectangle rect, Font font) {
         // Get the FontMetrics
         FontMetrics metrics = g.getFontMetrics(font);
         // Determine the X coordinate for the text
@@ -138,5 +168,64 @@ public class GamePanel extends JPanel{
         g.setFont(font);
         // Draw the String
         g.drawString(text, x, y);
+    }
+
+    private static void drawHorizontalCentredString(Graphics g, String text, Font font, int x, int y, int width){
+        Graphics graphics = g.create();
+        graphics.setFont(font);
+        FontMetrics fm = graphics.getFontMetrics(font);
+
+        int centreX = x+(width-fm.stringWidth(text))/2;
+        graphics.drawString(text,centreX,y);
+        graphics.dispose();
+    }
+
+    enum KeySize {Normal, Space}
+
+    private static void drawKeyboardKey(Graphics g, int x, int y, char keyValue){
+        Graphics graphics = g.create();
+
+        KeySize keySize;
+        String keyString;
+
+        switch (keyValue){
+            case ' ':
+                keySize = KeySize.Space;
+                keyString = "Space";
+                break;
+            default:
+                keySize = KeySize.Normal;
+                keyString = String.valueOf(keyValue);
+        }
+
+        int[] xpoints = {20,-20,-30,30};
+        int[] ypoints = {-20,-20,20,20};
+
+        switch (keySize){
+            case Normal:
+                xpoints = new int[]{20,-20,-30,30};
+                break;
+            case Space:
+                xpoints = new int[]{110,-110,-120,120};
+                break;
+        }
+
+        for(int i = 0; i<xpoints.length;++i){
+            xpoints[i] += x;
+        }
+        for (int i=0;i<ypoints.length;++i){
+            ypoints[i] += y;
+        }
+        Polygon key = new Polygon(xpoints,ypoints,xpoints.length);
+        graphics.fillPolygon(key);
+
+        Font keyFont = new Font("Arial",Font.BOLD,30);
+
+        graphics.setColor(Color.white);
+
+        drawHorizontalCentredString(graphics,keyString,keyFont,
+                x-30,y+10,60);
+
+        graphics.dispose();
     }
 }

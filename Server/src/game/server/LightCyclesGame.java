@@ -22,7 +22,7 @@ public class LightCyclesGame {
     private LeaderBoard leaderBoard;
 
     private Timer gameStartTimer;
-    private final int playersRequiredForGameStart = 1;
+    private final int playersRequiredForGameStart = 2;
 
     //I.E - if equals 10, there will be 10 pixels for every location on the grid
     private final int gridShrinkFactor = 5;
@@ -180,6 +180,7 @@ public class LightCyclesGame {
                                 System.out.println("Added user: " + userName);
                             }catch (Exception e){
                                 response = "FAILED " + e.getMessage();
+                                e.printStackTrace();
                                 System.out.println("Player " + userName + " already exists");
                             }
 
@@ -362,7 +363,7 @@ public class LightCyclesGame {
         if(currentGameState == CurrentGameState.GAME_OVER){
             playerList = new ArrayList<>();
             currentGameState = CurrentGameState.WAITING_FOR_USERS;
-            gameStartTimer.start();
+            //gameStartTimer.start();
         }else {
             throw new Exception("Game is not currently in a state where it can be restarted!");
         }

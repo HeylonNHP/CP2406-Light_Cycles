@@ -329,7 +329,7 @@ public class LightCyclesGame {
         }
     }
 
-    private void close(){
+    public void close(){
         //Close this game object. Alright, parties over fellas!
         listeners = null;
         receiver.close();

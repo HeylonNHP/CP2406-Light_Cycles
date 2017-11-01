@@ -17,7 +17,7 @@ public class JoinGamePanel extends JPanel {
         //super(new GridLayout(0,1), false);
         super(new GridBagLayout());
         GridBagConstraints frameGBC = new GridBagConstraints();
-        //setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
+        frameGBC.fill = GridBagConstraints.BOTH;
         JLabel mainGameTitleLabel = new JLabel("<html><h1>Tron Light Cycles</h1></html>");
         frameGBC.gridx=0;
         frameGBC.gridy=0;
@@ -44,7 +44,7 @@ public class JoinGamePanel extends JPanel {
         //IP address
         JPanel serverIPPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.fill = GridBagConstraints.VERTICAL;
+        gbc.fill = GridBagConstraints.BOTH;
         gbc.weightx = 1;
         gbc.weighty = 1;
         JLabel ipTitleLabel = new JLabel("Server address");

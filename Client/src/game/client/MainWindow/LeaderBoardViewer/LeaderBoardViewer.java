@@ -1,15 +1,27 @@
 package game.client.MainWindow.LeaderBoardViewer;
 
 import javax.swing.*;
+import javax.swing.event.EventListenerList;
 import java.awt.*;
+import java.util.EventObject;
 import java.util.HashMap;
 
 public class LeaderBoardViewer extends JPanel {
+    EventListenerList listeners = new EventListenerList();
     JTable leaderBoardTable;
+    JButton gotoStartScreenButton = new JButton("Play again");
     public LeaderBoardViewer(HashMap<String,Integer> leaderBoard){
         super();
         setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
-        add(new JLabel("Leader board scores:"));
+
+        gotoStartScreenButton.addActionListener((e) -> raiseReturnToStartScreenRequest());
+
+        JPanel topPanel = new JPanel(new GridLayout(0,2));
+
+        topPanel.add(new JLabel("Leader board scores:"));
+        topPanel.add(gotoStartScreenButton);
+
+        add(topPanel);
 
         if(leaderBoard.size() > 0){
             leaderBoardTable = generateTable(leaderBoard);
@@ -50,5 +62,15 @@ public class LeaderBoardViewer extends JPanel {
         test.add(new LeaderBoardViewer(leaderTest));
         test.pack();
         test.setVisible(true);
+    }
+
+    public void addReturnToStartScreenRequestListener(ReturnToStartScreenListener e){
+        listeners.add(ReturnToStartScreenListener.class,e);
+    }
+    public void raiseReturnToStartScreenRequest(){
+        EventObject e = new EventObject(this);
+        for(ReturnToStartScreenListener listener: listeners.getListeners(ReturnToStartScreenListener.class)){
+            listener.returnToStartScreenRequested(e);
+        }
     }
 }
