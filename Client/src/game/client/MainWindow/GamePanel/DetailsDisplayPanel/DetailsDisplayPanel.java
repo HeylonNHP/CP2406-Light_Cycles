@@ -1,5 +1,6 @@
 package game.client.MainWindow.GamePanel.DetailsDisplayPanel;
 
+import game.client.HighScore;
 import game.client.LightCyclesGame;
 import game.client.MainWindow.GamePanel.GamePanel;
 import game.client.MainWindow.Main;
@@ -8,6 +9,7 @@ import game.client.VisibleGameObjects.Player;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DetailsDisplayPanel extends JPanel {
@@ -61,11 +63,11 @@ public class DetailsDisplayPanel extends JPanel {
             hudPanel.remove(leaveGameButton);
 
             viewScoreboardButton.addActionListener((e2) -> {
-                HashMap<String,Integer> highScores;
+                ArrayList<HighScore> highScores;
                 try{
                     highScores = gameObject.getLeaderBoard();
                 }catch (Exception ex){
-                    highScores = new HashMap<>();
+                    highScores = new ArrayList<>();
                 }
 
                 mainWindow.switchToLeaderBoard(highScores);

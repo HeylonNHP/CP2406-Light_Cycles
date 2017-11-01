@@ -277,6 +277,28 @@ public class LightCyclesGame {
         }
     }
 
+    public ArrayList<HighScore> getLeaderBoard() throws Exception{
+        String response = serverRequester.getRequestResponse("GET LEADERBOARD");
+
+        ArrayList<HighScore> highScores = new ArrayList<>();
+
+        if(response.contains("OKAY:")){
+            response = response.replace("OKAY:", "");
+            String[] scoreStrings = response.split(" ");
+
+            for(String scoreString:scoreStrings){
+                String[] nameAndScore = scoreString.split(",");
+                highScores.add(new HighScore(nameAndScore[0], Integer.parseInt(nameAndScore[1])));
+            }
+
+            return highScores;
+        }else if(response.contains("FAILED")){
+            throw new Exception(response.replace("FAILED ", ""));
+        }else {
+            throw new Exception("Something very bad happened while obtaining the leader board");
+        }
+    }
+    /*
     public HashMap<String, Integer> getLeaderBoard() throws Exception {
         String response = "";
         try {
@@ -304,7 +326,7 @@ public class LightCyclesGame {
             throw new Exception("Something went wrong when requesting the leader board from the server");
         }
     }
-
+*/
     public void postScoreToLeaderBoard(int score) throws Exception{
         String requestString = String.format("SAVE SCORE %s %s",
                 usersName, score);

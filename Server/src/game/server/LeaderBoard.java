@@ -1,18 +1,19 @@
 package game.server;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class LeaderBoard {
-    private HashMap<String,Integer> highScores = new HashMap<>();
+    /*private HashMap<String,Integer> highScores = new HashMap<>();*/
+    private ArrayList<HighScore> highScores = new ArrayList<>();
     public LeaderBoard(){
 
     }
 
-    public void addHighScore(String name, Integer score){
-        highScores.put(name,score);
+    public void addHighScore(HighScore highScore){
+        highScores.add(highScore);
     }
 
-    public HashMap<String, Integer> getHighScores() {
+    public ArrayList<HighScore> getHighScores() {
         return highScores;
     }
 }

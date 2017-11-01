@@ -1,5 +1,6 @@
 package game.client.MainWindow;
 
+import game.client.HighScore;
 import game.client.LightCyclesGame;
 import game.client.MainWindow.GamePanel.DetailsDisplayPanel.DetailsDisplayPanel;
 import game.client.MainWindow.GamePanel.GamePanel;
@@ -8,6 +9,7 @@ import game.client.MainWindow.LeaderBoardViewer.LeaderBoardViewer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -50,7 +52,7 @@ public class Main extends JFrame{
         pack();
     }
 
-    public void switchToLeaderBoard(HashMap<String, Integer> highScores){
+    public void switchToLeaderBoard(ArrayList<HighScore> highScores){
         LeaderBoardViewer leaderBoard = new LeaderBoardViewer(highScores);
 
         leaderBoard.addReturnToStartScreenRequestListener((e) -> switchToStartScreen());

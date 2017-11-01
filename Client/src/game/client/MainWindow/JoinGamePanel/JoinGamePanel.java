@@ -14,7 +14,6 @@ public class JoinGamePanel extends JPanel {
     private JTextField ipText = new JTextField("127.0.0.1");
     private JTextField portText = new JTextField("56970");
     public JoinGamePanel(){
-        //super(new GridLayout(0,1), false);
         super(new GridBagLayout());
         GridBagConstraints frameGBC = new GridBagConstraints();
         frameGBC.fill = GridBagConstraints.BOTH;

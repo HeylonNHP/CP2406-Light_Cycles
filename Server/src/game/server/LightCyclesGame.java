@@ -1,13 +1,11 @@
 package game.server;
 
 import javax.swing.*;
+import javax.swing.Timer;
 import javax.swing.event.EventListenerList;
 import java.awt.*;
 import java.net.*;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.EventObject;
-import java.util.HashMap;
+import java.util.*;
 
 enum CurrentGameState {IDLE, WAITING_FOR_USERS, PLAYING, GAME_OVER}
 
@@ -229,20 +227,27 @@ public class LightCyclesGame {
                     }else if(clientRequest.contains("SAVE SCORE")) {
                         String scoreName = requestComponents[2];
                         int scoreValue = Integer.parseInt(requestComponents[3]);
-                        leaderBoard.addHighScore(scoreName, scoreValue);
+                        leaderBoard.addHighScore(new HighScore(scoreName,scoreValue));
                         System.out.println(String.format("Added score for: %s Score: %s", scoreName, scoreValue));
                         response = "OKAY";
                     }else if(clientRequest.contains("GET LEADERBOARD")){
                         //Send back all the scores on the leaderboard
-                        HashMap<String,Integer> scores = leaderBoard.getHighScores();
-                        if(scores.size() < 1){
+                        ArrayList<HighScore> highScores = leaderBoard.getHighScores();
+
+                        Collections.sort(highScores);
+
+                        if(highScores.size() < 1){
                             response = "FAILED No scores on leaderboard yet";
                         }else{
-                            response = "OKAY:";
-                            for(String playerName:scores.keySet()){
-                                response += String.format("%s,%s ", playerName,
-                                        scores.get(playerName));
+                            StringBuilder stringBuilder = new StringBuilder("OKAY:");
+                            for(HighScore highScore:highScores){
+                                stringBuilder.append(
+                                        String.format("%s,%s ", highScore.getPlayerName(),
+                                                highScore.getPlayerScore())
+                                );
+
                             }
+                            response = stringBuilder.toString();
                         }
 
                     }else if(clientRequest.contains("USER")){
