@@ -45,7 +45,7 @@ public class GameStateReceiver extends Thread {
                 GameStateUpdated newUpdate = new GameStateUpdated(this, gameState);
                 raiseGameStateUpdated(newUpdate);
             }catch (Exception e){
-                e.printStackTrace();
+                System.out.println("Game state receiver stopped");
             }
         }
     }

@@ -313,6 +313,11 @@ public class LightCyclesGame {
     }
 
     private void addPlayerToGame(String playerName) throws Exception{
+        if(playerName.contains(",") || playerName.contains(" ")){
+            throw new Exception("Player name contains characters that aren't allowed.\n" +
+                    "Please don't use spaces or commas.");
+        }
+
         Player newPlayer = new Player(playerName);
 
         for(Player player:playerList){
