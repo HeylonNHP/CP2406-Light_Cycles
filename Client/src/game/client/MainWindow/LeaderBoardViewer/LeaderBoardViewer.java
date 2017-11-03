@@ -15,7 +15,12 @@ public class LeaderBoardViewer extends JPanel {
     JButton gotoStartScreenButton = new JButton("Play again");
     public LeaderBoardViewer(ArrayList<HighScore> leaderBoard){
         super();
-        setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
+        //setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
+        setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.weightx = 1;
+        gbc.weighty = 1;
+        gbc.fill = GridBagConstraints.BOTH;
 
         gotoStartScreenButton.addActionListener((e) -> raiseReturnToStartScreenRequest());
 
@@ -24,16 +29,19 @@ public class LeaderBoardViewer extends JPanel {
         topPanel.add(new JLabel("Leader board scores:"));
         topPanel.add(gotoStartScreenButton);
 
-        add(topPanel);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        add(topPanel,gbc);
 
+        gbc.gridy = 1;
         if(leaderBoard.size() > 0){
             leaderBoardTable = generateTable(leaderBoard);
-            add(new JScrollPane(leaderBoardTable));
+            add(new JScrollPane(leaderBoardTable),gbc);
         }else{
             JLabel noScoresLabel = new JLabel(
                     "<html><h1>There are no scores <br>on the leader board yet!</h1></html>");
             noScoresLabel.setForeground(Color.red);
-            add(noScoresLabel);
+            add(noScoresLabel, gbc);
         }
     }
 

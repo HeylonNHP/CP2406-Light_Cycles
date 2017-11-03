@@ -82,7 +82,6 @@ public class GameStateReceiver extends Thread {
     }
 
     private void raiseGameStateUpdated(GameStateUpdated e){
-        System.out.println("Game state event listener fired");
         GameStateUpdateListener[] listeners = listenerList.getListeners(GameStateUpdateListener.class);
         for (GameStateUpdateListener listener: listeners) {
             listener.GameStateUpdate(e);

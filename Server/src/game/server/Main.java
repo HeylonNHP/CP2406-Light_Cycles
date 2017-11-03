@@ -10,6 +10,7 @@ public class Main {
     private static JTextField widthTextInput = new JTextField();
     private static JTextField heightTextInput = new JTextField();
     private static JButton startGameButton = new JButton("Start server!");
+    private static JCheckBox autoRestart = new JCheckBox("Auto restart", true);
     private static LightCyclesGame newGame;
     public static void main(String[] args) {
         // write your code here
@@ -19,7 +20,7 @@ public class Main {
 
         Dimension windowSize = new Dimension();
         windowSize.width = 350;
-        windowSize.height = 120;
+        windowSize.height = 150;
 
         mainWindow.setSize(windowSize);
 
@@ -54,6 +55,8 @@ public class Main {
 
         gbc.gridy = 2;
         gbc.gridx = 0;
+        mainWindow.add(autoRestart,gbc);
+        gbc.gridy = 3;
         gbc.gridwidth = 2;
         mainWindow.add(startGameButton,gbc);
 
@@ -100,6 +103,15 @@ public class Main {
             newGame.addGameOverListener((e1) -> {
                 startGameButton.setText(startNewGameString);
                 startGameButton.setEnabled(true);
+                if(autoRestart.isSelected()){
+                    Timer timer;
+                    timer = new Timer(1000,(ex)->{
+                        startServerHandler(e);
+                    });
+                    timer.setRepeats(false);
+                    timer.start();
+                }
+                mainWindow.repaint();
             });
         }
     }

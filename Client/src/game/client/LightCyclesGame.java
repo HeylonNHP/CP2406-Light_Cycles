@@ -9,7 +9,6 @@ import game.client.VisibleGameObjects.*;
 import javax.swing.event.EventListenerList;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 enum CurrentGameState {IDLE, WAITING_FOR_USERS, PLAYING, GAME_OVER}
 
@@ -34,9 +33,10 @@ public class LightCyclesGame {
         GameState gameState = e.getGameState();
 
         for (PlayerState playerState : gameState.getPlayerStates()) {
+            /*
             System.out.println(String.format("Player: %s x: %s y:%s jetwall enabled: %s",
                     playerState.getName(), playerState.getPosition().width,
-                    playerState.getPosition().height, playerState.isJetwallEnabled()));
+                    playerState.getPosition().height, playerState.isJetwallEnabled()));*/
 
             //Update player on grid
             try {
@@ -44,13 +44,13 @@ public class LightCyclesGame {
 
                 Dimension newPlayerPosition = playerState.getPosition();
                 Dimension currentPlayerPosition = player.getPosition();
-
+                /*
                 System.out.println(
                         String.format("Has moved horizontally: %s " +
                                         "Has moved vertically: %s",
                                 currentPlayerPosition.width != newPlayerPosition.width,
                                 currentPlayerPosition.height != newPlayerPosition.height)
-                );
+                );*/
 
                 //Place jetwall if they have it enabled and they have moved since the last broadcast update
                 if ((currentPlayerPosition.width != newPlayerPosition.width ||
@@ -71,9 +71,10 @@ public class LightCyclesGame {
 
                 //Move player to new position
                 player.setPosition(newPlayerPosition);
+                /*
                 System.out.println(String.format(
                         "Players direction of travel is: %s", player.getDirection().toString()
-                ));
+                ));*/
                 //Set jetwall state
                 player.setJetwallEnabled(playerState.isJetwallEnabled());
 
@@ -122,12 +123,13 @@ public class LightCyclesGame {
                 if (gameState_.contains("GAME OVER")) {
                     GameOver(gameState_);
                 }
+                /*
                 System.out.printf(
                         "Game state: %s\n", gameState_
-                );
+                );*/
                 checkComplete = true;
             } catch (Exception ex) {
-                System.out.printf("Couldn't connect to the server for this reason: %s\n", ex.getMessage());
+                //System.out.printf("Couldn't connect to the server for this reason: %s\n", ex.getMessage());
             }
         }
     }
@@ -298,35 +300,7 @@ public class LightCyclesGame {
             throw new Exception("Something very bad happened while obtaining the leader board");
         }
     }
-    /*
-    public HashMap<String, Integer> getLeaderBoard() throws Exception {
-        String response = "";
-        try {
-            response = serverRequester.getRequestResponse("GET LEADERBOARD");
-            System.out.printf("Leaderboard response: %s", response);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
 
-        if (response.contains("FAILED")) {
-            String error = response.replace("FAILED ", "");
-            throw new Exception(error);
-        } else if (response.contains("OKAY:")) {
-            String leaderBoardString = response.replace("OKAY:", "");
-            HashMap<String, Integer> leaderBoard = new HashMap<>();
-
-            String[] leaderBoardEntries = leaderBoardString.split(" ");
-
-            for (String leaderBoardEntry : leaderBoardEntries) {
-                String[] nameAndScore = leaderBoardEntry.split(",");
-                leaderBoard.put(nameAndScore[0], Integer.parseInt(nameAndScore[1]));
-            }
-            return leaderBoard;
-        } else {
-            throw new Exception("Something went wrong when requesting the leader board from the server");
-        }
-    }
-*/
     public void postScoreToLeaderBoard(int score) throws Exception{
         String requestString = String.format("SAVE SCORE %s %s",
                 usersName, score);

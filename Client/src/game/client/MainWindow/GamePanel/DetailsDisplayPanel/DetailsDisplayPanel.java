@@ -46,7 +46,7 @@ public class DetailsDisplayPanel extends JPanel {
 
             if(hasWon) {
                 boolean postScore = promptUserToPostScore();
-                System.out.printf("Post score response: %s\n", postScore);
+                //System.out.printf("Post score response: %s\n", postScore);
                 if(postScore){
                     //Post score to leaderboard
                     try{
@@ -108,7 +108,7 @@ public class DetailsDisplayPanel extends JPanel {
     }
 
     private boolean promptUserToPostScore(){
-        Object[] options = {"Post score", "Nah mate"};
+        Object[] options = {"Post score", "No thanks"};
 
         int choice = JOptionPane.showOptionDialog(this,
                 "<html><b>You have won!</b><br>You may now post your score to the leader board.</html>",

@@ -86,7 +86,6 @@ public class JoinGamePanel extends JPanel {
     private void raiseJoinGameEvent(JoinGameEvent eventObject){
         for(JoinGameEventListener listener: listenerList.getListeners(JoinGameEventListener.class)){
             listener.joinGameRequested(eventObject);
-            System.out.println("JoinTest");
         }
     }
 }

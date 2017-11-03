@@ -31,9 +31,9 @@ public class JetWall {
 
         g.setColor(jetwallColor);
         if(direction == JetWallDirection.HORIZONTAL){
-            g.fillRect(position.width-5,position.height-2,10,4);
+            g.fillRect(position.width-3,position.height-2,6,4);
         }else {
-            g.fillRect(position.width-2,position.height-5,4,10);
+            g.fillRect(position.width-2,position.height-3,4,6);
         }
 
     }

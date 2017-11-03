@@ -29,12 +29,12 @@ public class GameGrid {
         int gridWidth = gridSize.width;
         int gridHeight = gridSize.height;
 
-        xPos = (int)Math.round(Math.random() * gridWidth);
-        yPos = (int)Math.round(Math.random() * gridHeight);
+        xPos = (int)Math.round(Math.random() * (gridWidth-1));
+        yPos = (int)Math.round(Math.random() * (gridHeight-1));
 
         while (isGridLocationOccupied(xPos,yPos)){
-            xPos = (int)Math.round(Math.random() * gridWidth);
-            yPos = (int)Math.round(Math.random() * gridHeight);
+            xPos = (int)Math.round(Math.random() * (gridWidth-1));
+            yPos = (int)Math.round(Math.random() * (gridHeight-1));
         }
 
         /*Set player orientation so that it points away from the wall*/

@@ -23,6 +23,17 @@ public class GameGrid {
         }
 
         //Otherwise add the player to the grid
+        //Set the players direction based on grid location
+        if(player.getPosition().width > (gridDimensions.width/2)){
+            player.setDirection(PlayerDirection.LEFT);
+        }else {
+            player.setDirection(PlayerDirection.RIGHT);
+        }
+        if(player.getPosition().height > (gridDimensions.height/2)){
+            player.setDirection(PlayerDirection.UP);
+        }else {
+            player.setDirection(PlayerDirection.DOWN);
+        }
         playerList.add(player);
         raiseGridUpdatedListener();
     }
